@@ -67,7 +67,7 @@ function PlotManagement() {
   return (
     <div>
       {/* Stats */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16, marginBottom: 24 }}>
+      <div className="stats-grid">
         {[
           { label: 'Total Plots', value: plots.length, color: '#1e40af', bg: '#eff6ff', icon: '📊' },
           { label: 'Available', value: statusCounts.available, color: '#16a34a', bg: '#f0fdf4', icon: '✅' },
@@ -87,7 +87,7 @@ function PlotManagement() {
       )}
 
       {/* Filters */}
-      <div style={{ display: 'flex', gap: 12, marginBottom: 16, flexWrap: 'wrap' }}>
+      <div className="admin-filters-bar">
         <div className="search-box" style={{ flex: 1, maxWidth: 320 }}>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" strokeWidth="2.5">
             <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
@@ -124,7 +124,7 @@ function PlotManagement() {
       </div>
 
       {/* Table */}
-      <div style={{ background: 'white', borderRadius: 14, border: '1px solid var(--border)', overflow: 'hidden' }}>
+      <div className="table-wrapper">
         <table className="data-table">
           <thead>
             <tr>
@@ -272,7 +272,7 @@ function EnquiryList() {
           {enquiries.length} enquir{enquiries.length === 1 ? 'y' : 'ies'} received
         </span>
       </div>
-      <div style={{ background: 'white', borderRadius: 14, border: '1px solid var(--border)', overflow: 'hidden' }}>
+      <div className="table-wrapper">
         <table className="data-table">
           <thead>
             <tr>
@@ -331,7 +331,7 @@ export default function AdminDashboard({ userEmail, accessibleSites }: AdminDash
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100dvh', fontFamily: "'Inter', sans-serif", background: 'var(--bg-primary)', overflowY: 'auto', touchAction: 'auto' }}>
       {/* Top bar */}
-      <div style={{ background: '#0f172a', padding: '10px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, flexShrink: 0, flexWrap: 'wrap' }}>
+      <div className="admin-top-bar">
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <div style={{ width: 30, height: 30, background: 'linear-gradient(135deg, #1e40af, #3b82f6)', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>

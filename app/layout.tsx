@@ -4,11 +4,11 @@ import { AppProvider } from '@/lib/context';
 import { headers } from 'next/headers';
 
 export const metadata: Metadata = {
-  title: 'Smart City Phase 12 & 13 | Premium Residential Township | Rajnandgaon',
-  description: 'Explore premium residential plots in Smart City Phase 12 & 13, Rajnandgaon. Interactive sales map with real-time availability, plot details, and pricing.',
-  keywords: 'Smart City, Rajnandgaon, residential plots, Phase 12, Phase 13, real estate, Chhattisgarh',
+  title: 'Mangalam City | Premium Residential Township | Rajnandgaon',
+  description: 'Explore premium residential plots in Mangalam City, Rajnandgaon. Interactive sales map with real-time availability, plot details, and pricing.',
+  keywords: 'Mangalam City, Rajnandgaon, residential plots, real estate, Chhattisgarh',
   openGraph: {
-    title: 'Smart City Phase 12 & 13 | Premium Township',
+    title: 'Mangalam City | Premium Township',
     description: 'Interactive sales map for premium residential plots in Rajnandgaon.',
     type: 'website',
   },

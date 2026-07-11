@@ -53,6 +53,23 @@ export default async function HQUsers() {
     revalidatePath('/hq/users');
   }
 
+  async function deleteUser(formData: FormData) {
+    'use server';
+    const userId = formData.get('user_id') as string;
+    if (!userId) return;
+
+    // 1. Delete from Supabase Auth
+    const { error: authError } = await supabaseAdmin.auth.admin.deleteUser(userId);
+    if (authError) {
+      console.error('Auth delete error:', authError);
+    }
+
+    // 2. Delete from site_users
+    await supabaseAdmin.from('site_users').delete().eq('user_id', userId);
+
+    revalidatePath('/hq/users');
+  }
+
   return (
     <div>
       <h1 style={{ fontSize: 24, fontWeight: 800, color: 'white', marginBottom: 24 }}>Manage Admins</h1>
@@ -99,6 +116,7 @@ export default async function HQUsers() {
               <th style={{ textAlign: 'left', padding: '16px', fontWeight: 600, fontSize: 14 }}>Role</th>
               <th style={{ textAlign: 'left', padding: '16px', fontWeight: 600, fontSize: 14 }}>Assigned Site</th>
               <th style={{ textAlign: 'left', padding: '16px', fontWeight: 600, fontSize: 14 }}>Added On</th>
+              <th style={{ textAlign: 'right', padding: '16px', fontWeight: 600, fontSize: 14 }}>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -114,6 +132,16 @@ export default async function HQUsers() {
                 </td>
                 <td style={{ padding: '16px', fontSize: 14, color: '#94a3b8' }}>{u.site_name}</td>
                 <td style={{ padding: '16px', fontSize: 14, color: '#94a3b8' }}>{new Date(u.created_at).toLocaleDateString()}</td>
+                <td style={{ padding: '16px', textAlign: 'right' }}>
+                  <form action={deleteUser}>
+                    <input type="hidden" name="user_id" value={u.user_id} />
+                    <button type="submit" 
+                      onClick={(e) => { if(!window.confirm(`Delete admin ${u.email}?`)) e.preventDefault(); }}
+                      style={{ background: 'transparent', color: '#ef4444', border: '1px solid #ef4444', padding: '4px 8px', borderRadius: '4px', cursor: 'pointer', fontSize: '12px' }}>
+                      Delete
+                    </button>
+                  </form>
+                </td>
               </tr>
             ))}
           </tbody>

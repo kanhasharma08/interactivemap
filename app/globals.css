@@ -729,6 +729,39 @@ html, body {
 
 .data-table tr:hover td { background: var(--bg-primary); }
 
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.admin-filters-bar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.table-wrapper {
+  background: white;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.admin-top-bar {
+  background: #0f172a;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
 /* ── Phase labels on map ── */
 .phase-label {
   font-family: 'Outfit', sans-serif;
@@ -800,6 +833,30 @@ html, body {
     padding: 0;
     display: flex;
     align-items: stretch;
+  }
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .admin-filters-bar {
+    flex-direction: column;
+  }
+  .admin-filters-bar .search-box {
+    max-width: 100% !important;
+  }
+  .admin-top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .admin-top-bar > div {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .admin-top-bar form {
+    width: 100%;
+  }
+  .admin-top-bar button {
+    width: 100%;
+    justify-content: center;
   }
 
   /* Row 1: logos + admin icon — true 3-col flex, no absolute positioning */
