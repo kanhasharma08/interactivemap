@@ -29,8 +29,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   
   let siteSlug = 'mangalamcity';
   const isLocalhost = hostname.includes('localhost') || hostname.includes('127.0.0.1');
-  
-  if (!isLocalhost) {
+  // Skip Vercel preview/deployment URLs — they look like subdomains but aren't real site slugs
+  const isVercelUrl = hostname.endsWith('.vercel.app') || hostname.endsWith('.now.sh');
+
+  if (!isLocalhost && !isVercelUrl) {
+    // Only extract slug from real custom subdomains, e.g. mangalamcity.mahavirgroupindia.com
     const parts = hostname.split('.');
     if (parts.length >= 3 && parts[0] !== 'www') {
       siteSlug = parts[0];
