@@ -1,0 +1,104 @@
+import { NextResponse, type NextRequest } from 'next/server'
+import { createServerClient } from '@supabase/ssr'
+
+export async function middleware(request: NextRequest) {
+  let supabaseResponse = NextResponse.next({
+    request,
+  })
+
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll() {
+          return request.cookies.getAll()
+        },
+        setAll(cookiesToSet) {
+          cookiesToSet.forEach(({ name, value, options }) => request.cookies.set(name, value))
+          supabaseResponse = NextResponse.next({
+            request,
+          })
+          cookiesToSet.forEach(({ name, value, options }) =>
+            supabaseResponse.cookies.set(name, value, options)
+          )
+        },
+      },
+    }
+  )
+
+  // IMPORTANT: Avoid writing any logic between createServerClient and
+  // supabase.auth.getUser(). A simple mistake could make it very hard to debug
+  // issues with users being randomly logged out.
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+
+  const url = request.nextUrl
+  const hostname = request.headers.get('host') || ''
+
+  // Logic to determine site slug from subdomain or query param
+  let siteSlug = url.searchParams.get('site')
+  
+  if (!siteSlug) {
+    const isLocalhost = hostname.includes('localhost') || hostname.includes('127.0.0.1')
+    
+    if (!isLocalhost) {
+      // Production: mangalamcity.mahavirgroup.com -> mangalamcity
+      const parts = hostname.split('.')
+      if (parts.length >= 3 && parts[0] !== 'www') {
+        siteSlug = parts[0]
+      }
+    }
+  }
+
+  // If no site slug found (e.g. visiting mahavirgroup.com directly), default to mangalamcity for now
+  if (!siteSlug) {
+    siteSlug = 'mangalamcity'
+  }
+
+  // 1. Auth protection for /hq routes
+  if (url.pathname.startsWith('/hq')) {
+    if (!user) {
+      return NextResponse.redirect(new URL('/admin', request.url))
+    }
+    // Check if user is super_admin
+    const { data: siteUser } = await supabase
+      .from('site_users')
+      .select('role')
+      .eq('user_id', user.id)
+      .eq('role', 'super_admin')
+      .single()
+
+    if (!siteUser) {
+      // Normal admins cannot access HQ
+      return NextResponse.redirect(new URL('/admin', request.url))
+    }
+  }
+
+  // 2. Auth protection for /admin routes
+  if (url.pathname === '/admin/dashboard' || url.pathname.startsWith('/admin/sites')) {
+      if (!user) {
+          return NextResponse.redirect(new URL('/admin', request.url))
+      }
+  }
+
+  // 3. Inject siteSlug into the headers so Server Components/API routes can read it
+  supabaseResponse.headers.set('x-site-slug', siteSlug)
+
+  return supabaseResponse
+}
+
+export const config = {
+  matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     * Feel free to modify this pattern to include more paths.
+     */
+    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+  ],
+}
