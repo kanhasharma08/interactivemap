@@ -18,7 +18,7 @@ interface AdminDashboardProps {
 
 // ── Plot Management ──────────────────────────────────────────────────────────
 function PlotManagement() {
-  const { plots, updatePlot, addPlot, deletePlot, deleteAllPlots } = useApp();
+  const { plots, updatePlot, addPlot, deletePlot, deleteAllPlots, siteSlug } = useApp();
   const [editingId, setEditingId] = useState<string | null>(null);
   const [mappingId, setMappingId] = useState<string | null>(null);
   const [editData, setEditData] = useState<Partial<Plot>>({});
@@ -106,7 +106,7 @@ function PlotManagement() {
         <div style={{ display: 'flex', gap: 8, marginLeft: 'auto' }}>
           <button className="btn btn-outline"
             style={{ padding: '6px 12px', fontSize: 13, gap: 6, display: 'flex', alignItems: 'center', color: '#dc2626', borderColor: 'rgba(220,38,38,0.3)' }}
-            onClick={() => { if (plots.length > 0 && window.confirm('WARNING: Delete ALL plots? This cannot be undone.')) deleteAllPlots(); }}>
+            onClick={() => { if (plots.length > 0 && window.confirm('WARNING: Delete ALL plots? This cannot be undone.')) deleteAllPlots(siteSlug); }}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
             </svg>
@@ -114,7 +114,7 @@ function PlotManagement() {
           </button>
           <button className="btn btn-primary"
             style={{ padding: '6px 12px', fontSize: 13, gap: 6, display: 'flex', alignItems: 'center' }}
-            onClick={() => { const newId = addPlot(); setMappingId(newId); }}>
+            onClick={() => { const newId = addPlot(siteSlug); setMappingId(newId); }}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <path d="M12 5v14M5 12h14"/>
             </svg>

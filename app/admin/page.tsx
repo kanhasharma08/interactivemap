@@ -18,11 +18,14 @@ export default async function AdminPage() {
     .eq('user_id', user.id);
 
   // If super_admin, they can theoretically access all, but they should be in HQ anyway
-  const accessibleSites = siteUsers?.map(su => ({
-    id: su.sites?.id || 'all',
-    name: su.sites?.name || 'All Sites',
-    slug: su.sites?.slug || ''
-  })) || [];
+  const accessibleSites = siteUsers?.map(su => {
+    const site = Array.isArray(su.sites) ? su.sites[0] : su.sites;
+    return {
+      id: (site as any)?.id || 'all',
+      name: (site as any)?.name || 'All Sites',
+      slug: (site as any)?.slug || ''
+    };
+  }) || [];
 
   return <AdminDashboard userEmail={user.email} accessibleSites={accessibleSites} />
 }
