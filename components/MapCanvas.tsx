@@ -5,9 +5,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useApp } from '@/lib/context';
 import { PLOTS, OPEN_SPACES, getStatusColor, getStatusBg } from '@/data/plots';
 import { Plot, OpenSpace } from '@/types';
+import { getSiteConfig } from '@/data/sites';
 
-const SVG_W = 4762;
-const SVG_H = 6735;
+// SVG dimensions are now per-site via getSiteConfig()
 
 // Label visibility threshold
 const LABEL_SCALE_THRESHOLD = 0.9;
@@ -164,7 +164,10 @@ interface MapCanvasProps {
 }
 
 export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
-  const { plots, filteredPlots, selectedPlot, hoveredPlot, setSelectedPlot, setHoveredPlot } = useApp();
+  const { plots, filteredPlots, selectedPlot, hoveredPlot, setSelectedPlot, setHoveredPlot, siteSlug } = useApp();
+  const siteConfig = getSiteConfig(siteSlug);
+  const SVG_W = siteConfig.svgW;
+  const SVG_H = siteConfig.svgH;
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
@@ -502,13 +505,14 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
         >
           <div style={{ width: '100%', height: '100%', transform: `rotate(${rotation}deg)`, transformOrigin: 'center center', position: 'relative' }}>
             <img
-              src="/map-layout.png"
-              alt="Mangalam City Map Layout"
+              src={siteConfig.mapImage}
+              alt={`${siteConfig.name} Map Layout`}
               draggable={false}
               style={{
                 display: 'block', width: SVG_W, height: SVG_H,
                 pointerEvents: 'none', userSelect: 'none',
-                imageRendering: 'auto',
+                imageRendering: siteConfig.mapImage.endsWith('.svg') ? 'auto' : 'high-quality',
+                willChange: 'transform',
               }}
             />
             <svg

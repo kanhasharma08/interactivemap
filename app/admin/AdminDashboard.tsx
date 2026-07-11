@@ -18,7 +18,7 @@ interface AdminDashboardProps {
 
 // ── Plot Management ──────────────────────────────────────────────────────────
 function PlotManagement() {
-  const { plots, updatePlot, addPlot, deletePlot, deleteAllPlots, siteSlug } = useApp();
+  const { plots, updatePlot, addPlot, deletePlot, deleteAllPlots, siteSlug, isLoading } = useApp();
   const [editingId, setEditingId] = useState<string | null>(null);
   const [mappingId, setMappingId] = useState<string | null>(null);
   const [editData, setEditData] = useState<Partial<Plot>>({});
@@ -68,18 +68,24 @@ function PlotManagement() {
     <div>
       {/* Stats */}
       <div className="stats-grid">
-        {[
-          { label: 'Total Plots', value: plots.length, color: '#1e40af', bg: '#eff6ff', icon: '📊' },
-          { label: 'Available', value: statusCounts.available, color: '#16a34a', bg: '#f0fdf4', icon: '✅' },
-          { label: 'Sold', value: statusCounts.sold, color: '#dc2626', bg: '#fef2f2', icon: '🔴' },
-          { label: 'Reserved', value: statusCounts.reserved, color: '#ea580c', bg: '#fff7ed', icon: '🟡' },
-        ].map(s => (
-          <div key={s.label} style={{ background: s.bg, border: `1px solid ${s.color}22`, borderRadius: 14, padding: '18px 22px', position: 'relative', overflow: 'hidden' }}>
-            <div style={{ position: 'absolute', top: -6, right: -6, width: 40, height: 40, borderRadius: '50%', background: `${s.color}08`, pointerEvents: 'none' }} />
-            <div style={{ fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px', color: s.color, marginBottom: 4 }}>{s.icon} {s.label}</div>
-            <div style={{ fontSize: 28, fontWeight: 800, color: s.color, fontFamily: "'Outfit', sans-serif" }}>{s.value}</div>
-          </div>
-        ))}
+        {isLoading ? (
+          Array.from({length: 4}).map((_, i) => (
+            <div key={i} className="skeleton skeleton-stat" />
+          ))
+        ) : (
+          [
+            { label: 'Total Plots', value: plots.length, color: '#1e40af', bg: '#eff6ff', icon: '📊' },
+            { label: 'Available', value: statusCounts.available, color: '#16a34a', bg: '#f0fdf4', icon: '✅' },
+            { label: 'Sold', value: statusCounts.sold, color: '#dc2626', bg: '#fef2f2', icon: '🔴' },
+            { label: 'Reserved', value: statusCounts.reserved, color: '#ea580c', bg: '#fff7ed', icon: '🟡' },
+          ].map(s => (
+            <div key={s.label} style={{ background: s.bg, border: `1px solid ${s.color}22`, borderRadius: 14, padding: '18px 22px', position: 'relative', overflow: 'hidden' }}>
+              <div style={{ position: 'absolute', top: -6, right: -6, width: 40, height: 40, borderRadius: '50%', background: `${s.color}08`, pointerEvents: 'none' }} />
+              <div style={{ fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px', color: s.color, marginBottom: 4 }}>{s.icon} {s.label}</div>
+              <div style={{ fontSize: 28, fontWeight: 800, color: s.color, fontFamily: "'Outfit', sans-serif" }}>{s.value}</div>
+            </div>
+          ))
+        )}
       </div>
 
       {mappingId && (

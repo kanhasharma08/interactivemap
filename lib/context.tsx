@@ -10,6 +10,7 @@ interface AppContextType {
   hoveredPlot: string | null;
   filterStatus: PlotStatus | 'all';
   searchQuery: string;
+  isLoading: boolean;
 
   setSelectedPlot: (plot: Plot | null) => void;
   setHoveredPlot: (id: string | null) => void;
@@ -103,12 +104,15 @@ export function AppProvider({ children, siteSlug }: { children: React.ReactNode,
   const [hoveredPlot, setHoveredPlot] = useState<string | null>(null);
   const [filterStatus, setFilterStatus] = useState<PlotStatus | 'all'>('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
 
   // Load plots from Supabase on mount
   useEffect(() => {
+    setIsLoading(true);
     apiFetchPlots(siteSlug).then(data => {
       if (data !== null) setPlots(data);
+      setIsLoading(false);
     });
   }, [siteSlug]);
 
@@ -206,7 +210,7 @@ export function AppProvider({ children, siteSlug }: { children: React.ReactNode,
   return (
     <AppContext.Provider value={{
       plots, enquiries, selectedPlot, hoveredPlot,
-      filterStatus, searchQuery,
+      filterStatus, searchQuery, isLoading,
       setSelectedPlot, setHoveredPlot, setFilterStatus, setSearchQuery,
       updatePlotStatus, updatePlot, addPlot, deletePlot, deleteAllPlots,
       addEnquiry, getStats, filteredPlots, siteSlug,
