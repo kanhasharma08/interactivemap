@@ -6,34 +6,36 @@ export async function middleware(request: NextRequest) {
     request,
   })
 
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        getAll() {
-          return request.cookies.getAll()
-        },
-        setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value, options }) => request.cookies.set(name, value))
-          supabaseResponse = NextResponse.next({
-            request,
-          })
-          cookiesToSet.forEach(({ name, value, options }) =>
-            supabaseResponse.cookies.set(name, value, options)
-          )
-        },
-      },
-    }
-  )
+  let user = null;
 
-  // IMPORTANT: Avoid writing any logic between createServerClient and
-  // supabase.auth.getUser(). A simple mistake could make it very hard to debug
-  // issues with users being randomly logged out.
+  try {
+    const supabase = createServerClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL || '',
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '',
+      {
+        cookies: {
+          getAll() {
+            return request.cookies.getAll()
+          },
+          setAll(cookiesToSet) {
+            cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value))
+            supabaseResponse = NextResponse.next({
+              request,
+            })
+            cookiesToSet.forEach(({ name, value, options }) =>
+              supabaseResponse.cookies.set(name, value, options)
+            )
+          },
+        },
+      }
+    )
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+    const { data } = await supabase.auth.getUser()
+    user = data.user
+  } catch (error) {
+    // Silently ignore errors (e.g. missing env variables) so the middleware doesn't crash
+    console.error('Middleware Supabase Error:', error)
+  }
 
   const url = request.nextUrl
   const hostname = request.headers.get('host') || ''
@@ -63,29 +65,34 @@ export async function middleware(request: NextRequest) {
     if (!user) {
       return NextResponse.redirect(new URL('/admin', request.url))
     }
-    // We must use the service role key here to bypass RLS when checking roles
-    const supabaseAdmin = createServerClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!,
-      {
-        cookies: {
-          getAll() {
-            return request.cookies.getAll()
+    try {
+      // We must use the service role key here to bypass RLS when checking roles
+      const supabaseAdmin = createServerClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL || '',
+        process.env.SUPABASE_SERVICE_ROLE_KEY || '',
+        {
+          cookies: {
+            getAll() {
+              return request.cookies.getAll()
+            },
+            setAll() {}, // No need to set cookies for admin read operations
           },
-          setAll() {}, // No need to set cookies for admin read operations
-        },
+        }
+      )
+
+      const { data: siteUser } = await supabaseAdmin
+        .from('site_users')
+        .select('role')
+        .eq('user_id', user.id)
+        .eq('role', 'super_admin')
+        .single()
+
+      if (!siteUser) {
+        // Normal admins cannot access HQ
+        return NextResponse.redirect(new URL('/admin', request.url))
       }
-    )
-
-    const { data: siteUser } = await supabaseAdmin
-      .from('site_users')
-      .select('role')
-      .eq('user_id', user.id)
-      .eq('role', 'super_admin')
-      .single()
-
-    if (!siteUser) {
-      // Normal admins cannot access HQ
+    } catch (error) {
+      console.error('Middleware Admin Check Error:', error)
       return NextResponse.redirect(new URL('/admin', request.url))
     }
   }
