@@ -511,7 +511,7 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
               style={{
                 display: 'block', width: SVG_W, height: SVG_H,
                 pointerEvents: 'none', userSelect: 'none',
-                imageRendering: siteConfig.mapImage.endsWith('.svg') ? 'auto' : 'high-quality',
+                imageRendering: (siteConfig.mapImage.endsWith('.svg') ? 'auto' : 'high-quality') as any,
                 willChange: 'transform',
               }}
             />
