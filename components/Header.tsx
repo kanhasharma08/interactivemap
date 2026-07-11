@@ -4,10 +4,12 @@ import React from 'react';
 import Image from 'next/image';
 import { useApp } from '@/lib/context';
 import SearchBar from '@/components/SearchBar';
+import { getSiteConfig } from '@/data/sites';
 
 export default function Header() {
-  const { getStats } = useApp();
+  const { getStats, siteSlug } = useApp();
   const stats = getStats();
+  const siteConfig = getSiteConfig(siteSlug);
 
   return (
     <header className="header">
@@ -32,16 +34,22 @@ export default function Header() {
           </div>
         </div>
 
-        {/* CENTER — Mangalam logo pinned to exact middle */}
+        {/* CENTER — Dynamic site logo pinned to exact middle */}
         <div className="header-center">
-          <Image
-            src="/mangalam-logo.png"
-            alt="Mangalam City"
-            width={180}
-            height={52}
-            style={{ objectFit: 'contain', height: 52, width: 'auto' }}
-            priority
-          />
+          {siteConfig.logoPath ? (
+            <Image
+              src={siteConfig.logoPath}
+              alt={siteConfig.name}
+              width={180}
+              height={52}
+              style={{ objectFit: 'contain', height: 52, width: 'auto' }}
+              priority
+            />
+          ) : (
+            <h1 style={{ margin: 0, fontSize: 24, fontWeight: 800, color: 'white', letterSpacing: 1 }}>
+              {siteConfig.name}
+            </h1>
+          )}
         </div>
 
         {/* RIGHT — Admin */}
@@ -72,14 +80,20 @@ export default function Header() {
           />
 
           <div className="header-mobile-center">
-            <Image
-              src="/mangalam-logo.png"
-              alt="Mangalam City"
-              width={130}
-              height={38}
-              style={{ objectFit: 'contain', height: 38, width: 'auto' }}
-              priority
-            />
+            {siteConfig.logoPath ? (
+              <Image
+                src={siteConfig.logoPath}
+                alt={siteConfig.name}
+                width={130}
+                height={38}
+                style={{ objectFit: 'contain', height: 38, width: 'auto' }}
+                priority
+              />
+            ) : (
+              <div style={{ fontSize: 18, fontWeight: 800, color: 'white', letterSpacing: 0.5, lineHeight: '38px' }}>
+                {siteConfig.name}
+              </div>
+            )}
           </div>
 
           <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
