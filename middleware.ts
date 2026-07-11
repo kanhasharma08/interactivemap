@@ -67,7 +67,14 @@ export async function middleware(request: NextRequest) {
     const supabaseAdmin = createServerClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.SUPABASE_SERVICE_ROLE_KEY!,
-      { cookies: {} }
+      {
+        cookies: {
+          getAll() {
+            return request.cookies.getAll()
+          },
+          setAll() {}, // No need to set cookies for admin read operations
+        },
+      }
     )
 
     const { data: siteUser } = await supabaseAdmin
