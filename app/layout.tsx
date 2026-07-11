@@ -25,7 +25,18 @@ export const viewport = {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const headersList = await headers();
-  const siteSlug = headersList.get('x-site-slug') || 'mangalamcity';
+  const hostname = headersList.get('host') || '';
+  
+  let siteSlug = 'mangalamcity';
+  const isLocalhost = hostname.includes('localhost') || hostname.includes('127.0.0.1');
+  
+  if (!isLocalhost) {
+    const parts = hostname.split('.');
+    if (parts.length >= 3 && parts[0] !== 'www') {
+      siteSlug = parts[0];
+    }
+  }
+
 
   return (
     <html lang="en">
