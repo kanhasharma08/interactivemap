@@ -63,8 +63,14 @@ export async function middleware(request: NextRequest) {
     if (!user) {
       return NextResponse.redirect(new URL('/admin', request.url))
     }
-    // Check if user is super_admin
-    const { data: siteUser } = await supabase
+    // We must use the service role key here to bypass RLS when checking roles
+    const supabaseAdmin = createServerClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!,
+      { cookies: {} }
+    )
+
+    const { data: siteUser } = await supabaseAdmin
       .from('site_users')
       .select('role')
       .eq('user_id', user.id)
