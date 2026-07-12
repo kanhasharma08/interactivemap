@@ -21,22 +21,22 @@ const fadeUp: Variants = {
 function getHeroImage(plot: Plot) {
   const lowerLabel = plot.label.toLowerCase().trim();
   if (lowerLabel.includes('clubhouse') || lowerLabel.includes('club house') || lowerLabel.includes('milaya') || lowerLabel.includes('recreational')) {
-    return { imagePath: '/images/clubhouse.png', label: 'Recreational Area' };
+    return { imagePath: '/images/clubhouse.webp', label: 'Recreational Area' };
   }
   if (lowerLabel.includes('tunnel')) {
-    return { imagePath: '/images/Relaxing tunnel garden.png', label: 'Relaxing Tunnel Garden' };
+    return { imagePath: '/images/Relaxing tunnel garden.webp', label: 'Relaxing Tunnel Garden' };
   }
   if (lowerLabel.includes('relaxing garden') || lowerLabel.includes('relazxing')) {
-    return { imagePath: '/images/relazxing garden.png', label: 'Relaxing Garden' };
+    return { imagePath: '/images/relazxing garden.webp', label: 'Relaxing Garden' };
   }
   if (lowerLabel.includes('sport')) {
-    return { imagePath: '/images/sportsplaza.png', label: 'Sports Plaza' };
+    return { imagePath: '/images/sportsplaza.webp', label: 'Sports Plaza' };
   }
   if (lowerLabel.includes('garden near temple') || lowerLabel.includes('temple garden')) {
-    return { imagePath: '/images/garden near temple.png', label: 'Garden Near Temple' };
+    return { imagePath: '/images/garden near temple.webp', label: 'Garden Near Temple' };
   }
   if (lowerLabel.includes('temple')) {
-    return { imagePath: '/images/temple area.png', label: 'Temple Area' };
+    return { imagePath: '/images/temple area.webp', label: 'Temple Area' };
   }
   if (plot.type === 'Premium') {
     return { gradient: 'linear-gradient(135deg, #78350f 0%, #b45309 100%)', emoji: '✨', label: 'Premium Plot' };
