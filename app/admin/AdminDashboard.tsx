@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useApp } from '@/lib/context';
 import { Plot, PlotStatus, Enquiry } from '@/types';
@@ -305,6 +305,103 @@ function EnquiryList() {
   );
 }
 
+// ── Site Switcher Dropdown ───────────────────────────────────────────────────
+function SiteSwitcher({ accessibleSites, currentSlug }: { accessibleSites: Array<{ id: string; name: string; slug: string }>; currentSlug: string }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const currentSite = accessibleSites.find(s => s.slug === currentSlug) || accessibleSites[0];
+
+  // Close on outside click
+  useEffect(() => {
+    const handler = (e: MouseEvent) => { if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false); };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, []);
+
+  const navigateToSite = (slug: string) => {
+    const hostname = window.location.hostname;
+    const isLocalhost = hostname.includes('localhost') || hostname.includes('127.0.0.1');
+    const isVercel = hostname.endsWith('.vercel.app') || hostname.endsWith('.now.sh');
+
+    if (isLocalhost || isVercel) {
+      // On dev/preview: set the cookie and reload
+      document.cookie = `testSiteSlug=${slug}; path=/; max-age=86400`;
+      window.location.reload();
+    } else {
+      // On production: navigate to the real subdomain
+      const parts = hostname.split('.');
+      const baseDomain = parts.slice(1).join('.'); // e.g. mahavirgroupindia.com
+      window.location.href = `${window.location.protocol}//${slug}.${baseDomain}/admin`;
+    }
+    setOpen(false);
+  };
+
+  return (
+    <div ref={ref} style={{ position: 'relative' }}>
+      <button
+        onClick={() => setOpen(o => !o)}
+        style={{
+          display: 'flex', alignItems: 'center', gap: 6,
+          background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.18)',
+          color: 'white', padding: '5px 10px', borderRadius: 7, fontSize: 12,
+          fontWeight: 600, cursor: 'pointer', fontFamily: "'Inter', sans-serif",
+          transition: 'background 0.15s',
+        }}
+      >
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+        </svg>
+        {currentSite?.name || currentSlug}
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ opacity: 0.7, transform: open ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }}>
+          <path d="M6 9l6 6 6-6"/>
+        </svg>
+      </button>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: -6, scale: 0.97 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -6, scale: 0.97 }}
+            transition={{ duration: 0.15 }}
+            style={{
+              position: 'absolute', top: 'calc(100% + 6px)', left: 0, minWidth: 180,
+              background: '#1e293b', border: '1px solid #334155', borderRadius: 10,
+              boxShadow: '0 16px 40px rgba(0,0,0,0.5)', zIndex: 100, overflow: 'hidden',
+            }}
+          >
+            <div style={{ padding: '6px 10px 4px', fontSize: 10, fontWeight: 600, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+              Switch Site
+            </div>
+            {accessibleSites.map(site => (
+              <button
+                key={site.id}
+                onClick={() => navigateToSite(site.slug)}
+                style={{
+                  width: '100%', textAlign: 'left', padding: '9px 12px',
+                  background: site.slug === currentSlug ? 'rgba(59,130,246,0.12)' : 'transparent',
+                  border: 'none', color: site.slug === currentSlug ? '#60a5fa' : '#e2e8f0',
+                  fontSize: 13, fontWeight: site.slug === currentSlug ? 600 : 400,
+                  cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8,
+                  fontFamily: "'Inter', sans-serif",
+                }}
+              >
+                {site.slug === currentSlug && (
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="#60a5fa" stroke="none">
+                    <circle cx="12" cy="12" r="8"/>
+                  </svg>
+                )}
+                {site.slug !== currentSlug && <span style={{ width: 10 }} />}
+                {site.name}
+              </button>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
 // ── Admin Dashboard ──────────────────────────────────────────────────────────
 type AdminTab = 'plots' | 'enquiries';
 
@@ -338,27 +435,18 @@ export default function AdminDashboard({ userEmail, accessibleSites }: AdminDash
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100dvh', fontFamily: "'Inter', sans-serif", background: 'var(--bg-primary)', overflowY: 'auto', touchAction: 'auto' }}>
       {/* Top bar */}
       <div className="admin-top-bar">
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <div style={{ width: 30, height: 30, background: 'linear-gradient(135deg, #1e40af, #3b82f6)', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
           </div>
           <div>
-            <div style={{ fontSize: 13, fontWeight: 700, color: 'white', display: 'flex', alignItems: 'center', gap: 10 }}>
-              Site Admin Panel
-              {accessibleSites.length > 1 && (
-                <select 
-                  value={siteSlug}
-                  onChange={e => window.location.href = `/admin?site=${e.target.value}`}
-                  style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', color: 'white', padding: '2px 8px', borderRadius: 6, fontSize: 11, outline: 'none', cursor: 'pointer' }}
-                >
-                  {accessibleSites.map(s => (
-                    <option key={s.id} value={s.slug} style={{ color: 'black' }}>{s.name}</option>
-                  ))}
-                </select>
-              )}
-            </div>
-            <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.5)' }}>{userEmail}</div>
+            <div style={{ fontSize: 11, fontWeight: 500, color: 'rgba(255,255,255,0.45)', marginBottom: 2 }}>Site Admin Panel</div>
+            <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.35)' }}>{userEmail}</div>
           </div>
+          {/* Site switcher — only shown when admin has access to multiple sites */}
+          {accessibleSites.length > 1 && (
+            <SiteSwitcher accessibleSites={accessibleSites} currentSlug={siteSlug} />
+          )}
         </div>
 
         <div style={{ display: 'flex', background: 'rgba(255,255,255,0.08)', borderRadius: 8, padding: 3, gap: 2 }}>

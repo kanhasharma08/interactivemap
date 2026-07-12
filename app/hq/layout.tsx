@@ -1,8 +1,32 @@
 import React from 'react';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
+import { createClient } from '@/utils/supabase/server';
+import { supabaseAdmin } from '@/lib/supabase-server';
 import { logout } from '../admin/actions';
 
-export default function HQLayout({ children }: { children: React.ReactNode }) {
+export default async function HQLayout({ children }: { children: React.ReactNode }) {
+  // ── Auth Guard ────────────────────────────────────────────────────────────
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
+  if (!user) {
+    redirect('/admin');
+  }
+
+  // Must be super_admin to access HQ
+  const { data: superAdmin } = await supabaseAdmin
+    .from('site_users')
+    .select('role')
+    .eq('user_id', user.id)
+    .eq('role', 'super_admin')
+    .single();
+
+  if (!superAdmin) {
+    redirect('/admin');
+  }
+  // ─────────────────────────────────────────────────────────────────────────
+
   return (
     <div style={{ display: 'flex', minHeight: '100vh', background: '#0f172a', fontFamily: "'Inter', sans-serif" }}>
       {/* Sidebar */}

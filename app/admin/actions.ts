@@ -13,21 +13,20 @@ export async function login(formData: FormData) {
     password: formData.get('password') as string,
   }
 
-  const { error } = await supabase.auth.signInWithPassword(credentials)
+  // signInWithPassword already returns the user — no need for a separate getUser() call
+  const { data: signInData, error } = await supabase.auth.signInWithPassword(credentials)
 
   if (error) {
     return { error: error.message }
   }
 
-  // Get the freshly logged-in user
-  const { data: { user } } = await supabase.auth.getUser()
-
-  if (user) {
+  const userId = signInData.user?.id
+  if (userId) {
     // Use service-role admin client so RLS doesn't block the lookup
     const { data: siteUser } = await supabaseAdmin
       .from('site_users')
       .select('role')
-      .eq('user_id', user.id)
+      .eq('user_id', userId)
       .eq('role', 'super_admin')
       .single()
 
