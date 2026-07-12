@@ -18,7 +18,7 @@ export default async function HQLayout({ children }: { children: React.ReactNode
   const { data: superAdmin } = await supabaseAdmin
     .from('site_users')
     .select('role')
-    .eq('user_id', user.id)
+    .eq('user_id', user!.id)
     .eq('role', 'super_admin')
     .single();
 

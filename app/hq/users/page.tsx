@@ -1,6 +1,7 @@
 import React from 'react';
 import { supabaseAdmin } from '@/lib/supabase-server';
 import { revalidatePath } from 'next/cache';
+import DeleteAdminButton from './DeleteAdminButton';
 
 export default async function HQUsers() {
   const { data: sites } = await supabaseAdmin.from('sites').select('id, name').order('name');
@@ -25,9 +26,10 @@ export default async function HQUsers() {
   for (const su of siteUsers || []) {
     const authUser = users.find(u => u.id === su.user_id);
     const email = authUser?.email || 'Unknown';
+    const siteObj = Array.isArray(su.sites) ? su.sites[0] : su.sites;
     const siteName = su.role === 'super_admin'
       ? 'All Sites (Super Admin)'
-      : (Array.isArray(su.sites) ? su.sites[0]?.name : (su.sites as any)?.name) || '—';
+      : (siteObj as any)?.name || '—';
 
     if (userMap.has(su.user_id)) {
       const existing = userMap.get(su.user_id)!;
@@ -40,7 +42,7 @@ export default async function HQUsers() {
         role: su.role,
         email,
         created_at: su.created_at,
-        site_names: su.role === 'super_admin' ? ['All Sites (Super Admin)'] : [siteName],
+        site_names: [siteName],
       });
     }
   }
@@ -52,10 +54,8 @@ export default async function HQUsers() {
     const email = formData.get('email') as string;
     const password = formData.get('password') as string;
     const role = formData.get('role') as string;
-    // getAll returns an array for multi-select fields
     const selectedSiteIds = formData.getAll('site_ids') as string[];
 
-    // 1. Create user in auth
     const { data: authData, error: authError } = await supabaseAdmin.auth.admin.createUser({
       email,
       password,
@@ -70,10 +70,8 @@ export default async function HQUsers() {
     const newUserId = authData.user.id;
 
     if (role === 'super_admin') {
-      // Super admins get a single row with no site
       await supabaseAdmin.from('site_users').insert({ user_id: newUserId, role: 'super_admin', site_id: null });
     } else {
-      // Site admins get one row per selected site
       if (selectedSiteIds.length === 0) {
         console.error('No sites selected for site_admin');
         return;
@@ -126,7 +124,6 @@ export default async function HQUsers() {
             </div>
           </div>
 
-          {/* Multi-select site assignment */}
           <div>
             <label style={{ display: 'block', fontSize: 12, color: '#94a3b8', marginBottom: 6 }}>
               Assign to Sites <span style={{ color: '#64748b' }}>(Hold Ctrl / Cmd to select multiple — leave blank for Super Admin)</span>
@@ -189,14 +186,8 @@ export default async function HQUsers() {
                 </td>
                 <td style={{ padding: '16px', fontSize: 14, color: '#94a3b8' }}>{new Date(u.created_at).toLocaleDateString()}</td>
                 <td style={{ padding: '16px', textAlign: 'right' }}>
-                  <form action={deleteUser}>
-                    <input type="hidden" name="user_id" value={u.user_id} />
-                    <button type="submit"
-                      onClick={(e) => { if (!window.confirm(`Delete admin ${u.email}?`)) e.preventDefault(); }}
-                      style={{ background: 'transparent', color: '#ef4444', border: '1px solid rgba(239,68,68,0.3)', padding: '4px 10px', borderRadius: 6, cursor: 'pointer', fontSize: 12, fontWeight: 500 }}>
-                      Delete
-                    </button>
-                  </form>
+                  {/* DeleteAdminButton is a client component to handle window.confirm */}
+                  <DeleteAdminButton userId={u.user_id} email={u.email} deleteAction={deleteUser} />
                 </td>
               </tr>
             ))}
