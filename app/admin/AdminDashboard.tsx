@@ -470,7 +470,12 @@ export default function AdminDashboard({ userEmail, accessibleSites }: AdminDash
       </div>
 
       {/* Main content */}
-      <div style={{ flex: 1, padding: '20px 16px' }}>
+      <div style={{ flex: 1, padding: '24px 20px', maxWidth: 1400, margin: '0 auto', width: '100%' }}>
+        {/* Company logo top center */}
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 28 }}>
+          <img src="/mahavir-logo.png" alt="Mahavir Group" style={{ height: 38, objectFit: 'contain' }} />
+        </div>
+
         <div style={{ marginBottom: 16 }}>
           <h1 style={{ fontSize: 20, fontWeight: 800, color: 'var(--text-primary)', fontFamily: "'Outfit', sans-serif", letterSpacing: '-0.5px' }}>
             {tab === 'plots' ? 'Plot Management' : 'Enquiries'}

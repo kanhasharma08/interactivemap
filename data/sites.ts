@@ -20,7 +20,7 @@ export const SITE_CONFIGS: Record<string, SiteConfig> = {
     svgW: 4762,
     svgH: 6735,
     logoPath: '/mangalam-logo.png',
-    metaTitle: 'Mangalam City | Premium Residential Township | Rajnandgaon',
+    metaTitle: 'Mangalam City',
     metaDescription: 'Explore premium residential plots in Mangalam City, Rajnandgaon. Interactive sales map with real-time availability, plot details, and pricing.',
   },
   bhaavbhumi: {
@@ -30,7 +30,7 @@ export const SITE_CONFIGS: Record<string, SiteConfig> = {
     svgW: 3573,
     svgH: 5031,
     logoPath: undefined,
-    metaTitle: 'Bhaavbhumi | Premium Residential Township | Rajnandgaon',
+    metaTitle: 'Bhaavbhumi',
     metaDescription: 'Explore premium residential plots in Bhaavbhumi, Rajnandgaon. Interactive sales map with real-time availability, plot details, and pricing.',
   },
 };

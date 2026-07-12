@@ -66,8 +66,14 @@ export default async function HQLayout({ children }: { children: React.ReactNode
       </div>
 
       {/* Main Content */}
-      <div style={{ flex: 1, padding: '40px', overflowY: 'auto' }}>
-        {children}
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
+        {/* HQ Header */}
+        <div style={{ height: 60, borderBottom: '1px solid #334155', background: '#1e293b', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', padding: '0 40px', flexShrink: 0 }}>
+          <img src="/mahavir-logo.png" alt="Mahavir Group" style={{ height: 28, filter: 'brightness(0) invert(1) opacity(0.85)' }} />
+        </div>
+        <div style={{ flex: 1, padding: '40px', overflowY: 'auto' }}>
+          {children}
+        </div>
       </div>
     </div>
   );
