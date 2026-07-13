@@ -54,6 +54,12 @@ export default function Header() {
 
         {/* RIGHT — Admin */}
         <div className="header-right">
+          {siteConfig.reraNumber && (
+            <div className="rera-badge-desktop">
+              <span className="rera-badge-label">RERA APPROVED</span>
+              <span className="rera-badge-val">{siteConfig.reraNumber}</span>
+            </div>
+          )}
 
           <a href="/admin" className="admin-btn">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">

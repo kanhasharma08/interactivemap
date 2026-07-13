@@ -10,6 +10,7 @@ export interface SiteConfig {
   logoPath?: string;  // optional per-site logo
   metaTitle: string;
   metaDescription: string;
+  reraNumber?: string;
 }
 
 export const SITE_CONFIGS: Record<string, SiteConfig> = {
@@ -22,6 +23,7 @@ export const SITE_CONFIGS: Record<string, SiteConfig> = {
     logoPath: '/mangalam-logo.png',
     metaTitle: 'Mangalam City',
     metaDescription: 'Explore premium residential plots in Mangalam City, Rajnandgaon. Interactive sales map with real-time availability, plot details, and pricing.',
+    reraNumber: 'PCGRERA081024001839',
   },
   bhaavbhumi: {
     name: 'Bhaavbhumi',
@@ -32,6 +34,7 @@ export const SITE_CONFIGS: Record<string, SiteConfig> = {
     logoPath: undefined,
     metaTitle: 'Bhaavbhumi',
     metaDescription: 'Explore premium residential plots in Bhaavbhumi, Rajnandgaon. Interactive sales map with real-time availability, plot details, and pricing.',
+    reraNumber: 'PCGRERA230224001734',
   },
 };
 
