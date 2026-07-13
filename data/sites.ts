@@ -31,7 +31,7 @@ export const SITE_CONFIGS: Record<string, SiteConfig> = {
     mapImage: '/bhaavbhumi-layout.png',
     svgW: 3573,
     svgH: 5031,
-    logoPath: undefined,
+    logoPath: '/bhaavbhumi-logo.png',
     metaTitle: 'Bhaavbhumi',
     metaDescription: 'Explore premium residential plots in Bhaavbhumi, Rajnandgaon. Interactive sales map with real-time availability, plot details, and pricing.',
     reraNumber: 'PCGRERA230224001734',
