@@ -927,10 +927,10 @@ html, body {
     justify-content: center;
   }
 
-  /* Row 1: logos + admin icon — true 3-col flex, no absolute positioning */
+  /* Row 1: logos + admin icon — flex prevents forced column widths */
   .header-mobile-row1 {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     padding: 8px 12px;
     border-bottom: 1px solid rgba(0,0,0,0.07);

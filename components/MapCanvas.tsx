@@ -218,9 +218,6 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
   const tooltipRef = useRef<HTMLDivElement>(null);
   const tooltipVisible = useRef(false);
 
-  // Track whether a gesture is actively happening to switch image to fast rendering
-  const isGesturing = useRef(false);
-  const gestureEndTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const imgRef = useRef<HTMLImageElement>(null);
 
   const dragRef = useRef({ active: false, startX: 0, startY: 0, tx: 0, ty: 0, moved: false });
@@ -245,23 +242,6 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
       setShowLabel(isAbove);
     }
     lastLabelScale.current = s;
-
-    // Restore high-quality image rendering now that the gesture has ended
-    if (gestureEndTimer.current) clearTimeout(gestureEndTimer.current);
-    gestureEndTimer.current = setTimeout(() => {
-      isGesturing.current = false;
-      if (imgRef.current) imgRef.current.style.imageRendering = 'high-quality';
-    }, 150);
-  }, []);
-
-  // Called at the START of any gesture to switch image to fast (pixelated) rendering
-  const onGestureStart = useCallback(() => {
-    if (!isGesturing.current) {
-      isGesturing.current = true;
-      if (gestureEndTimer.current) clearTimeout(gestureEndTimer.current);
-      // 'pixelated' = nearest-neighbour: GPU-free, no resampling cost
-      if (imgRef.current) imgRef.current.style.imageRendering = 'pixelated';
-    }
   }, []);
 
   // rAF batch — direct DOM mutation, zero React involvement
@@ -325,7 +305,6 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
 
   const handleWheel = useCallback((e: React.WheelEvent) => {
     e.preventDefault();
-    onGestureStart();
     const zoomFactor = 1 + (-e.deltaY * 0.001) * 1.5;
     const prev = transformRef.current;
     const newScale = Math.max(0.05, Math.min(10, prev.scale * zoomFactor));
@@ -339,14 +318,13 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
     };
     applyTransform();
     onGestureEnd();
-  }, [applyTransform, onGestureEnd, onGestureStart]);
+  }, [applyTransform, onGestureEnd]);
 
   const handlePointerDown = useCallback((e: React.PointerEvent) => {
     if (!e.isPrimary) return;
-    onGestureStart();
     const { x, y } = transformRef.current;
     dragRef.current = { active: true, startX: e.clientX, startY: e.clientY, tx: x, ty: y, moved: false };
-  }, [onGestureStart]);
+  }, []);
 
   const handlePointerMove = useCallback((e: React.PointerEvent) => {
     if (!dragRef.current.active) return;
@@ -373,7 +351,6 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
   const isPinching = useRef(false); // suppresses hover/tooltip state during active pinch
 
   const handleTouchStart = useCallback((e: TouchEvent) => {
-    onGestureStart();
     // Capture rect once on touch start — NOT inside touchmove (avoid layout thrashing)
     const rect = containerRef.current?.getBoundingClientRect();
     if (rect) containerRectRef.current = { left: rect.left, top: rect.top };
@@ -601,8 +578,6 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
                 height: SVG_H * calibScaleY,
                 pointerEvents: 'none',
                 userSelect: 'none',
-                // Start high-quality; switches to 'pixelated' during active gestures
-                imageRendering: (activeMapImage.endsWith('.svg') ? 'auto' : 'high-quality') as any,
                 transform: `translate(${calibOffsetX}px, ${calibOffsetY}px) translateZ(0)`,
               }}
             />
