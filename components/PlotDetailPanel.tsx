@@ -350,10 +350,11 @@ export default function PlotDetailPanel() {
                           <span style={{ fontSize: 14, width: 20, textAlign: 'center' }}>📐</span>
                           <span style={{ fontSize: 12, color: 'var(--text-muted)', fontWeight: 500 }}>Plot Size (Area)</span>
                           <span style={{
-                            fontSize: 9, fontWeight: 700, letterSpacing: '0.4px',
-                            color: 'rgba(148,163,184,0.7)', background: 'rgba(148,163,184,0.08)',
-                            border: '1px solid rgba(148,163,184,0.18)',
-                            borderRadius: 4, padding: '1px 5px',
+                            fontSize: 9, fontWeight: 700, letterSpacing: '0.5px',
+                            color: '#94a3b8',
+                            background: 'rgba(100,116,139,0.25)',
+                            border: '1px solid rgba(100,116,139,0.45)',
+                            borderRadius: 4, padding: '2px 6px',
                             textTransform: 'uppercase',
                           }}>approx</span>
                         </div>

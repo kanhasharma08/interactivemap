@@ -89,13 +89,15 @@ const PlotCell = memo(function PlotCell({ plot, isFiltered, isHovered, isSelecte
         rx={4}
       />
       {(isHovered || isSelected) && (
+        // No drop-shadow filter here — CSS filters on SVG break GPU compositing and cause jank.
+        // A simple stroke ring is just as clear and costs nothing on the compositor.
         <rect
-          x={plot.x - 4} y={plot.y - 4} width={plot.width + 8} height={plot.height + 8}
+          x={plot.x - 3} y={plot.y - 3} width={plot.width + 6} height={plot.height + 6}
           fill="none"
-          stroke={isSelected ? '#1e40af' : typeColor}
-          strokeWidth={isSelected ? 5 : 4}
-          strokeOpacity={0.7} rx={8}
-          style={{ filter: `drop-shadow(0 0 10px ${typeColor}AA)`, pointerEvents: 'none' }}
+          stroke={isSelected ? '#3b82f6' : typeColor}
+          strokeWidth={isSelected ? 4 : 3}
+          strokeOpacity={0.85} rx={7}
+          style={{ pointerEvents: 'none' }}
         />
       )}
       {(showLabel || isHovered || isSelected) && (
@@ -210,8 +212,16 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
   const [showLabel, setShowLabel] = useState(false);
   const [zoomBadge, setZoomBadge] = useState(100);
   const [rotation, setRotation] = useState(0);
-  const [tooltip, setTooltip] = useState<TooltipState>({ x: 0, y: 0, label: '', status: '', visible: false });
   const [isFullscreen, setIsFullscreen] = useState(false);
+
+  // Tooltip is mutated directly via DOM ref — zero React re-renders on mouse-move
+  const tooltipRef = useRef<HTMLDivElement>(null);
+  const tooltipVisible = useRef(false);
+
+  // Track whether a gesture is actively happening to switch image to fast rendering
+  const isGesturing = useRef(false);
+  const gestureEndTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const imgRef = useRef<HTMLImageElement>(null);
 
   const dragRef = useRef({ active: false, startX: 0, startY: 0, tx: 0, ty: 0, moved: false });
   const TOUCH_MOVE_THRESHOLD = 8;
@@ -235,6 +245,23 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
       setShowLabel(isAbove);
     }
     lastLabelScale.current = s;
+
+    // Restore high-quality image rendering now that the gesture has ended
+    if (gestureEndTimer.current) clearTimeout(gestureEndTimer.current);
+    gestureEndTimer.current = setTimeout(() => {
+      isGesturing.current = false;
+      if (imgRef.current) imgRef.current.style.imageRendering = 'high-quality';
+    }, 150);
+  }, []);
+
+  // Called at the START of any gesture to switch image to fast (pixelated) rendering
+  const onGestureStart = useCallback(() => {
+    if (!isGesturing.current) {
+      isGesturing.current = true;
+      if (gestureEndTimer.current) clearTimeout(gestureEndTimer.current);
+      // 'pixelated' = nearest-neighbour: GPU-free, no resampling cost
+      if (imgRef.current) imgRef.current.style.imageRendering = 'pixelated';
+    }
   }, []);
 
   // rAF batch — direct DOM mutation, zero React involvement
@@ -298,6 +325,7 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
 
   const handleWheel = useCallback((e: React.WheelEvent) => {
     e.preventDefault();
+    onGestureStart();
     const zoomFactor = 1 + (-e.deltaY * 0.001) * 1.5;
     const prev = transformRef.current;
     const newScale = Math.max(0.05, Math.min(10, prev.scale * zoomFactor));
@@ -311,13 +339,14 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
     };
     applyTransform();
     onGestureEnd();
-  }, [applyTransform, onGestureEnd]);
+  }, [applyTransform, onGestureEnd, onGestureStart]);
 
   const handlePointerDown = useCallback((e: React.PointerEvent) => {
     if (!e.isPrimary) return;
+    onGestureStart();
     const { x, y } = transformRef.current;
     dragRef.current = { active: true, startX: e.clientX, startY: e.clientY, tx: x, ty: y, moved: false };
-  }, []);
+  }, [onGestureStart]);
 
   const handlePointerMove = useCallback((e: React.PointerEvent) => {
     if (!dragRef.current.active) return;
@@ -344,6 +373,7 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
   const isPinching = useRef(false); // suppresses hover/tooltip state during active pinch
 
   const handleTouchStart = useCallback((e: TouchEvent) => {
+    onGestureStart();
     // Capture rect once on touch start — NOT inside touchmove (avoid layout thrashing)
     const rect = containerRef.current?.getBoundingClientRect();
     if (rect) containerRectRef.current = { left: rect.left, top: rect.top };
@@ -364,7 +394,7 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
       };
       dragRef.current.moved = true;
     }
-  }, []);
+  }, [onGestureStart]);
 
   const handleTouchMove = useCallback((e: TouchEvent) => {
     if (!lastTouch.current) return;
@@ -499,9 +529,33 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
     setRotation(0);
   }, [applyTransform]);
 
+  // Direct DOM mutation — never triggers a React render on mouse-move
   const handleTooltip = useCallback((t: TooltipState) => {
-    if (isPinching.current) return; // suppress re-renders during pinch gesture
-    setTooltip(t);
+    if (isPinching.current) return;
+    const el = tooltipRef.current;
+    if (!el) return;
+    if (t.visible) {
+      el.style.left = `${t.x}px`;
+      el.style.top  = `${t.y}px`;
+      if (!tooltipVisible.current) {
+        el.style.opacity = '1';
+        el.style.pointerEvents = 'none';
+        tooltipVisible.current = true;
+      }
+      // Update text nodes directly — no reconciliation cost
+      const labelEl = el.querySelector<HTMLElement>('.tooltip-label');
+      const statusEl = el.querySelector<HTMLElement>('.tooltip-status-inner');
+      if (labelEl) labelEl.textContent = t.label;
+      if (statusEl) {
+        statusEl.textContent = t.status || '';
+        statusEl.style.display = t.status ? '' : 'none';
+      }
+    } else {
+      if (tooltipVisible.current) {
+        el.style.opacity = '0';
+        tooltipVisible.current = false;
+      }
+    }
   }, []);
 
   const handleHover = useCallback((id: string | null) => {
@@ -529,10 +583,15 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
             position: 'relative',
             width: SVG_W,
             height: SVG_H,
+            // Promote the entire canvas to its own GPU compositor layer.
+            // This means pan/zoom only triggers a composite step — no paint or layout.
+            willChange: 'transform',
+            transform: 'translateZ(0)',
           }}
         >
-          <div style={{ width: '100%', height: '100%', transform: `rotate(${rotation}deg)`, transformOrigin: 'center center', position: 'relative' }}>
+          <div style={{ width: '100%', height: '100%', transform: `rotate(${rotation}deg) translateZ(0)`, transformOrigin: 'center center', position: 'relative' }}>
             <img
+              ref={imgRef}
               src={activeMapImage}
               alt={`${siteConfig.name} Map Layout`}
               draggable={false}
@@ -542,9 +601,9 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
                 height: SVG_H * calibScaleY,
                 pointerEvents: 'none',
                 userSelect: 'none',
+                // Start high-quality; switches to 'pixelated' during active gestures
                 imageRendering: (activeMapImage.endsWith('.svg') ? 'auto' : 'high-quality') as any,
-                willChange: 'transform',
-                transform: `translate(${calibOffsetX}px, ${calibOffsetY}px)`,
+                transform: `translate(${calibOffsetX}px, ${calibOffsetY}px) translateZ(0)`,
               }}
             />
             <svg
@@ -552,7 +611,12 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
               width={SVG_W}
               height={SVG_H}
               viewBox={`0 0 ${SVG_W} ${SVG_H}`}
-              style={{ position: 'absolute', top: 0, left: 0, pointerEvents: 'none' }}
+              style={{
+                position: 'absolute', top: 0, left: 0, pointerEvents: 'none',
+                // SVG on its own compositor layer so plot highlights don't repaint the image
+                transform: 'translateZ(0)',
+                willChange: 'transform',
+              }}
             >
               <g style={{ pointerEvents: 'all' }}>
                 {OPEN_SPACES.map(os => (
@@ -787,22 +851,19 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
         </div>
       )}
 
-      <AnimatePresence>
-        {tooltip.visible && (
-          <motion.div
-            key="tooltip"
-            className="map-tooltip"
-            initial={{ opacity: 0, scale: 0.92 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.92 }}
-            transition={{ duration: 0.1 }}
-            style={{ left: tooltip.x, top: tooltip.y, position: 'fixed', pointerEvents: 'none', zIndex: 200 }}
-          >
-            <div className="tooltip-label">{tooltip.label}</div>
-            {tooltip.status && <div className={`tooltip-status status-${tooltip.status}`}>{tooltip.status}</div>}
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Tooltip: DOM-mutated directly for zero React overhead on every mouse-move */}
+      <div
+        ref={tooltipRef}
+        className="map-tooltip"
+        style={{
+          position: 'fixed', pointerEvents: 'none', zIndex: 200,
+          opacity: 0, transition: 'opacity 0.08s ease',
+          // Pre-created, always in DOM — shown/hidden via opacity only
+        }}
+      >
+        <div className="tooltip-label"></div>
+        <div className="tooltip-status-inner" style={{ display: 'none' }}></div>
+      </div>
     </div>
   );
 }
