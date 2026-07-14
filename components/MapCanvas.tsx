@@ -172,6 +172,34 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
   const canvasRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
 
+  // Map variant switcher — defaults to siteConfig.mapImage
+  const [activeMapImage, setActiveMapImage] = useState(siteConfig.mapImage);
+  const mapVariants = siteConfig.mapVariants;
+  // Derive active variant
+  const activeVariant = mapVariants?.find(v => v.mapImage === activeMapImage);
+
+  // Custom calibration states so they can be tweaked interactively
+  const [calibOffsetX, setCalibOffsetX] = useState(0);
+  const [calibOffsetY, setCalibOffsetY] = useState(0);
+  const [calibScaleX, setCalibScaleX] = useState(1);
+  const [calibScaleY, setCalibScaleY] = useState(1);
+  const [showCalib, setShowCalib] = useState(false);
+
+  // Sync state when active map variant changes
+  useEffect(() => {
+    if (activeVariant) {
+      setCalibOffsetX(activeVariant.offsetX ?? 0);
+      setCalibOffsetY(activeVariant.offsetY ?? 0);
+      setCalibScaleX(activeVariant.scaleX ?? 1);
+      setCalibScaleY(activeVariant.scaleY ?? 1);
+    } else {
+      setCalibOffsetX(0);
+      setCalibOffsetY(0);
+      setCalibScaleX(1);
+      setCalibScaleY(1);
+    }
+  }, [activeVariant]);
+
   // Transform stored in ref — never causes React re-renders during gestures
   const transformRef = useRef({ x: 0, y: 0, scale: 1 });
 
@@ -505,14 +533,18 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
         >
           <div style={{ width: '100%', height: '100%', transform: `rotate(${rotation}deg)`, transformOrigin: 'center center', position: 'relative' }}>
             <img
-              src={siteConfig.mapImage}
+              src={activeMapImage}
               alt={`${siteConfig.name} Map Layout`}
               draggable={false}
               style={{
-                display: 'block', width: SVG_W, height: SVG_H,
-                pointerEvents: 'none', userSelect: 'none',
-                imageRendering: (siteConfig.mapImage.endsWith('.svg') ? 'auto' : 'high-quality') as any,
+                display: 'block',
+                width: SVG_W * calibScaleX,
+                height: SVG_H * calibScaleY,
+                pointerEvents: 'none',
+                userSelect: 'none',
+                imageRendering: (activeMapImage.endsWith('.svg') ? 'auto' : 'high-quality') as any,
                 willChange: 'transform',
+                transform: `translate(${calibOffsetX}px, ${calibOffsetY}px)`,
               }}
             />
             <svg
@@ -572,6 +604,52 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
             title="Rotate Map"
           />
         </div>
+        {mapVariants && mapVariants.length > 1 && (
+          <>
+            <div className="toolbar-divider" />
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6 }} title="Switch Map Layer">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" strokeWidth="2.5">
+                <rect x="3" y="3" width="7" height="7" rx="1"/>
+                <rect x="14" y="3" width="7" height="7" rx="1"/>
+                <rect x="3" y="14" width="7" height="7" rx="1"/>
+                <rect x="14" y="14" width="7" height="7" rx="1"/>
+              </svg>
+              <select
+                value={activeMapImage}
+                onChange={(e) => setActiveMapImage(e.target.value)}
+                style={{
+                  background: 'var(--panel-bg)',
+                  color: 'var(--text)',
+                  border: '1px solid var(--border)',
+                  borderRadius: 6,
+                  padding: '2px 6px',
+                  fontSize: 12,
+                  fontFamily: 'Inter, sans-serif',
+                  cursor: 'pointer',
+                  outline: 'none',
+                  maxWidth: 130,
+                }}
+                title="Switch map layer"
+              >
+                {mapVariants.map(v => (
+                  <option key={v.id} value={v.mapImage}>{v.label}</option>
+                ))}
+              </select>
+            </div>
+            <div className="toolbar-divider" />
+            <button
+              className={`toolbar-btn ${showCalib ? 'active' : ''}`}
+              onClick={() => setShowCalib(!showCalib)}
+              title="Calibrate Map Layer"
+              style={{ color: showCalib ? 'var(--accent)' : 'inherit' }}
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+              </svg>
+            </button>
+          </>
+        )}
         <div className="toolbar-divider" />
         <button className="toolbar-btn" onClick={resetView} title="Reset View">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -589,6 +667,125 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
           </svg>
         </button>
       </div>
+
+      {showCalib && (
+        <div style={{
+          position: 'absolute',
+          top: 80,
+          right: 20,
+          background: 'rgba(15, 23, 42, 0.95)',
+          backdropFilter: 'blur(16px)',
+          border: '1px solid rgba(255, 255, 255, 0.1)',
+          borderRadius: '12px',
+          padding: '16px',
+          width: '320px',
+          zIndex: 1000,
+          color: '#f8fafc',
+          fontFamily: 'Inter, sans-serif',
+          boxShadow: '0 10px 25px -5px rgba(0,0,0,0.5)',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '12px',
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <h3 style={{ margin: 0, fontSize: '14px', fontWeight: '600' }}>Map Calibrator</h3>
+            <button
+              onClick={() => setShowCalib(false)}
+              style={{ background: 'none', border: 'none', color: '#94a3b8', cursor: 'pointer', fontSize: '16px' }}
+            >
+              ✕
+            </button>
+          </div>
+          <div style={{ fontSize: '11px', color: '#94a3b8' }}>
+            Adjust scale and shift to perfectly match the underlying map with the plot SVG grid.
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px' }}>
+              <span>Offset X (px):</span>
+              <div>
+                <span style={{ fontFamily: 'monospace', color: '#3b82f6', marginRight: '8px' }}>{calibOffsetX}px</span>
+                <button onClick={() => setCalibOffsetX(0)} style={{ background: 'rgba(255,255,255,0.1)', border: 'none', borderRadius: '3px', padding: '1px 4px', fontSize: '10px', color: '#94a3b8', cursor: 'pointer' }}>Reset</button>
+              </div>
+            </div>
+            <input
+              type="range" min="-1500" max="1500"
+              value={calibOffsetX}
+              onChange={(e) => setCalibOffsetX(Number(e.target.value))}
+              style={{ width: '100%', cursor: 'pointer' }}
+            />
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px' }}>
+              <span>Offset Y (px):</span>
+              <div>
+                <span style={{ fontFamily: 'monospace', color: '#3b82f6', marginRight: '8px' }}>{calibOffsetY}px</span>
+                <button onClick={() => setCalibOffsetY(0)} style={{ background: 'rgba(255,255,255,0.1)', border: 'none', borderRadius: '3px', padding: '1px 4px', fontSize: '10px', color: '#94a3b8', cursor: 'pointer' }}>Reset</button>
+              </div>
+            </div>
+            <input
+              type="range" min="-1500" max="1500"
+              value={calibOffsetY}
+              onChange={(e) => setCalibOffsetY(Number(e.target.value))}
+              style={{ width: '100%', cursor: 'pointer' }}
+            />
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px' }}>
+              <span>Scale X (Width Stretch):</span>
+              <div>
+                <span style={{ fontFamily: 'monospace', color: '#3b82f6', marginRight: '8px' }}>{calibScaleX.toFixed(4)}</span>
+                <button onClick={() => setCalibScaleX(1)} style={{ background: 'rgba(255,255,255,0.1)', border: 'none', borderRadius: '3px', padding: '1px 4px', fontSize: '10px', color: '#94a3b8', cursor: 'pointer' }}>Reset</button>
+              </div>
+            </div>
+            <input
+              type="range" min="0.5" max="2.0" step="0.0001"
+              value={calibScaleX}
+              onChange={(e) => setCalibScaleX(Number(e.target.value))}
+              style={{ width: '100%', cursor: 'pointer' }}
+            />
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px' }}>
+              <span>Scale Y (Height Stretch):</span>
+              <div>
+                <span style={{ fontFamily: 'monospace', color: '#3b82f6', marginRight: '8px' }}>{calibScaleY.toFixed(4)}</span>
+                <button onClick={() => setCalibScaleY(1)} style={{ background: 'rgba(255,255,255,0.1)', border: 'none', borderRadius: '3px', padding: '1px 4px', fontSize: '10px', color: '#94a3b8', cursor: 'pointer' }}>Reset</button>
+              </div>
+            </div>
+            <input
+              type="range" min="0.5" max="2.0" step="0.0001"
+              value={calibScaleY}
+              onChange={(e) => setCalibScaleY(Number(e.target.value))}
+              style={{ width: '100%', cursor: 'pointer' }}
+            />
+          </div>
+
+          <div style={{ marginTop: '8px', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '8px' }}>
+            <div style={{ fontSize: '11px', color: '#94a3b8', marginBottom: '4px' }}>Copy this code to sites.ts:</div>
+            <textarea
+              readOnly
+              value={`offsetX: ${calibOffsetX}, offsetY: ${calibOffsetY}, scaleX: ${calibScaleX.toFixed(3)}, scaleY: ${calibScaleY.toFixed(3)}`}
+              style={{
+                width: '100%',
+                background: 'rgba(0,0,0,0.3)',
+                border: '1px solid rgba(255,255,255,0.15)',
+                borderRadius: '4px',
+                padding: '6px',
+                fontSize: '11px',
+                fontFamily: 'monospace',
+                color: '#34d399',
+                resize: 'none',
+                height: '42px',
+              }}
+              onClick={(e) => (e.target as HTMLTextAreaElement).select()}
+            />
+          </div>
+        </div>
+      )}
 
       <AnimatePresence>
         {tooltip.visible && (
