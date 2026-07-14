@@ -79,10 +79,11 @@ function mapFacing(excelFacing) {
 }
 
 function buildAreaText(sqft, w, d) {
-  const rounded = Math.round(sqft);
-  const wR = Math.round(w * 100) / 100;
-  const dR = Math.round(d * 100) / 100;
-  return `${rounded} Sq ft (${wR}×${dR})`;
+  // Keep exact decimal values — real estate precision matters
+  const sqftExact = parseFloat(sqft.toFixed(2));
+  const wR = parseFloat(w.toFixed(2));
+  const dR = parseFloat(d.toFixed(2));
+  return `${sqftExact} Sq ft (${wR}×${dR})`;
 }
 
 // ── Main ─────────────────────────────────────────────────────────────────────
@@ -167,9 +168,11 @@ async function main() {
 
     const { status, type: mappedType } = mapStatus(excel.statusRaw, existingType);
     const facing = mapFacing(excel.facing);
-    const sqft = Math.round(excel.sqft);
-    const sqm = Math.round(excel.sqft * 0.0929);
-    const areaText = buildAreaText(excel.sqft, excel.w, excel.d);
+    // area_text stores the exact decimal for display (the UI reads this field)
+    // size_sqft/sqm are integer DB columns used for search/filter only
+    const sqft    = Math.round(excel.sqft);           // integer for DB column
+    const sqm     = Math.round(excel.sqft * 0.0929);  // integer for DB column
+    const areaText = buildAreaText(excel.sqft, excel.w, excel.d); // exact decimals here
 
     updates.push({
       id: dbRow.id,
