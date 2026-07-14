@@ -371,7 +371,7 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
       };
       dragRef.current.moved = true;
     }
-  }, [onGestureStart]);
+  }, []);
 
   const handleTouchMove = useCallback((e: TouchEvent) => {
     if (!lastTouch.current) return;
