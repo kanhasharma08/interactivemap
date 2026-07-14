@@ -9,6 +9,11 @@ export default function AdminMapper({ plotId, onCancel, onSave }: { plotId: stri
   const siteConfig = getSiteConfig(siteSlug);
   const SVG_W = siteConfig.svgW;
   const SVG_H = siteConfig.svgH;
+
+  // For remapping, use the original (previous) map image variant if it exists, so that bounds match up perfectly
+  const originalVariant = siteConfig.mapVariants?.find(v => v.id === 'original');
+  const mapImage = originalVariant?.mapImage ?? siteConfig.mapImage;
+
   const plot = plots.find(p => p.id === plotId);
   const containerRef = useRef<HTMLDivElement>(null);
   const [transform, setTransform] = useState({ x: 0, y: 0, scale: 1 });
@@ -140,7 +145,7 @@ export default function AdminMapper({ plotId, onCancel, onSave }: { plotId: stri
           onWheel={handleWheel}
         >
           <div style={{ position: 'relative', width: SVG_W, height: SVG_H, transform: `translate(${transform.x}px, ${transform.y}px) scale(${transform.scale})`, transformOrigin: '0 0' }}>
-            <img src={siteConfig.mapImage} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', imageRendering: (siteConfig.mapImage.endsWith('.svg') ? 'auto' : 'high-quality') as any }} alt={`${siteConfig.name} Map`} />
+            <img src={mapImage} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', imageRendering: (mapImage.endsWith('.svg') ? 'auto' : 'high-quality') as any }} alt={`${siteConfig.name} Map`} />
             <svg width={SVG_W} height={SVG_H} viewBox={`0 0 ${SVG_W} ${SVG_H}`} style={{ position: 'absolute', top: 0, left: 0, pointerEvents: 'none' }}>
               {/* Show already mapped plots faintly */}
               {plots.filter(p => p.id !== plot.id).map(p => (
