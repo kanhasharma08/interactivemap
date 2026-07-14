@@ -340,7 +340,28 @@ export default function PlotDetailPanel() {
                     <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.8px', color: 'var(--text-muted)', marginBottom: 4 }}>
                       {selectedPlot.type === 'Amenity' ? 'Details' : 'Plot Details'}
                     </div>
-                    {selectedPlot.type !== 'Amenity' && <InfoRow icon="📐" label="Plot Size (Area)" value={selectedPlot.areaText || `${selectedPlot.sizeSqFt.toLocaleString()} sq.ft`} />}
+                    {selectedPlot.type !== 'Amenity' && (
+                      <div style={{
+                        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                        padding: '10px 0',
+                        borderBottom: '1px solid var(--border-light)',
+                      }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                          <span style={{ fontSize: 14, width: 20, textAlign: 'center' }}>📐</span>
+                          <span style={{ fontSize: 12, color: 'var(--text-muted)', fontWeight: 500 }}>Plot Size (Area)</span>
+                          <span style={{
+                            fontSize: 9, fontWeight: 700, letterSpacing: '0.4px',
+                            color: 'rgba(148,163,184,0.7)', background: 'rgba(148,163,184,0.08)',
+                            border: '1px solid rgba(148,163,184,0.18)',
+                            borderRadius: 4, padding: '1px 5px',
+                            textTransform: 'uppercase',
+                          }}>approx</span>
+                        </div>
+                        <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--text-primary)' }}>
+                          {selectedPlot.areaText || `${selectedPlot.sizeSqFt.toLocaleString()} sq.ft`}
+                        </span>
+                      </div>
+                    )}
                     {selectedPlot.type !== 'Amenity' && selectedPlot.facing !== 'N/A' && <InfoRow icon={facingIcon(selectedPlot.facing)} label="Facing" value={selectedPlot.facing} />}
                     {selectedPlot.type !== 'Amenity' && selectedPlot.phase !== 'N/A' && <InfoRow icon="🏘️" label="Phase" value={`Phase ${selectedPlot.phase}`} />}
                     {selectedPlot.type !== 'Amenity' && <InfoRow icon="🏷️" label="Plot No." value={selectedPlot.label} />}
