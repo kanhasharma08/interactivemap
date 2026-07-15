@@ -1,6 +1,6 @@
 export type PlotStatus = 'available' | 'sold' | 'reserved' | 'N/A';
 export type PlotFacing = 'North' | 'South' | 'East' | 'West' | 'North-East' | 'North-West' | 'South-East' | 'South-West' | 'N/A';
-export type PlotType = 'Residential' | 'Premium' | 'Mortgage' | 'Amenity' | 'N/A';
+export type PlotType = 'Residential' | 'Premium' | 'Mortgage' | 'Amenity' | 'N/A' | (string & {});
 export type OpenSpaceType = 'park' | 'garden' | 'amenity' | 'multipurpose';
 
 export interface Bounds {
