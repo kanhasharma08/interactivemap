@@ -35,7 +35,7 @@ export default function Header() {
         </div>
 
         {/* CENTER — Dynamic site logo pinned to exact middle */}
-        <div className="header-center">
+        <div className={`header-center ${siteSlug === 'bhaavbhumi' ? 'no-bg' : ''}`}>
           {siteConfig.logoPath ? (
             <Image
               src={siteConfig.logoPath}
@@ -85,7 +85,7 @@ export default function Header() {
             priority
           />
 
-          <div className="header-mobile-center">
+          <div className={`header-mobile-center ${siteSlug === 'bhaavbhumi' ? 'no-bg' : ''}`}>
             {siteConfig.logoPath ? (
               <Image
                 src={siteConfig.logoPath}

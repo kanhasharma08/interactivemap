@@ -53,13 +53,21 @@ function getMangalamHero(plot: Plot): HeroResult | null {
 /** Bhaavbhumi-specific images (under /bhaavbhumi/amenities/) */
 function getBhaavbhumiHero(plot: Plot): HeroResult | null {
   const lowerLabel = plot.label.toLowerCase().trim().replace(/\s+/g, '_');
+  const lowerType = plot.type.toLowerCase().trim();
+
+  // Match residential houses based on Type
+  if (lowerType === 'type 3' || lowerType === 'type3') {
+    return { images: ['/bhaavbhumi/amenities/type3_houses.webp'], label: 'Type 3 Houses' };
+  }
+  if (lowerType === 'type 5' || lowerType === 'type5') {
+    return { images: ['/bhaavbhumi/amenities/type5_houses1.webp', '/bhaavbhumi/amenities/type5_houses2.webp'], label: 'Type 5 Houses' };
+  }
 
   // Multi-image amenities — numbered files get grouped
   const multiMap: Record<string, { files: string[]; label: string }> = {
     club: { files: ['club1', 'club2', 'club3', 'club4'], label: 'Club' },
     multi_sport_court: { files: ['multi_sport_court1', 'multi_sport_court2'], label: 'Multi Sport Court' },
     nukkad: { files: ['nukkad', 'nukkad2'], label: 'Nukkad' },
-    type5_houses: { files: ['type5_houses1', 'type5_houses2'], label: 'Type 5 Houses' },
   };
 
   for (const [key, val] of Object.entries(multiMap)) {

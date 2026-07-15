@@ -156,7 +156,6 @@ html, body {
 
 .header-search-wrap svg { stroke: var(--text-muted); }
 
-/* CENTER — Mangalam logo: pinned to exact page center */
 .header-center {
   position: absolute;
   left: 50%;
@@ -173,6 +172,14 @@ html, body {
   border-radius: 14px;
   padding: 5px 16px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+
+.header-center.no-bg, .header-mobile-center.no-bg {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
 /* RIGHT — Stats + Admin */
