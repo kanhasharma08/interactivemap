@@ -14,7 +14,7 @@ const supabaseAdmin = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SE
 async function runSync() {
   const workbook = xlsx.readFile('BB PLOT SIZE.xlsx');
   const sheet = workbook.Sheets[workbook.SheetNames[0]];
-  const data = xlsx.utils.sheet_to_json(sheet);
+  const data = xlsx.utils.sheet_to_json(sheet) as any[];
 
   const { data: site } = await supabaseAdmin.from('sites').select('id').eq('slug', 'bhaavbhumi').single();
   if (!site) return console.log('Site not found');
