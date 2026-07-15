@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# raw high-resolution render images (4GB+ — never commit these)
+/views/
+*.tif
+*.tiff

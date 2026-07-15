@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { useApp } from '@/lib/context';
 import { Plot } from '@/types';
@@ -17,49 +17,142 @@ const fadeUp: Variants = {
   animate: { opacity: 1, y: 0 },
 };
 
-/* Hero image based on plot label */
-function getHeroImage(plot: Plot) {
-  const lowerLabel = plot.label.toLowerCase().trim();
-  if (lowerLabel.includes('clubhouse') || lowerLabel.includes('club house') || lowerLabel.includes('milaya') || lowerLabel.includes('recreational')) {
-    return { imagePath: '/images/clubhouse.webp', label: 'Recreational Area' };
-  }
-  if (lowerLabel.includes('tunnel')) {
-    return { imagePath: '/images/Relaxing tunnel garden.webp', label: 'Relaxing Tunnel Garden' };
-  }
-  if (lowerLabel.includes('relaxing garden') || lowerLabel.includes('relazxing')) {
-    return { imagePath: '/images/relazxing garden.webp', label: 'Relaxing Garden' };
-  }
-  if (lowerLabel.includes('sport')) {
-    return { imagePath: '/images/sportsplaza.webp', label: 'Sports Plaza' };
-  }
-  if (lowerLabel.includes('garden near temple') || lowerLabel.includes('temple garden')) {
-    return { imagePath: '/images/garden near temple.webp', label: 'Garden Near Temple' };
-  }
-  if (lowerLabel.includes('temple')) {
-    return { imagePath: '/images/temple area.webp', label: 'Temple Area' };
-  }
-  if (plot.type === 'Premium') {
-    return { gradient: 'linear-gradient(135deg, #78350f 0%, #b45309 100%)', emoji: '✨', label: 'Premium Plot' };
-  }
-  if (plot.type === 'Mortgage') {
-    return { gradient: 'linear-gradient(135deg, #7f1d1d 0%, #dc2626 100%)', emoji: '🏦', label: 'Mortgage Plot' };
-  }
-  if (plot.type === 'Amenity') {
-    return { gradient: 'linear-gradient(135deg, #4c1d95 0%, #8b5cf6 100%)', emoji: '🏞️', label: 'Amenity Plot' };
-  }
-  if (plot.type === 'N/A') {
-    return { gradient: 'linear-gradient(135deg, #475569 0%, #94a3b8 100%)', emoji: '❓', label: 'Undefined Plot' };
-  }
-  return { gradient: 'linear-gradient(135deg, #0f2027 0%, #203a43 40%, #2c5364 100%)', emoji: '🏠', label: 'Residential Plot' };
+/* ── Image resolution helpers ────────────────────────────────────────────── */
+
+interface HeroResult {
+  images: string[];  // always an array — single-image heroes just have one item
+  label: string;
+  gradient?: string;
+  emoji?: string;
 }
 
-/* Full-screen lightbox */
-function Lightbox({ src, label, onClose }: { src: string; label: string; onClose: () => void }) {
+/** Mangalam-specific images (under /images/) */
+function getMangalamHero(plot: Plot): HeroResult | null {
+  const lowerLabel = plot.label.toLowerCase().trim();
+  if (lowerLabel.includes('clubhouse') || lowerLabel.includes('club house') || lowerLabel.includes('milaya') || lowerLabel.includes('recreational')) {
+    return { images: ['/images/clubhouse.webp'], label: 'Recreational Area' };
+  }
+  if (lowerLabel.includes('tunnel')) {
+    return { images: ['/images/Relaxing tunnel garden.webp'], label: 'Relaxing Tunnel Garden' };
+  }
+  if (lowerLabel.includes('relaxing garden') || lowerLabel.includes('relazxing')) {
+    return { images: ['/images/relazxing garden.webp'], label: 'Relaxing Garden' };
+  }
+  if (lowerLabel.includes('sport')) {
+    return { images: ['/images/sportsplaza.webp'], label: 'Sports Plaza' };
+  }
+  if (lowerLabel.includes('garden near temple') || lowerLabel.includes('temple garden')) {
+    return { images: ['/images/garden near temple.webp'], label: 'Garden Near Temple' };
+  }
+  if (lowerLabel.includes('temple')) {
+    return { images: ['/images/temple area.webp'], label: 'Temple Area' };
+  }
+  return null;
+}
+
+/** Bhaavbhumi-specific images (under /bhaavbhumi/amenities/) */
+function getBhaavbhumiHero(plot: Plot): HeroResult | null {
+  const lowerLabel = plot.label.toLowerCase().trim().replace(/\s+/g, '_');
+
+  // Multi-image amenities — numbered files get grouped
+  const multiMap: Record<string, { files: string[]; label: string }> = {
+    club: { files: ['club1', 'club2', 'club3', 'club4'], label: 'Club' },
+    multi_sport_court: { files: ['multi_sport_court1', 'multi_sport_court2'], label: 'Multi Sport Court' },
+    nukkad: { files: ['nukkad', 'nukkad2'], label: 'Nukkad' },
+    type5_houses: { files: ['type5_houses1', 'type5_houses2'], label: 'Type 5 Houses' },
+  };
+
+  for (const [key, val] of Object.entries(multiMap)) {
+    if (lowerLabel.includes(key.replace('_', ' ')) || lowerLabel.includes(key)) {
+      return {
+        images: val.files.map(f => `/bhaavbhumi/amenities/${f}.webp`),
+        label: val.label,
+      };
+    }
+  }
+
+  // Single-image amenities
+  const singleMap: Record<string, { file: string; label: string }> = {
+    'agni': { file: 'agni_court', label: 'Agni Court' },
+    'anand': { file: 'anand_baag', label: 'Anand Baag' },
+    'ankuram': { file: 'ankuram_court', label: 'Ankuram Court' },
+    'experience': { file: 'experience_centre', label: 'Experience Centre' },
+    'hans': { file: 'hans_vatika', label: 'Hans Vatika' },
+    'entrance': { file: 'main_entrance', label: 'Main Entrance' },
+    'niruti': { file: 'niruti_court', label: 'Niruti Court' },
+    'outdoor_gym': { file: 'outdoor_gym', label: 'Outdoor Gym' },
+    'open gym': { file: 'outdoor_gym', label: 'Outdoor Gym' },
+    'open_gym': { file: 'outdoor_gym', label: 'Outdoor Gym' },
+    'party': { file: 'party_lawn', label: 'Party Lawn' },
+    'spring': { file: 'spring_circle', label: 'Spring Circle' },
+    'type3': { file: 'type3_houses', label: 'Type 3 Houses' },
+    'varun': { file: 'varun_court', label: 'Varun Court' },
+    'vayu': { file: 'vayu_court', label: 'Vayu Court' },
+  };
+
+  for (const [key, val] of Object.entries(singleMap)) {
+    if (lowerLabel.includes(key)) {
+      return {
+        images: [`/bhaavbhumi/amenities/${val.file}.webp`],
+        label: val.label,
+      };
+    }
+  }
+
+  return null;
+}
+
+function getHeroImage(plot: Plot, siteSlug: string): HeroResult {
+  // Site-aware lookup — prevents cross-site image bleed
+  const hero =
+    siteSlug === 'bhaavbhumi'
+      ? getBhaavbhumiHero(plot)
+      : getMangalamHero(plot);
+
+  if (hero) return hero;
+
+  // Fallback gradients based on type
+  if (plot.type === 'Premium') return { images: [], gradient: 'linear-gradient(135deg, #78350f 0%, #b45309 100%)', emoji: '✨', label: 'Premium Plot' };
+  if (plot.type === 'Mortgage') return { images: [], gradient: 'linear-gradient(135deg, #7f1d1d 0%, #dc2626 100%)', emoji: '🏦', label: 'Mortgage Plot' };
+  if (plot.type === 'Amenity') return { images: [], gradient: 'linear-gradient(135deg, #4c1d95 0%, #8b5cf6 100%)', emoji: '🏞️', label: 'Amenity Plot' };
+  if (plot.type === 'N/A') return { images: [], gradient: 'linear-gradient(135deg, #475569 0%, #94a3b8 100%)', emoji: '❓', label: 'Undefined Plot' };
+  return { images: [], gradient: 'linear-gradient(135deg, #0f2027 0%, #203a43 40%, #2c5364 100%)', emoji: '🏠', label: 'Residential Plot' };
+}
+
+/* ── Full-screen lightbox with carousel ─────────────────────────────────── */
+function Lightbox({ images, label, startIndex, onClose }: {
+  images: string[];
+  label: string;
+  startIndex: number;
+  onClose: () => void;
+}) {
+  const [current, setCurrent] = useState(startIndex);
+
+  const prev = useCallback(() => setCurrent(i => (i - 1 + images.length) % images.length), [images.length]);
+  const next = useCallback(() => setCurrent(i => (i + 1) % images.length), [images.length]);
+
   useEffect(() => {
-    const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+      if (e.key === 'ArrowLeft') prev();
+      if (e.key === 'ArrowRight') next();
+    };
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
-  }, [onClose]);
+  }, [onClose, prev, next]);
+
+  const btnStyle: React.CSSProperties = {
+    position: 'fixed',
+    width: 48, height: 48, borderRadius: 14,
+    border: '1px solid rgba(255,255,255,0.2)',
+    background: 'rgba(0,0,0,0.5)',
+    backdropFilter: 'blur(10px)',
+    cursor: 'pointer', display: 'flex',
+    alignItems: 'center', justifyContent: 'center',
+    color: 'rgba(255,255,255,0.9)', zIndex: 1001,
+    transition: 'all 0.15s',
+    top: '50%', transform: 'translateY(-50%)',
+  };
 
   return (
     <motion.div
@@ -79,19 +172,10 @@ function Lightbox({ src, label, onClose }: { src: string; label: string; onClose
         padding: 16,
       }}
     >
+      {/* Close */}
       <button
         onClick={onClose}
-        style={{
-          position: 'fixed', top: 20, right: 20,
-          width: 44, height: 44, borderRadius: 12,
-          border: '1px solid rgba(255,255,255,0.2)',
-          background: 'rgba(255,255,255,0.1)',
-          backdropFilter: 'blur(10px)',
-          cursor: 'pointer', display: 'flex',
-          alignItems: 'center', justifyContent: 'center',
-          color: 'rgba(255,255,255,0.9)', zIndex: 1000,
-          transition: 'all 0.15s',
-        }}
+        style={{ position: 'fixed', top: 20, right: 20, width: 44, height: 44, borderRadius: 12, border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(10px)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(255,255,255,0.9)', zIndex: 1002, transition: 'all 0.15s' }}
         onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.25)'; }}
         onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; }}
       >
@@ -100,30 +184,60 @@ function Lightbox({ src, label, onClose }: { src: string; label: string; onClose
         </svg>
       </button>
 
-      <motion.img
-        src={src}
-        alt={label}
-        initial={{ scale: 0.85, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.85, opacity: 0 }}
-        transition={{ type: 'spring', stiffness: 280, damping: 26 }}
-        onClick={e => e.stopPropagation()}
-        style={{
-          maxWidth: '95vw',
-          maxHeight: '88vh',
-          objectFit: 'contain',
-          borderRadius: 16,
-          boxShadow: '0 32px 80px rgba(0,0,0,0.6)',
-          cursor: 'default',
-        }}
-      />
-      <div style={{
-        marginTop: 14, color: 'rgba(255,255,255,0.7)',
-        fontSize: 13, fontWeight: 600, letterSpacing: 0.3,
-        textAlign: 'center',
-      }}>
-        <div style={{ marginBottom: 4 }}>{label}</div>
-        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', fontWeight: 400, fontStyle: 'italic' }}>
+      {/* Prev Arrow */}
+      {images.length > 1 && (
+        <button
+          style={{ ...btnStyle, left: 20 }}
+          onClick={e => { e.stopPropagation(); prev(); }}
+          onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.2)'; }}
+          onMouseLeave={e => { e.currentTarget.style.background = 'rgba(0,0,0,0.5)'; }}
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+      )}
+
+      {/* Image */}
+      <AnimatePresence mode="wait">
+        <motion.img
+          key={current}
+          src={images[current]}
+          alt={`${label} — view ${current + 1}`}
+          initial={{ scale: 0.92, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.92, opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          onClick={e => e.stopPropagation()}
+          style={{ maxWidth: '90vw', maxHeight: '82vh', objectFit: 'contain', borderRadius: 16, boxShadow: '0 32px 80px rgba(0,0,0,0.6)', cursor: 'default' }}
+        />
+      </AnimatePresence>
+
+      {/* Next Arrow */}
+      {images.length > 1 && (
+        <button
+          style={{ ...btnStyle, right: 20 }}
+          onClick={e => { e.stopPropagation(); next(); }}
+          onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.2)'; }}
+          onMouseLeave={e => { e.currentTarget.style.background = 'rgba(0,0,0,0.5)'; }}
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      )}
+
+      {/* Caption */}
+      <div style={{ marginTop: 14, textAlign: 'center' }}>
+        <div style={{ color: 'rgba(255,255,255,0.8)', fontSize: 13, fontWeight: 600, letterSpacing: 0.3 }}>{label}</div>
+        {images.length > 1 && (
+          <div style={{ display: 'flex', gap: 6, justifyContent: 'center', marginTop: 10 }}>
+            {images.map((_, i) => (
+              <button
+                key={i}
+                onClick={e => { e.stopPropagation(); setCurrent(i); }}
+                style={{ width: i === current ? 20 : 8, height: 8, borderRadius: 4, background: i === current ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.3)', border: 'none', cursor: 'pointer', padding: 0, transition: 'all 0.2s' }}
+              />
+            ))}
+          </div>
+        )}
+        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', fontWeight: 400, fontStyle: 'italic', marginTop: 6 }}>
           * Image is for illustrative purposes only and may not represent the exact final build.
         </div>
       </div>
@@ -131,7 +245,7 @@ function Lightbox({ src, label, onClose }: { src: string; label: string; onClose
   );
 }
 
-/* Status indicator */
+/* ── Status indicator ────────────────────────────────────────────────────── */
 function StatusIndicator({ status }: { status: string }) {
   const config: Record<string, { color: string; bg: string; border: string; label: string }> = {
     available: { color: '#22c55e', bg: 'rgba(34,197,94,0.18)', border: 'rgba(34,197,94,0.35)', label: 'Available' },
@@ -141,31 +255,17 @@ function StatusIndicator({ status }: { status: string }) {
   const c = config[status] || { color: '#94a3b8', bg: 'rgba(148,163,184,0.15)', border: 'rgba(148,163,184,0.25)', label: status };
 
   return (
-    <span style={{
-      display: 'inline-flex', alignItems: 'center', gap: 6,
-      padding: '4px 12px', borderRadius: 99, fontSize: 11, fontWeight: 700,
-      background: c.bg, color: c.color, border: `1.5px solid ${c.border}`,
-      textTransform: 'capitalize', letterSpacing: '0.3px',
-      backdropFilter: 'blur(8px)',
-    }}>
-      <span style={{
-        width: 6, height: 6, borderRadius: '50%', background: c.color,
-        boxShadow: `0 0 8px ${c.color}90`,
-        animation: status === 'available' ? 'pulse-glow 2s ease-in-out infinite' : 'none',
-      }} />
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '4px 12px', borderRadius: 99, fontSize: 11, fontWeight: 700, background: c.bg, color: c.color, border: `1.5px solid ${c.border}`, textTransform: 'capitalize', letterSpacing: '0.3px', backdropFilter: 'blur(8px)' }}>
+      <span style={{ width: 6, height: 6, borderRadius: '50%', background: c.color, boxShadow: `0 0 8px ${c.color}90`, animation: status === 'available' ? 'pulse-glow 2s ease-in-out infinite' : 'none' }} />
       {c.label}
     </span>
   );
 }
 
-/* Info row item */
+/* ── Info row ────────────────────────────────────────────────────────────── */
 function InfoRow({ icon, label, value }: { icon: string; label: string; value: string }) {
   return (
-    <div style={{
-      display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-      padding: '10px 0',
-      borderBottom: '1px solid var(--border-light)',
-    }}>
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 0', borderBottom: '1px solid var(--border-light)' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
         <span style={{ fontSize: 14, width: 20, textAlign: 'center' }}>{icon}</span>
         <span style={{ fontSize: 12, color: 'var(--text-muted)', fontWeight: 500 }}>{label}</span>
@@ -175,9 +275,11 @@ function InfoRow({ icon, label, value }: { icon: string; label: string; value: s
   );
 }
 
+/* ── Main component ──────────────────────────────────────────────────────── */
 export default function PlotDetailPanel() {
-  const { selectedPlot, setSelectedPlot } = useApp();
+  const { selectedPlot, setSelectedPlot, siteSlug } = useApp();
   const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
 
   const facingIcon = (facing: string) => {
     const icons: Record<string, string> = {
@@ -187,7 +289,6 @@ export default function PlotDetailPanel() {
     return icons[facing] || '🧭';
   };
 
-  // Close lightbox if panel is dismissed
   useEffect(() => {
     if (!selectedPlot) setLightboxOpen(false);
   }, [selectedPlot]);
@@ -196,7 +297,10 @@ export default function PlotDetailPanel() {
     <>
       <AnimatePresence>
         {selectedPlot && (() => {
-          const hero = getHeroImage(selectedPlot);
+          const hero = getHeroImage(selectedPlot, siteSlug);
+          const hasImages = hero.images.length > 0;
+          const firstImage = hasImages ? hero.images[0] : undefined;
+
           return (
             <>
               {/* Backdrop */}
@@ -206,18 +310,8 @@ export default function PlotDetailPanel() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                style={{
-                  position: 'absolute', inset: 0, zIndex: 55,
-                  background: 'rgba(15,23,42,0.18)',
-                  backdropFilter: 'blur(2px)',
-                  WebkitBackdropFilter: 'blur(2px)',
-                }}
-                onPointerDown={(e) => {
-                  // Use pointerDown (not onClick) so synthetic click events from the
-                  // tap that opened the panel don't immediately close it on mobile
-                  e.stopPropagation();
-                  setSelectedPlot(null);
-                }}
+                style={{ position: 'absolute', inset: 0, zIndex: 55, background: 'rgba(15,23,42,0.18)', backdropFilter: 'blur(2px)', WebkitBackdropFilter: 'blur(2px)' }}
+                onPointerDown={(e) => { e.stopPropagation(); setSelectedPlot(null); }}
               />
 
               {/* Panel */}
@@ -232,61 +326,49 @@ export default function PlotDetailPanel() {
               >
                 {/* ─── Hero / Header ─── */}
                 <div
-                  onClick={() => { if (hero.imagePath) setLightboxOpen(true); }}
+                  onClick={() => { if (hasImages) { setLightboxIndex(0); setLightboxOpen(true); } }}
                   style={{
                     position: 'relative',
-                    background: hero.imagePath
-                      ? `linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.8) 100%), url("${hero.imagePath}")`
-                      : (hero as any).gradient,
+                    background: firstImage
+                      ? `linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.8) 100%), url("${firstImage}")`
+                      : hero.gradient,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     padding: '28px 22px 24px',
                     flexShrink: 0,
                     overflow: 'hidden',
-                    minHeight: hero.imagePath ? '200px' : 'auto',
+                    minHeight: hasImages ? '200px' : 'auto',
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'flex-end',
-                    cursor: hero.imagePath ? 'zoom-in' : 'default',
+                    cursor: hasImages ? 'zoom-in' : 'default',
                   }}
                 >
-                  {/* Expand icon — only shown when there's a real image */}
-                  {hero.imagePath && (
-                    <div style={{
-                      position: 'absolute', top: 14, left: 14,
-                      width: 32, height: 32, borderRadius: 10,
-                      border: '1px solid rgba(255,255,255,0.2)',
-                      background: 'rgba(0,0,0,0.35)',
-                      backdropFilter: 'blur(8px)',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      color: 'rgba(255,255,255,0.85)',
-                      pointerEvents: 'none',
-                    }}>
-                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                        <path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/>
-                      </svg>
+                  {/* Expand icon + image count badge */}
+                  {hasImages && (
+                    <div style={{ position: 'absolute', top: 14, left: 14, display: 'flex', gap: 6 }}>
+                      <div style={{ width: 32, height: 32, borderRadius: 10, border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(0,0,0,0.35)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(255,255,255,0.85)', pointerEvents: 'none' }}>
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                          <path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/>
+                        </svg>
+                      </div>
+                      {hero.images.length > 1 && (
+                        <div style={{ height: 32, padding: '0 10px', borderRadius: 10, border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(0,0,0,0.35)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', gap: 4, color: 'rgba(255,255,255,0.9)', fontSize: 11, fontWeight: 700, pointerEvents: 'none' }}>
+                          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><rect x="2" y="8" width="13" height="13" rx="2"/><path d="M5 8V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-2"/></svg>
+                          {hero.images.length} photos
+                        </div>
+                      )}
                     </div>
                   )}
 
                   {/* Decorative shapes */}
                   <div style={{ position: 'absolute', top: -30, right: -30, width: 120, height: 120, borderRadius: '50%', background: 'rgba(255,255,255,0.04)', pointerEvents: 'none' }} />
                   <div style={{ position: 'absolute', bottom: -20, left: -20, width: 80, height: 80, borderRadius: '50%', background: 'rgba(255,255,255,0.03)', pointerEvents: 'none' }} />
-                  <div style={{ position: 'absolute', top: 20, left: '30%', width: 60, height: 60, borderRadius: 12, background: 'rgba(255,255,255,0.02)', transform: 'rotate(45deg)', pointerEvents: 'none' }} />
 
                   {/* Close button */}
                   <button
                     onClick={e => { e.stopPropagation(); setSelectedPlot(null); }}
-                    style={{
-                      position: 'absolute', top: 14, right: 14,
-                      width: 32, height: 32, borderRadius: 10,
-                      border: '1px solid rgba(255,255,255,0.15)',
-                      background: 'rgba(255,255,255,0.1)',
-                      backdropFilter: 'blur(10px)',
-                      cursor: 'pointer', display: 'flex',
-                      alignItems: 'center', justifyContent: 'center',
-                      color: 'rgba(255,255,255,0.8)',
-                      transition: 'all 0.15s',
-                    }}
+                    style={{ position: 'absolute', top: 14, right: 14, width: 32, height: 32, borderRadius: 10, border: '1px solid rgba(255,255,255,0.15)', background: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(10px)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(255,255,255,0.8)', transition: 'all 0.15s' }}
                     onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.2)'; e.currentTarget.style.color = '#fff'; }}
                     onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; e.currentTarget.style.color = 'rgba(255,255,255,0.8)'; }}
                   >
@@ -295,15 +377,15 @@ export default function PlotDetailPanel() {
                     </svg>
                   </button>
 
-                  {/* Emoji (only for non-image heroes) */}
-                  {!hero.imagePath && (
+                  {/* Emoji (non-image heroes) */}
+                  {!hasImages && (
                     <motion.div
                       initial={{ scale: 0.5, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
                       transition={{ delay: 0.15, type: 'spring', stiffness: 300, damping: 20 }}
                       style={{ fontSize: 48, marginBottom: 12, filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.3))', position: 'relative', zIndex: 1 }}
                     >
-                      {(hero as any).emoji}
+                      {hero.emoji}
                     </motion.div>
                   )}
 
@@ -322,13 +404,7 @@ export default function PlotDetailPanel() {
                   {/* Badges */}
                   <motion.div variants={fadeUp} initial="initial" animate="animate" transition={{ delay: 0.15 }} style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                     {selectedPlot.type !== 'Amenity' && selectedPlot.status !== 'N/A' && <StatusIndicator status={selectedPlot.status} />}
-                    <span style={{
-                      display: 'inline-flex', alignItems: 'center', gap: 5,
-                      padding: '4px 12px', borderRadius: 99, fontSize: 11, fontWeight: 600,
-                      background: 'rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.9)',
-                      border: '1px solid rgba(255,255,255,0.15)',
-                      backdropFilter: 'blur(8px)',
-                    }}>
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 12px', borderRadius: 99, fontSize: 11, fontWeight: 600, background: 'rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.9)', border: '1px solid rgba(255,255,255,0.15)', backdropFilter: 'blur(8px)' }}>
                       {selectedPlot.type}
                     </span>
                   </motion.div>
@@ -341,22 +417,11 @@ export default function PlotDetailPanel() {
                       {selectedPlot.type === 'Amenity' ? 'Details' : 'Plot Details'}
                     </div>
                     {selectedPlot.type !== 'Amenity' && (
-                      <div style={{
-                        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                        padding: '10px 0',
-                        borderBottom: '1px solid var(--border-light)',
-                      }}>
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 0', borderBottom: '1px solid var(--border-light)' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                           <span style={{ fontSize: 14, width: 20, textAlign: 'center' }}>📐</span>
                           <span style={{ fontSize: 12, color: 'var(--text-muted)', fontWeight: 500 }}>Plot Size (Area)</span>
-                          <span style={{
-                            fontSize: 9, fontWeight: 700, letterSpacing: '0.5px',
-                            color: '#94a3b8',
-                            background: 'rgba(100,116,139,0.25)',
-                            border: '1px solid rgba(100,116,139,0.45)',
-                            borderRadius: 4, padding: '2px 6px',
-                            textTransform: 'uppercase',
-                          }}>approx</span>
+                          <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.5px', color: '#94a3b8', background: 'rgba(100,116,139,0.25)', border: '1px solid rgba(100,116,139,0.45)', borderRadius: 4, padding: '2px 6px', textTransform: 'uppercase' }}>approx</span>
                         </div>
                         <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--text-primary)' }}>
                           {selectedPlot.areaText || `${selectedPlot.sizeSqFt.toLocaleString()} sq.ft`}
@@ -398,15 +463,16 @@ export default function PlotDetailPanel() {
         })()}
       </AnimatePresence>
 
-      {/* Fullscreen Lightbox */}
+      {/* Fullscreen Lightbox with carousel */}
       <AnimatePresence>
         {lightboxOpen && selectedPlot && (() => {
-          const hero = getHeroImage(selectedPlot);
-          return hero.imagePath ? (
+          const hero = getHeroImage(selectedPlot, siteSlug);
+          return hero.images.length > 0 ? (
             <Lightbox
               key="lightbox"
-              src={hero.imagePath}
-              label={hero.label ?? selectedPlot.label}
+              images={hero.images}
+              label={hero.label}
+              startIndex={lightboxIndex}
               onClose={() => setLightboxOpen(false)}
             />
           ) : null;
