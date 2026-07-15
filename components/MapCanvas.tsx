@@ -80,27 +80,63 @@ const PlotCell = memo(function PlotCell({ plot, isFiltered, isHovered, isSelecte
         downPos.current = null;
       }}
     >
-      <rect
-        x={plot.x} y={plot.y} width={plot.width} height={plot.height}
-        fill={isHovered || isSelected ? typeColor : typeBg}
-        fillOpacity={isHovered ? 0.55 : isSelected ? 0.45 : 0.15}
-        stroke={isHovered || isSelected ? typeColor : 'rgba(0,0,0,0.2)'}
-        strokeWidth={isSelected ? 5 : isHovered ? 4 : 2}
-        rx={4}
-      />
-      {(isHovered || isSelected) && (
-        // No drop-shadow filter here — CSS filters on SVG break GPU compositing and cause jank.
-        // A simple stroke ring is just as clear and costs nothing on the compositor.
+      {plot.points ? (
+        <polygon
+          points={plot.points}
+          fill={isHovered || isSelected ? typeColor : typeBg}
+          fillOpacity={isHovered ? 0.55 : isSelected ? 0.45 : 0.15}
+          stroke={isHovered || isSelected ? typeColor : 'rgba(0,0,0,0.2)'}
+          strokeWidth={isSelected ? 5 : isHovered ? 4 : 2}
+        />
+      ) : plot.path ? (
+        <path
+          d={plot.path}
+          fill={isHovered || isSelected ? typeColor : typeBg}
+          fillOpacity={isHovered ? 0.55 : isSelected ? 0.45 : 0.15}
+          stroke={isHovered || isSelected ? typeColor : 'rgba(0,0,0,0.2)'}
+          strokeWidth={isSelected ? 5 : isHovered ? 4 : 2}
+        />
+      ) : (
         <rect
-          x={plot.x - 3} y={plot.y - 3} width={plot.width + 6} height={plot.height + 6}
-          fill="none"
-          stroke={isSelected ? '#3b82f6' : typeColor}
-          strokeWidth={isSelected ? 4 : 3}
-          strokeOpacity={0.85} rx={7}
-          style={{ pointerEvents: 'none' }}
+          x={plot.x} y={plot.y} width={plot.width} height={plot.height}
+          fill={isHovered || isSelected ? typeColor : typeBg}
+          fillOpacity={isHovered ? 0.55 : isSelected ? 0.45 : 0.15}
+          stroke={isHovered || isSelected ? typeColor : 'rgba(0,0,0,0.2)'}
+          strokeWidth={isSelected ? 5 : isHovered ? 4 : 2}
+          rx={4}
         />
       )}
-      {(showLabel || isHovered || isSelected) && (
+      {(isHovered || isSelected) && (
+        plot.points ? (
+          <polygon
+            points={plot.points}
+            fill="none"
+            stroke={isSelected ? '#3b82f6' : typeColor}
+            strokeWidth={isSelected ? 4 : 3}
+            strokeOpacity={0.85}
+            style={{ pointerEvents: 'none' }}
+          />
+        ) : plot.path ? (
+          <path
+            d={plot.path}
+            fill="none"
+            stroke={isSelected ? '#3b82f6' : typeColor}
+            strokeWidth={isSelected ? 4 : 3}
+            strokeOpacity={0.85}
+            style={{ pointerEvents: 'none' }}
+          />
+        ) : (
+          <rect
+            x={plot.x - 3} y={plot.y - 3} width={plot.width + 6} height={plot.height + 6}
+            fill="none"
+            stroke={isSelected ? '#3b82f6' : typeColor}
+            strokeWidth={isSelected ? 4 : 3}
+            strokeOpacity={0.85} rx={7}
+            style={{ pointerEvents: 'none' }}
+          />
+        )
+      )}
+      {(isHovered || isSelected) && (
         <text x={cx} y={cy} textAnchor="middle" dominantBaseline="middle"
           fontSize={fontSize} fontWeight="700"
           fill={isHovered || isSelected ? '#fff' : typeColor}
@@ -574,11 +610,11 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
               draggable={false}
               style={{
                 display: 'block',
-                width: SVG_W * calibScaleX,
-                height: SVG_H * calibScaleY,
+                width: Math.round(SVG_W * calibScaleX),
+                height: Math.round(SVG_H * calibScaleY),
                 pointerEvents: 'none',
                 userSelect: 'none',
-                transform: `translate(${calibOffsetX}px, ${calibOffsetY}px) translateZ(0)`,
+                transform: `translate(${Math.round(calibOffsetX)}px, ${Math.round(calibOffsetY)}px) translateZ(0)`,
               }}
             />
             <svg
@@ -675,18 +711,6 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
                 ))}
               </select>
             </div>
-            <div className="toolbar-divider" />
-            <button
-              className={`toolbar-btn ${showCalib ? 'active' : ''}`}
-              onClick={() => setShowCalib(!showCalib)}
-              title="Calibrate Map Layer"
-              style={{ color: showCalib ? 'var(--accent)' : 'inherit' }}
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <circle cx="12" cy="12" r="3"/>
-                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-              </svg>
-            </button>
           </>
         )}
         <div className="toolbar-divider" />
@@ -707,124 +731,7 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
         </button>
       </div>
 
-      {showCalib && (
-        <div style={{
-          position: 'absolute',
-          top: 80,
-          right: 20,
-          background: 'rgba(15, 23, 42, 0.95)',
-          backdropFilter: 'blur(16px)',
-          border: '1px solid rgba(255, 255, 255, 0.1)',
-          borderRadius: '12px',
-          padding: '16px',
-          width: '320px',
-          zIndex: 1000,
-          color: '#f8fafc',
-          fontFamily: 'Inter, sans-serif',
-          boxShadow: '0 10px 25px -5px rgba(0,0,0,0.5)',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '12px',
-        }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <h3 style={{ margin: 0, fontSize: '14px', fontWeight: '600' }}>Map Calibrator</h3>
-            <button
-              onClick={() => setShowCalib(false)}
-              style={{ background: 'none', border: 'none', color: '#94a3b8', cursor: 'pointer', fontSize: '16px' }}
-            >
-              ✕
-            </button>
-          </div>
-          <div style={{ fontSize: '11px', color: '#94a3b8' }}>
-            Adjust scale and shift to perfectly match the underlying map with the plot SVG grid.
-          </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px' }}>
-              <span>Offset X (px):</span>
-              <div>
-                <span style={{ fontFamily: 'monospace', color: '#3b82f6', marginRight: '8px' }}>{calibOffsetX}px</span>
-                <button onClick={() => setCalibOffsetX(0)} style={{ background: 'rgba(255,255,255,0.1)', border: 'none', borderRadius: '3px', padding: '1px 4px', fontSize: '10px', color: '#94a3b8', cursor: 'pointer' }}>Reset</button>
-              </div>
-            </div>
-            <input
-              type="range" min="-1500" max="1500"
-              value={calibOffsetX}
-              onChange={(e) => setCalibOffsetX(Number(e.target.value))}
-              style={{ width: '100%', cursor: 'pointer' }}
-            />
-          </div>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px' }}>
-              <span>Offset Y (px):</span>
-              <div>
-                <span style={{ fontFamily: 'monospace', color: '#3b82f6', marginRight: '8px' }}>{calibOffsetY}px</span>
-                <button onClick={() => setCalibOffsetY(0)} style={{ background: 'rgba(255,255,255,0.1)', border: 'none', borderRadius: '3px', padding: '1px 4px', fontSize: '10px', color: '#94a3b8', cursor: 'pointer' }}>Reset</button>
-              </div>
-            </div>
-            <input
-              type="range" min="-1500" max="1500"
-              value={calibOffsetY}
-              onChange={(e) => setCalibOffsetY(Number(e.target.value))}
-              style={{ width: '100%', cursor: 'pointer' }}
-            />
-          </div>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px' }}>
-              <span>Scale X (Width Stretch):</span>
-              <div>
-                <span style={{ fontFamily: 'monospace', color: '#3b82f6', marginRight: '8px' }}>{calibScaleX.toFixed(4)}</span>
-                <button onClick={() => setCalibScaleX(1)} style={{ background: 'rgba(255,255,255,0.1)', border: 'none', borderRadius: '3px', padding: '1px 4px', fontSize: '10px', color: '#94a3b8', cursor: 'pointer' }}>Reset</button>
-              </div>
-            </div>
-            <input
-              type="range" min="0.5" max="2.0" step="0.0001"
-              value={calibScaleX}
-              onChange={(e) => setCalibScaleX(Number(e.target.value))}
-              style={{ width: '100%', cursor: 'pointer' }}
-            />
-          </div>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px' }}>
-              <span>Scale Y (Height Stretch):</span>
-              <div>
-                <span style={{ fontFamily: 'monospace', color: '#3b82f6', marginRight: '8px' }}>{calibScaleY.toFixed(4)}</span>
-                <button onClick={() => setCalibScaleY(1)} style={{ background: 'rgba(255,255,255,0.1)', border: 'none', borderRadius: '3px', padding: '1px 4px', fontSize: '10px', color: '#94a3b8', cursor: 'pointer' }}>Reset</button>
-              </div>
-            </div>
-            <input
-              type="range" min="0.5" max="2.0" step="0.0001"
-              value={calibScaleY}
-              onChange={(e) => setCalibScaleY(Number(e.target.value))}
-              style={{ width: '100%', cursor: 'pointer' }}
-            />
-          </div>
-
-          <div style={{ marginTop: '8px', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '8px' }}>
-            <div style={{ fontSize: '11px', color: '#94a3b8', marginBottom: '4px' }}>Copy this code to sites.ts:</div>
-            <textarea
-              readOnly
-              value={`offsetX: ${calibOffsetX}, offsetY: ${calibOffsetY}, scaleX: ${calibScaleX.toFixed(3)}, scaleY: ${calibScaleY.toFixed(3)}`}
-              style={{
-                width: '100%',
-                background: 'rgba(0,0,0,0.3)',
-                border: '1px solid rgba(255,255,255,0.15)',
-                borderRadius: '4px',
-                padding: '6px',
-                fontSize: '11px',
-                fontFamily: 'monospace',
-                color: '#34d399',
-                resize: 'none',
-                height: '42px',
-              }}
-              onClick={(e) => (e.target as HTMLTextAreaElement).select()}
-            />
-          </div>
-        </div>
-      )}
 
       {/* Tooltip: DOM-mutated directly for zero React overhead on every mouse-move */}
       <div

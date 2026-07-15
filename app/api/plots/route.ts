@@ -32,6 +32,8 @@ function mapPlot(plot: Plot) {
     type: plot.type,
     area_text: plot.areaText,
     site_id: (plot as any).site_id,
+    points: plot.points,
+    path: plot.path,
   };
 }
 
@@ -52,6 +54,8 @@ function mapRow(row: any): Plot {
     status: row.status as PlotStatus,
     type: row.type,
     areaText: row.area_text,
+    points: row.points,
+    path: row.path,
   };
 }
 

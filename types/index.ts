@@ -28,6 +28,8 @@ export interface Plot {
   phase: 12 | 13 | 'N/A';
   description?: string;
   bounds?: Bounds;
+  points?: string;
+  path?: string;
 }
 
 export interface OpenSpace {
