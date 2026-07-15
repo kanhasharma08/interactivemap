@@ -67,7 +67,9 @@ function getBhaavbhumiHero(plot: Plot): HeroResult | null {
   const multiMap: Record<string, { files: string[]; label: string }> = {
     club: { files: ['club1', 'club2', 'club3', 'club4'], label: 'Club' },
     multi_sport_court: { files: ['multi_sport_court1', 'multi_sport_court2'], label: 'Multi Sport Court' },
-    nukkad: { files: ['nukkad', 'nukkad2'], label: 'Nukkad' },
+    nukkad: { files: ['nukkad'], label: 'Nukkad' },
+    poorva_maya: { files: ['poorva_maya', 'poorva_maya2'], label: 'Poorva Maya' },
+    utsav_baag: { files: ['utsav_baag1', 'utsav_baag2'], label: 'Utsav Baag' }
   };
 
   for (const [key, val] of Object.entries(multiMap)) {
@@ -87,8 +89,10 @@ function getBhaavbhumiHero(plot: Plot): HeroResult | null {
     'experience': { file: 'experience_centre', label: 'Experience Centre' },
     'hans': { file: 'hans_vatika', label: 'Hans Vatika' },
     'entrance': { file: 'main_entrance', label: 'Main Entrance' },
+    'jungle': { file: 'jungle_camp', label: 'Jungle Camp' },
+    'kids': { file: 'kids_play_area', label: "Kid's Play Area" },
     'niruti': { file: 'niruti_court', label: 'Niruti Court' },
-    'outdoor_gym': { file: 'outdoor_gym', label: 'Outdoor Gym' },
+    'outdoor gym': { file: 'outdoor_gym', label: 'Outdoor Gym' },
     'open gym': { file: 'outdoor_gym', label: 'Outdoor Gym' },
     'open_gym': { file: 'outdoor_gym', label: 'Outdoor Gym' },
     'party': { file: 'party_lawn', label: 'Party Lawn' },
@@ -96,6 +100,7 @@ function getBhaavbhumiHero(plot: Plot): HeroResult | null {
     'type3': { file: 'type3_houses', label: 'Type 3 Houses' },
     'varun': { file: 'varun_court', label: 'Varun Court' },
     'vayu': { file: 'vayu_court', label: 'Vayu Court' },
+    'gym': { file: 'indoor_gym', label: 'Gym' }, // placed after outdoor gym so it acts as fallback
   };
 
   for (const [key, val] of Object.entries(singleMap)) {
