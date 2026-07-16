@@ -497,9 +497,18 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
 
   // Direct DOM mutation — never triggers a React render on mouse-move
   const handleTooltip = useCallback((t: TooltipState) => {
-    if (isPinching.current) return;
     const el = tooltipRef.current;
     if (!el) return;
+    
+    // Suppress tooltip updates and hide it during pinch or pan gestures
+    if (isPinching.current || dragRef.current?.active) {
+      if (tooltipVisible.current) {
+        el.style.opacity = '0';
+        tooltipVisible.current = false;
+      }
+      return;
+    }
+
     if (t.visible) {
       el.style.left = `${t.x}px`;
       el.style.top  = `${t.y}px`;
@@ -558,11 +567,15 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
               draggable={false}
               style={{
                 display: 'block',
-                width: Math.round(SVG_W * calibScaleX),
-                height: Math.round(SVG_H * calibScaleY),
+                width: SVG_W,
+                height: SVG_H,
                 pointerEvents: 'none',
                 userSelect: 'none',
-                transform: `translate(${Math.round(calibOffsetX)}px, ${Math.round(calibOffsetY)}px) translateZ(0)`,
+                transformOrigin: 'top left',
+                transform: `translate(${Math.round(calibOffsetX)}px, ${Math.round(calibOffsetY)}px) scale(${calibScaleX}, ${calibScaleY}) translateZ(0)`,
+                // Force hardware acceleration for the image specifically
+                backfaceVisibility: 'hidden',
+                WebkitBackfaceVisibility: 'hidden',
               }}
             />
             <svg
