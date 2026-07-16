@@ -1045,3 +1045,65 @@ html, body {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
+
+/* ── Map Plot Hover (CSS-only for performance) ── */
+.plot-shape {
+  /* fill is applied via inline style for guaranteed rendering */
+  fill-opacity: 0.15;
+  stroke: rgba(0,0,0,0.2);
+  stroke-width: 2px;
+  transition: all 0.08s ease;
+}
+
+.plot-group:hover .plot-shape {
+  fill: var(--type-color) !important;
+  fill-opacity: 0.55 !important;
+  stroke: var(--type-color) !important;
+  stroke-width: 4px !important;
+}
+
+.plot-group.selected .plot-shape {
+  fill: var(--type-color) !important;
+  fill-opacity: 0.45 !important;
+  stroke: var(--type-color) !important;
+  stroke-width: 5px !important;
+}
+
+.plot-outline {
+  display: none;
+  fill: none;
+  stroke-width: 3px;
+  stroke-opacity: 0.85;
+  pointer-events: none;
+}
+
+.plot-group:hover .plot-outline {
+  display: block;
+  stroke: var(--type-color) !important;
+}
+
+.plot-group.selected .plot-outline {
+  display: block;
+  stroke: #3b82f6 !important;
+  stroke-width: 4px !important;
+}
+
+.plot-label {
+  display: none;
+  fill-opacity: 0.8;
+  pointer-events: none;
+  font-family: 'Inter', sans-serif;
+  user-select: none;
+}
+
+.plot-group:hover .plot-label {
+  display: block;
+  fill: #fff !important;
+  fill-opacity: 1 !important;
+}
+
+.plot-group.selected .plot-label {
+  display: block;
+  fill: #fff !important;
+  fill-opacity: 1 !important;
+}

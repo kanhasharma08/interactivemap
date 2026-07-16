@@ -1,19 +1,18 @@
 'use client';
 
-import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
+import React, { createContext, useContext, useState, useCallback, useEffect, useMemo } from 'react';
 import { Plot, Enquiry, PlotStatus } from '@/types';
 
 interface AppContextType {
   plots: Plot[];
   enquiries: Enquiry[];
   selectedPlot: Plot | null;
-  hoveredPlot: string | null;
+  // hoveredPlot intentionally removed — lives in HoverContext to avoid mass re-renders
   filterStatus: PlotStatus | 'all';
   searchQuery: string;
   isLoading: boolean;
 
   setSelectedPlot: (plot: Plot | null) => void;
-  setHoveredPlot: (id: string | null) => void;
   setFilterStatus: (status: PlotStatus | 'all') => void;
   setSearchQuery: (q: string) => void;
   updatePlotStatus: (plotId: string, status: PlotStatus) => void;
@@ -25,6 +24,26 @@ interface AppContextType {
   getStats: () => { available: number; sold: number; reserved: number; total: number };
   filteredPlots: Plot[];
   siteSlug: string;
+}
+
+// ── Hover Context (isolated to prevent full-tree re-renders on mouse-move) ───
+interface HoverContextType {
+  hoveredPlot: string | null;
+  setHoveredPlot: (id: string | null) => void;
+}
+const HoverContext = createContext<HoverContextType | null>(null);
+
+export function HoverProvider({ children }: { children: React.ReactNode }) {
+  const [hoveredPlot, setHoveredPlot] = useState<string | null>(null);
+  // Stable reference so MapCanvas never sees a new object
+  const value = useMemo(() => ({ hoveredPlot, setHoveredPlot }), [hoveredPlot]);
+  return <HoverContext.Provider value={value}>{children}</HoverContext.Provider>;
+}
+
+export function useHover() {
+  const ctx = useContext(HoverContext);
+  if (!ctx) throw new Error('useHover must be used within HoverProvider');
+  return ctx;
 }
 
 const AppContext = createContext<AppContextType | null>(null);
@@ -101,7 +120,7 @@ export function AppProvider({ children, siteSlug }: { children: React.ReactNode,
   const [plots, setPlots] = useState<Plot[]>([]);
   const [enquiries, setEnquiries] = useState<Enquiry[]>([]);
   const [selectedPlot, setSelectedPlotState] = useState<Plot | null>(null);
-  const [hoveredPlot, setHoveredPlot] = useState<string | null>(null);
+  // hoveredPlot removed from AppContext — now in HoverContext (zero re-renders on hover)
   const [filterStatus, setFilterStatus] = useState<PlotStatus | 'all'>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [isLoading, setIsLoading] = useState(true);
@@ -201,17 +220,18 @@ export function AppProvider({ children, siteSlug }: { children: React.ReactNode,
     total:     plots.length,
   }), [plots]);
 
-  const filteredPlots = plots.filter(plot => {
+  // Memoized — recomputes only when plots/filterStatus/searchQuery change, NOT on hover
+  const filteredPlots = useMemo(() => plots.filter(plot => {
     if (filterStatus !== 'all' && plot.status !== filterStatus) return false;
     if (searchQuery) return plot.label.toLowerCase().includes(searchQuery.toLowerCase());
     return true;
-  });
+  }), [plots, filterStatus, searchQuery]);
 
   return (
     <AppContext.Provider value={{
-      plots, enquiries, selectedPlot, hoveredPlot,
+      plots, enquiries, selectedPlot,
       filterStatus, searchQuery, isLoading,
-      setSelectedPlot, setHoveredPlot, setFilterStatus, setSearchQuery,
+      setSelectedPlot, setFilterStatus, setSearchQuery,
       updatePlotStatus, updatePlot, addPlot, deletePlot, deleteAllPlots,
       addEnquiry, getStats, filteredPlots, siteSlug,
     }}>

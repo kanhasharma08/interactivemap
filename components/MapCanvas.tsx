@@ -26,16 +26,13 @@ interface TooltipState {
 interface PlotCellProps {
   plot: Plot;
   isFiltered: boolean;
-  isHovered: boolean;
   isSelected: boolean;
-  showLabel: boolean; // pre-computed, only changes at threshold crossing
-  onHover: (id: string | null) => void;
   onSelect: (plot: Plot) => void;
   onTooltip: (t: TooltipState) => void;
   dragRef: React.MutableRefObject<{ moved: boolean }>;
 }
 
-const PlotCell = memo(function PlotCell({ plot, isFiltered, isHovered, isSelected, showLabel, onHover, onSelect, onTooltip, dragRef }: PlotCellProps) {
+const PlotCell = memo(function PlotCell({ plot, isFiltered, isSelected, onSelect, onTooltip, dragRef }: PlotCellProps) {
   const typeColor = plot.type === 'Premium' ? '#eab308' : plot.type === 'Mortgage' ? '#ef4444' : plot.type === 'Amenity' ? '#8b5cf6' : plot.type === 'N/A' ? '#64748b' : '#94a3b8';
   const typeBg   = plot.type === 'Premium' ? 'rgba(234,179,8,0.15)' : plot.type === 'Mortgage' ? 'rgba(239,68,68,0.15)' : plot.type === 'Amenity' ? 'rgba(139,92,246,0.15)' : plot.type === 'N/A' ? 'rgba(100,116,139,0.15)' : 'rgba(148,163,184,0.08)';
   const opacity = isFiltered ? 1 : 0.2;
@@ -47,10 +44,14 @@ const PlotCell = memo(function PlotCell({ plot, isFiltered, isHovered, isSelecte
 
   return (
     <g
-      style={{ cursor: 'pointer', opacity, pointerEvents: 'all' }}
+      className={`plot-group ${isSelected ? 'selected' : ''}`}
+      style={{ 
+        cursor: 'pointer', opacity, pointerEvents: 'all',
+        '--type-color': typeColor,
+        '--type-bg': typeBg,
+      } as React.CSSProperties}
       onPointerEnter={(e) => { 
         if (e.pointerType === 'mouse') {
-          onHover(plot.id); 
           onTooltip({ x: e.clientX + 14, y: e.clientY - 10, label: `${plot.label} (${plot.type})`, status: plot.type === 'Amenity' ? ('' as any) : plot.status, visible: true }); 
         }
       }}
@@ -62,7 +63,6 @@ const PlotCell = memo(function PlotCell({ plot, isFiltered, isHovered, isSelecte
       onPointerLeave={(e) => { 
         downPos.current = null;
         if (e.pointerType === 'mouse') {
-          onHover(null); 
           onTooltip({ x: 0, y: 0, label: '', status: '', visible: false }); 
         }
       }}
@@ -81,71 +81,24 @@ const PlotCell = memo(function PlotCell({ plot, isFiltered, isHovered, isSelecte
       }}
     >
       {plot.points ? (
-        <polygon
-          points={plot.points}
-          fill={isHovered || isSelected ? typeColor : typeBg}
-          fillOpacity={isHovered ? 0.55 : isSelected ? 0.45 : 0.15}
-          stroke={isHovered || isSelected ? typeColor : 'rgba(0,0,0,0.2)'}
-          strokeWidth={isSelected ? 5 : isHovered ? 4 : 2}
-        />
+        <polygon className="plot-shape" points={plot.points} style={{ fill: typeBg }} />
       ) : plot.path ? (
-        <path
-          d={plot.path}
-          fill={isHovered || isSelected ? typeColor : typeBg}
-          fillOpacity={isHovered ? 0.55 : isSelected ? 0.45 : 0.15}
-          stroke={isHovered || isSelected ? typeColor : 'rgba(0,0,0,0.2)'}
-          strokeWidth={isSelected ? 5 : isHovered ? 4 : 2}
-        />
+        <path className="plot-shape" d={plot.path} style={{ fill: typeBg }} />
       ) : (
-        <rect
-          x={plot.x} y={plot.y} width={plot.width} height={plot.height}
-          fill={isHovered || isSelected ? typeColor : typeBg}
-          fillOpacity={isHovered ? 0.55 : isSelected ? 0.45 : 0.15}
-          stroke={isHovered || isSelected ? typeColor : 'rgba(0,0,0,0.2)'}
-          strokeWidth={isSelected ? 5 : isHovered ? 4 : 2}
-          rx={4}
-        />
+        <rect className="plot-shape" x={plot.x} y={plot.y} width={plot.width} height={plot.height} rx={4} style={{ fill: typeBg }} />
       )}
-      {(isHovered || isSelected) && (
-        plot.points ? (
-          <polygon
-            points={plot.points}
-            fill="none"
-            stroke={isSelected ? '#3b82f6' : typeColor}
-            strokeWidth={isSelected ? 4 : 3}
-            strokeOpacity={0.85}
-            style={{ pointerEvents: 'none' }}
-          />
-        ) : plot.path ? (
-          <path
-            d={plot.path}
-            fill="none"
-            stroke={isSelected ? '#3b82f6' : typeColor}
-            strokeWidth={isSelected ? 4 : 3}
-            strokeOpacity={0.85}
-            style={{ pointerEvents: 'none' }}
-          />
-        ) : (
-          <rect
-            x={plot.x - 3} y={plot.y - 3} width={plot.width + 6} height={plot.height + 6}
-            fill="none"
-            stroke={isSelected ? '#3b82f6' : typeColor}
-            strokeWidth={isSelected ? 4 : 3}
-            strokeOpacity={0.85} rx={7}
-            style={{ pointerEvents: 'none' }}
-          />
-        )
+      
+      {plot.points ? (
+        <polygon className="plot-outline" points={plot.points} />
+      ) : plot.path ? (
+        <path className="plot-outline" d={plot.path} />
+      ) : (
+        <rect className="plot-outline" x={plot.x - 3} y={plot.y - 3} width={plot.width + 6} height={plot.height + 6} rx={7} />
       )}
-      {(isHovered || isSelected) && (
-        <text x={cx} y={cy} textAnchor="middle" dominantBaseline="middle"
-          fontSize={fontSize} fontWeight="700"
-          fill={isHovered || isSelected ? '#fff' : typeColor}
-          fillOpacity={isHovered || isSelected ? 1 : 0.8}
-          style={{ pointerEvents: 'none', fontFamily: 'Inter, sans-serif', userSelect: 'none' }}
-        >
-          {plot.label}
-        </text>
-      )}
+      
+      <text className="plot-label" x={cx} y={cy} textAnchor="middle" dominantBaseline="middle" fontSize={fontSize} fontWeight="700">
+        {plot.label}
+      </text>
     </g>
   );
 });
@@ -202,7 +155,7 @@ interface MapCanvasProps {
 }
 
 export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
-  const { plots, filteredPlots, selectedPlot, hoveredPlot, setSelectedPlot, setHoveredPlot, siteSlug } = useApp();
+  const { plots, filteredPlots, selectedPlot, setSelectedPlot, siteSlug } = useApp();
   const siteConfig = getSiteConfig(siteSlug);
   const SVG_W = siteConfig.svgW;
   const SVG_H = siteConfig.svgH;
@@ -571,11 +524,6 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
     }
   }, []);
 
-  const handleHover = useCallback((id: string | null) => {
-    if (isPinching.current) return; // suppress re-renders during pinch gesture
-    setHoveredPlot(id);
-  }, [setHoveredPlot]);
-
   return (
     <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', contain: 'strict' }}>
       <div
@@ -638,10 +586,7 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
                     key={plot.id}
                     plot={plot}
                     isFiltered={filteredIds.has(plot.id)}
-                    isHovered={hoveredPlot === plot.id}
                     isSelected={selectedPlot?.id === plot.id}
-                    showLabel={showLabel}
-                    onHover={handleHover}
                     onSelect={setSelectedPlot}
                     onTooltip={handleTooltip}
                     dragRef={dragRef}

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import { AppProvider } from '@/lib/context';
+import { AppProvider, HoverProvider } from '@/lib/context';
 import { headers, cookies } from 'next/headers';
 import { getSiteConfig } from '@/data/sites';
 
@@ -77,7 +77,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       </head>
       <body>
         <AppProvider siteSlug={siteSlug}>
-          {children}
+          <HoverProvider>
+            {children}
+          </HoverProvider>
         </AppProvider>
       </body>
     </html>
