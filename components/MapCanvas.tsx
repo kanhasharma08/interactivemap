@@ -40,6 +40,10 @@ const PlotCell = memo(function PlotCell({ plot, isFiltered, isSelected, onSelect
   const cy = plot.y + plot.height / 2;
   const fontSize = Math.max(12, Math.min(plot.width, plot.height) * 0.22);
 
+  const dotRadius = Math.max(4, Math.min(plot.width, plot.height) * 0.1);
+  const dotCy = plot.y + plot.height - dotRadius - Math.min(6, plot.height * 0.08);
+  const showDot = plot.type !== 'Amenity' && plot.status && plot.status !== 'N/A';
+
   const downPos = useRef<{x: number, y: number, time: number} | null>(null);
 
   return (
@@ -99,6 +103,17 @@ const PlotCell = memo(function PlotCell({ plot, isFiltered, isSelected, onSelect
       <text className="plot-label" x={cx} y={cy} textAnchor="middle" dominantBaseline="middle" fontSize={fontSize} fontWeight="700">
         {plot.label}
       </text>
+      
+      {showDot && (
+        <circle 
+          cx={cx} 
+          cy={dotCy} 
+          r={dotRadius} 
+          fill={getStatusColor(plot.status)} 
+          stroke="rgba(255,255,255,0.8)" 
+          strokeWidth={Math.max(1.5, dotRadius * 0.25)} 
+        />
+      )}
     </g>
   );
 });
