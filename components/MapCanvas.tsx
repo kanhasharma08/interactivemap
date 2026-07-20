@@ -209,6 +209,17 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
   // Transform stored in ref — never causes React re-renders during gestures
   const transformRef = useRef({ x: 0, y: 0, scale: 1 });
 
+  // SVG element ref — pointer-events toggled during gestures to avoid per-frame hit-testing
+  const svgGroupRef = useRef<SVGGElement>(null);
+
+  // Toggle SVG hit-testing on/off during gesture to eliminate hit-test overhead
+  const disableSvgHitTest = useCallback(() => {
+    if (svgGroupRef.current) svgGroupRef.current.style.pointerEvents = 'none';
+  }, []);
+  const enableSvgHitTest = useCallback(() => {
+    if (svgGroupRef.current) svgGroupRef.current.style.pointerEvents = 'all';
+  }, []);
+
   // Only 3 pieces of state that actually need React renders:
   // 1. showLabel: toggles only when crossing LABEL_SCALE_THRESHOLD
   // 2. zoomBadge: displayed scale % (updated via rAF, low priority)
@@ -235,6 +246,7 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
 
   // After gesture ends, update badge and check label threshold
   const onGestureEnd = useCallback(() => {
+    enableSvgHitTest();
     const s = transformRef.current.scale;
     // Update badge lazily (100ms after gesture ends)
     if (badgeTimer.current) clearTimeout(badgeTimer.current);
@@ -246,7 +258,7 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
       setShowLabel(isAbove);
     }
     lastLabelScale.current = s;
-  }, []);
+  }, [enableSvgHitTest]);
 
   // rAF batch — direct DOM mutation, zero React involvement
   const rafId = useRef<number | null>(null);
@@ -328,7 +340,8 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
     if (!e.isPrimary) return;
     const { x, y } = transformRef.current;
     dragRef.current = { active: true, startX: e.clientX, startY: e.clientY, tx: x, ty: y, moved: false };
-  }, []);
+    disableSvgHitTest();
+  }, [disableSvgHitTest]);
 
   const handlePointerMove = useCallback((e: React.PointerEvent) => {
     if (!dragRef.current.active) return;
@@ -359,6 +372,8 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
     const rect = containerRef.current?.getBoundingClientRect();
     if (rect) containerRectRef.current = { left: rect.left, top: rect.top };
 
+    disableSvgHitTest();
+
     if (e.touches.length === 1) {
       isPinching.current = false;
       lastTouch.current = { x: e.touches[0].clientX, y: e.touches[0].clientY, dist: 0 };
@@ -375,7 +390,7 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
       };
       dragRef.current.moved = true;
     }
-  }, []);
+  }, [disableSvgHitTest]);
 
   const handleTouchMove = useCallback((e: TouchEvent) => {
     if (!lastTouch.current) return;
@@ -568,13 +583,12 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
             position: 'relative',
             width: SVG_W,
             height: SVG_H,
-            // Promote the entire canvas to its own GPU compositor layer.
-            // This means pan/zoom only triggers a composite step — no paint or layout.
+            // Single compositor layer for the entire canvas (image + SVG overlay together).
+            // Only one GPU texture upload instead of two separate layers.
             willChange: 'transform',
-            transform: 'translateZ(0)',
           }}
         >
-          <div style={{ width: '100%', height: '100%', transform: `rotate(${rotation}deg) translateZ(0)`, transformOrigin: 'center center', position: 'relative' }}>
+          <div style={{ width: '100%', height: '100%', transform: `rotate(${rotation}deg)`, transformOrigin: 'center center', position: 'relative' }}>
             <img
               ref={imgRef}
               src={activeMapImage}
@@ -587,10 +601,9 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
                 pointerEvents: 'none',
                 userSelect: 'none',
                 transformOrigin: 'top left',
-                transform: `translate(${Math.round(calibOffsetX)}px, ${Math.round(calibOffsetY)}px) scale(${calibScaleX}, ${calibScaleY}) translateZ(0)`,
-                // Force hardware acceleration for the image specifically
-                backfaceVisibility: 'hidden',
-                WebkitBackfaceVisibility: 'hidden',
+                // No translateZ/backfaceVisibility — parent canvas already on GPU layer.
+                // Nested GPU promotions double texture memory and cause layer upload jank.
+                transform: `translate(${Math.round(calibOffsetX)}px, ${Math.round(calibOffsetY)}px) scale(${calibScaleX}, ${calibScaleY})`,
               }}
             />
             <svg
@@ -600,12 +613,11 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
               viewBox={`0 0 ${SVG_W} ${SVG_H}`}
               style={{
                 position: 'absolute', top: 0, left: 0, pointerEvents: 'none',
-                // SVG on its own compositor layer so plot highlights don't repaint the image
-                transform: 'translateZ(0)',
-                willChange: 'transform',
+                // Do NOT add willChange or translateZ here — the parent canvas is already
+                // a compositor layer. A nested layer doubles GPU texture memory & upload cost.
               }}
             >
-              <g style={{ pointerEvents: 'all' }}>
+              <g ref={svgGroupRef} style={{ pointerEvents: 'all' }}>
                 {OPEN_SPACES.map(os => (
                   <OpenSpaceCell key={os.id} os={os} onSelect={onOpenSpaceSelect} />
                 ))}
