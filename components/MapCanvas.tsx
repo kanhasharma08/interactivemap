@@ -3,7 +3,7 @@
 import React, { useRef, useState, useEffect, useCallback, useMemo, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useApp } from '@/lib/context';
-import { PLOTS, OPEN_SPACES, getStatusColor, getStatusBg } from '@/data/plots';
+import { PLOTS, OPEN_SPACES, getStatusColor, getStatusBg, getPlotDotColor } from '@/data/plots';
 import { Plot, OpenSpace } from '@/types';
 import { getSiteConfig } from '@/data/sites';
 
@@ -109,7 +109,7 @@ const PlotCell = memo(function PlotCell({ plot, isFiltered, isSelected, onSelect
           cx={cx} 
           cy={dotCy} 
           r={dotRadius} 
-          fill={getStatusColor(plot.status)} 
+          fill={getPlotDotColor(plot.type, plot.status)} 
           stroke="rgba(255,255,255,0.8)" 
           strokeWidth={Math.max(1.5, dotRadius * 0.25)} 
         />
