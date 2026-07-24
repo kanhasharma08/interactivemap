@@ -1,0 +1,3388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>mangalamcity Plots</name>
+    <Style id="plotStyle">
+      <LineStyle>
+        <color>ff0000ff</color>
+        <width>2</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>400000ff</color>
+      </PolyStyle>
+    </Style>
+
+    <Placemark>
+      <name>Relaxing Tunnel Garden</name>
+      <description>Type: Amenity | Status: N/A</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03952290094907,21.118876727659387,0 81.03952290094907,21.118658043985302,0 81.03930363496274,21.118658043985302,0 81.03930363496274,21.118876727659387,0 81.03952290094907,21.118876727659387,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>Sports Plaza</name>
+      <description>Type: Amenity | Status: N/A</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.0385937702049,21.119953694167997,0 81.0385937702049,21.118644128986983,0 81.03831596840357,21.118644128986983,0 81.03831596840357,21.119953694167997,0 81.0385937702049,21.119953694167997,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>Recreational Area</name>
+      <description>Type: Amenity | Status: N/A</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.0338163876025,21.11456183762434,0 81.0338163876025,21.11456183762434,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>Commecial shops</name>
+      <description>Type: Amenity | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.0375262588208,21.117792677813153,0 81.0375262588208,21.117719255357756,0 81.03725416323957,21.117719255357756,0 81.03725416323957,21.117792677813153,0 81.0375262588208,21.117792677813153,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>Entrance</name>
+      <description>Type: Amenity | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03363992317504,21.114893977902007,0 81.03363992317504,21.114893977902007,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>Multi purpose Lawn</name>
+      <description>Type: Amenity | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03403935503168,21.114561549524005,0 81.03403935503168,21.114561549524005,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>Garden Near Temple</name>
+      <description>Type: Amenity | Status: N/A</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03822643399971,21.118299455309113,0 81.03822643399971,21.117886814829905,0 81.0380899260496,21.117886814829905,0 81.0380899260496,21.118299455309113,0 81.03822643399971,21.118299455309113,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>Temple Area</name>
+      <description>Type: Amenity | Status: N/A</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.0384392016983,21.11794281458169,0 81.0384392016983,21.117769854852163,0 81.03831945903787,21.117769854852163,0 81.03831945903787,21.11794281458169,0 81.0384392016983,21.11794281458169,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>Relaxing Garden</name>
+      <description>Type: Amenity | Status: N/A</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03920261878693,21.11794339594624,0 81.03920261878693,21.11767057741705,0 81.03910929371521,21.11767057741705,0 81.03910929371521,21.11794339594624,0 81.03920261878693,21.11794339594624,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>AL1</name>
+      <description>Type: Premium | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03938303982984,21.11809064517313,0 81.03938303982984,21.11803356032557,0 81.03929791904122,21.11803356032557,0 81.03929791904122,21.11809064517313,0 81.03938303982984,21.11809064517313,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A1</name>
+      <description>Type: Premium | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03787862192932,21.118014480975642,0 81.03787862192932,21.117888747678286,0 81.03775265174313,21.117888747678286,0 81.03775265174313,21.118014480975642,0 81.03787862192932,21.118014480975642,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B1</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03821497383943,21.11837019673397,0 81.03821497383943,21.118299659256596,0 81.03808080312292,21.118299659256596,0 81.03808080312292,21.11837019673397,0 81.03821497383943,21.11837019673397,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>L1</name>
+      <description>Type: Premium | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.04000009139754,21.119116065203468,0 81.04000009139754,21.119059523759447,0 81.03989831657408,21.119059523759447,0 81.03989831657408,21.119116065203468,0 81.04000009139754,21.119116065203468,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B2</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03821674027766,21.11844120418121,0 81.03821674027766,21.118370568038433,0 81.0380787850131,21.118370568038433,0 81.0380787850131,21.11844120418121,0 81.03821674027766,21.11844120418121,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A2</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03788066154983,21.118108977627067,0 81.03788066154983,21.11801454569865,0 81.03775314143746,21.11801454569865,0 81.03775314143746,21.118108977627067,0 81.03788066154983,21.118108977627067,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>L2</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03999949727394,21.11905944710058,0 81.03999949727394,21.11900322491948,0 81.03989790789366,21.11900322491948,0 81.03989790789366,21.11905944710058,0 81.03999949727394,21.11905944710058,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>AL2</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03938551120902,21.118147235723928,0 81.03938551120902,21.118089407194798,0 81.03929988031376,21.118089407194798,0 81.03929988031376,21.118147235723928,0 81.03938551120902,21.118147235723928,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A3</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03787975199545,21.118203931232415,0 81.03787975199545,21.118109329005794,0 81.03775274675131,21.118109329005794,0 81.03775274675131,21.118203931232415,0 81.03787975199545,21.118203931232415,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>L3</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.0399995522446,21.119002360543863,0 81.0399995522446,21.118947126266807,0 81.03989865958842,21.118947126266807,0 81.03989865958842,21.119002360543863,0 81.0399995522446,21.119002360543863,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>AL3</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03938952413944,21.1182036616232,0 81.03938952413944,21.11814686060463,0 81.03929954436241,21.11814686060463,0 81.03929954436241,21.1182036616232,0 81.03938952413944,21.1182036616232,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B3</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03821671080053,21.118512318204814,0 81.03821671080053,21.118441067302197,0 81.03807978402949,21.118441067302197,0 81.03807978402949,21.118512318204814,0 81.03821671080053,21.118512318204814,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>L4</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.0399990832419,21.118945290418303,0 81.0399990832419,21.118889710927014,0 81.03989785599273,21.118889710927014,0 81.03989785599273,21.118945290418303,0 81.0399990832419,21.118945290418303,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A4</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03787867210976,21.118298013299665,0 81.03787867210976,21.118202415512446,0 81.0377510120142,21.118202415512446,0 81.0377510120142,21.118298013299665,0 81.03787867210976,21.118298013299665,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>AL4</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03939240482241,21.11826061348922,0 81.03939240482241,21.11820404210203,0 81.03930000468642,21.11820404210203,0 81.03930000468642,21.11826061348922,0 81.03939240482241,21.11826061348922,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B4</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03821804269533,21.118582966151543,0 81.03821804269533,21.118511394780096,0 81.03808033940197,21.118511394780096,0 81.03808033940197,21.118582966151543,0 81.03821804269533,21.118582966151543,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B5</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03821670046732,21.11865465230215,0 81.03821670046732,21.118584379364577,0 81.03808047878051,21.118584379364577,0 81.03808047878051,21.11865465230215,0 81.03821670046732,21.11865465230215,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A5</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03808542618407,21.118299677972256,0 81.03808542618407,21.11820317731705,0 81.03795164046295,21.11820317731705,0 81.03795164046295,21.118299677972256,0 81.03808542618407,21.118299677972256,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>L5</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03999970282752,21.118888701526306,0 81.03999970282752,21.118832358869106,0 81.03989809398567,21.118832358869106,0 81.03989809398567,21.118888701526306,0 81.03999970282752,21.118888701526306,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A6</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.0380884705421,21.11820321328572,0 81.0380884705421,21.118110821973513,0 81.03795089117591,21.118110821973513,0 81.03795089117591,21.11820321328572,0 81.0380884705421,21.11820321328572,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>L6</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03999856678297,21.118831737432423,0 81.03999856678297,21.118776003723315,0 81.03989835772602,21.118776003723315,0 81.03989835772602,21.118831737432423,0 81.03999856678297,21.118831737432423,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B6</name>
+      <description>Type: Premium | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.0382164185729,21.11872496233332,0 81.0382164185729,21.118653977272732,0 81.0380798357349,21.118653977272732,0 81.0380798357349,21.11872496233332,0 81.0382164185729,21.11872496233332,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>L7</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.0399992938688,21.11877579012006,0 81.0399992938688,21.118720210628773,0 81.03989747464742,21.118720210628773,0 81.03989747464742,21.11877579012006,0 81.0399992938688,21.11877579012006,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A7</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03808711088458,21.118107225247908,0 81.03808711088458,21.118011912527983,0 81.03795088919779,21.118011912527983,0 81.03795088919779,21.118107225247908,0 81.03808711088458,21.118107225247908,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B7</name>
+      <description>Type: Premium | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.0382163915802,21.11879634387204,0 81.0382163915802,21.11872427376246,0 81.03808142191465,21.11872427376246,0 81.03808142191465,21.11879634387204,0 81.0382163915802,21.11879634387204,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B8</name>
+      <description>Type: Premium | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03821661796617,21.118867651697776,0 81.03821661796617,21.118798465024398,0 81.0380787765209,21.118798465024398,0 81.0380787765209,21.118867651697776,0 81.03821661796617,21.118867651697776,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>L8</name>
+      <description>Type: Premium | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03999892493228,21.118718291913048,0 81.03999892493228,21.11866194925585,0 81.03989776370648,21.11866194925585,0 81.03989776370648,21.118718291913048,0 81.03999892493228,21.118718291913048,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A8</name>
+      <description>Type: Premium | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03808846957054,21.118013213086197,0 81.03808846957054,21.117890313112266,0 81.0379513445569,21.117890313112266,0 81.0379513445569,21.118013213086197,0 81.03808846957054,21.118013213086197,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A9</name>
+      <description>Type: Premium | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03844888974729,21.11831541417576,0 81.03844888974729,21.11822332483414,0 81.03831196289832,21.11822332483414,0 81.03831196289832,21.11831541417576,0 81.03844888974729,21.11831541417576,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B9</name>
+      <description>Type: Premium | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03821566836665,21.11893798356159,0 81.03821566836665,21.118868448121113,0 81.03807951475666,21.118868448121113,0 81.03807951475666,21.11893798356159,0 81.03821566836665,21.11893798356159,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>L9</name>
+      <description>Type: Premium | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.04010343095631,21.118719035300057,0 81.04010343095631,21.11866144299858,0 81.04000074256989,21.11866144299858,0 81.04000074256989,21.118719035300057,0 81.04010343095631,21.118719035300057,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>L10</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.04010278529326,21.11877638790983,0 81.04010278529326,21.118719583427573,0 81.04000162406746,21.118719583427573,0 81.04000162406746,21.11877638790983,0 81.04010278529326,21.11877638790983,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B10</name>
+      <description>Type: Premium | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03821730947521,21.119010055535313,0 81.03821730947521,21.118939115338463,0 81.03807979432914,21.118939115338463,0 81.03807979432914,21.119010055535313,0 81.03821730947521,21.119010055535313,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A10</name>
+      <description>Type: Premium | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.038446603008,21.11822215743824,0 81.038446603008,21.118129215145114,0 81.03830967726033,21.118129215145114,0 81.03830967726033,21.11822215743824,0 81.038446603008,21.11822215743824,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B11</name>
+      <description>Type: Premium | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03821755665565,21.119082143214307,0 81.03821755665565,21.11901007310472,0 81.03808140304567,21.11901007310472,0 81.03808140304567,21.119082143214307,0 81.03821755665565,21.119082143214307,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A11</name>
+      <description>Type: Premium | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03844748817879,21.118127996571648,0 81.03844748817879,21.118033938971003,0 81.03831074259658,21.118033938971003,0 81.03831074259658,21.118127996571648,0 81.03844748817879,21.118127996571648,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>L11</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.04010317090192,21.118832612,0 81.04010317090192,21.118775988231892,0 81.04000041382761,21.118775988231892,0 81.04000041382761,21.118832612,0 81.04010317090192,21.118832612,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B12</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03821649018339,21.11915159539636,0 81.03821649018339,21.119081701004102,0 81.03808100229374,21.119081701004102,0 81.03808100229374,21.11915159539636,0 81.03821649018339,21.11915159539636,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A12</name>
+      <description>Type: Premium | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03858311243283,21.118103846410158,0 81.03858311243283,21.11803522407562,0 81.03844787334944,21.11803522407562,0 81.03844787334944,21.118103846410158,0 81.03858311243283,21.118103846410158,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>L12</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.04010312292162,21.118888862127008,0 81.04010312292162,21.118831774522114,0 81.04000187862546,21.118831774522114,0 81.04000187862546,21.118888862127008,0 81.04010312292162,21.118888862127008,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>L13</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.04010254779753,21.11894640625598,0 81.04010254779753,21.118888532714095,0 81.04000074949703,21.118888532714095,0 81.04000074949703,21.11894640625598,0 81.04010254779753,21.11894640625598,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A13</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03858539610498,21.118174427247684,0 81.03858539610498,21.118104189429022,0 81.03844856172694,21.118104189429022,0 81.03844856172694,21.118174427247684,0 81.03858539610498,21.118174427247684,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B13</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03821601672274,21.11922269429113,0 81.03821601672274,21.119153677999744,0 81.03807927114055,21.119153677999744,0 81.03807927114055,21.11922269429113,0 81.03821601672274,21.11922269429113,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B14</name>
+      <description>Type: Mortgage | Status: reserved</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03821699201876,21.11928212945005,0 81.03821699201876,21.11922480806047,0 81.0380861494282,21.11922480806047,0 81.0380861494282,21.11928212945005,0 81.03821699201876,21.11928212945005,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>L14</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.04010332218886,21.119002821242294,0 81.04010332218886,21.118946599061196,0 81.04000042972973,21.118946599061196,0 81.04000042972973,21.119002821242294,0 81.04010332218886,21.119002821242294,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A14</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03858596328557,21.118247297780247,0 81.03858596328557,21.11817640536405,0 81.03844943311469,21.11817640536405,0 81.03844943311469,21.118247297780247,0 81.03858596328557,21.118247297780247,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B15</name>
+      <description>Type: Mortgage | Status: reserved</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03821660032014,21.11934442672739,0 81.03821660032014,21.11928281926452,0 81.03809202877528,21.11928281926452,0 81.03809202877528,21.11934442672739,0 81.03821660032014,21.11934442672739,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A15</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.0385856085613,21.11831628423671,0 81.0385856085613,21.11824671029157,0 81.03844868281364,21.11824671029157,0 81.03844868281364,21.11831628423671,0 81.0385856085613,21.11831628423671,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>L15</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.04027490929013,21.118832778945446,0 81.04027490929013,21.11877508112464,0 81.04017143041442,21.11877508112464,0 81.04017143041442,21.118832778945446,0 81.04027490929013,21.118832778945446,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A16</name>
+      <description>Type: Premium | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03879087008526,21.118099772336652,0 81.03879087008526,21.118035724824416,0 81.03865452248479,21.118035724824416,0 81.03865452248479,21.118099772336652,0 81.03879087008526,21.118099772336652,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B16</name>
+      <description>Type: Mortgage | Status: reserved</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03821798864794,21.119397214441456,0 81.03821798864794,21.119343573460853,0 81.03809856468757,21.119343573460853,0 81.03809856468757,21.119397214441456,0 81.03821798864794,21.119397214441456,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>L16</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.04027598341087,21.118777904615854,0 81.04027598341087,21.118716481883006,0 81.04017258410485,21.118716481883006,0 81.04017258410485,21.118777904615854,0 81.04027598341087,21.118777904615854,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A17</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.0387900991473,21.118176538422393,0 81.0387900991473,21.118105868588056,0 81.03866526052222,21.118105868588056,0 81.03866526052222,21.118176538422393,0 81.0387900991473,21.118176538422393,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B17</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03844933747567,21.118422013061906,0 81.03844933747567,21.11831732001306,0 81.03830778837198,21.11831732001306,0 81.03830778837198,21.118422013061906,0 81.03844933747567,21.118422013061906,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>L17</name>
+      <description>Type: Premium | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.04027519388761,21.11871933848012,0 81.04027519388761,21.11866197980779,0 81.0401727569561,21.11866197980779,0 81.0401727569561,21.11871933848012,0 81.04027519388761,21.11871933848012,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B18</name>
+      <description>Type: Premium | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03840123987126,21.118568192298483,0 81.03840123987126,21.118421184544022,0 81.03830964253015,21.118421184544022,0 81.03830964253015,21.118568192298483,0 81.03840123987126,21.118568192298483,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A18</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03879149587056,21.118245838247038,0 81.03879149587056,21.118175242215496,0 81.03866815261335,21.118175242215496,0 81.03866815261335,21.118245838247038,0 81.03879149587056,21.118245838247038,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A19</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.0387956453926,21.11831567923957,0 81.0387956453926,21.11824624432697,0 81.0386672603672,21.11824624432697,0 81.0386672603672,21.11831567923957,0 81.0387956453926,21.11831567923957,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B19</name>
+      <description>Type: Premium | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03849462939544,21.11856601402573,0 81.03849462939544,21.11841991936291,0 81.0384040872448,21.11841991936291,0 81.0384040872448,21.11856601402573,0 81.03849462939544,21.11856601402573,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A20</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03879278981769,21.118390320234848,0 81.03879278981769,21.11831661240455,0 81.03865922797677,21.11831661240455,0 81.03865922797677,21.118390320234848,0 81.03879278981769,21.118390320234848,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B20</name>
+      <description>Type: Premium | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03858498184853,21.118567386185507,0 81.03858498184853,21.11841930333864,0 81.0384935365239,21.11841930333864,0 81.0384935365239,21.118567386185507,0 81.03858498184853,21.118567386185507,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B21</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.038585544013,21.118420883592677,0 81.038585544013,21.11831775118555,0 81.03844707577116,21.11831775118555,0 81.03844707577116,21.118420883592677,0 81.038585544013,21.118420883592677,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A21</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03879466303377,21.118449353464943,0 81.03879466303377,21.11838958108126,0 81.03866000711349,21.11838958108126,0 81.03866000711349,21.118449353464943,0 81.03879466303377,21.118449353464943,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A22</name>
+      <description>Type: Premium | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03871542400739,21.11856717850263,0 81.03871542400739,21.11845601952005,0 81.03865563481344,21.11845601952005,0 81.03865563481344,21.11856717850263,0 81.03871542400739,21.11856717850263,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B22</name>
+      <description>Type: Premium | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03879248295159,21.11873315914621,0 81.03879248295159,21.11866257984577,0 81.03865636542943,21.11866257984577,0 81.03865636542943,21.11873315914621,0 81.03879248295159,21.11873315914621,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B23</name>
+      <description>Type: Premium | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03879086033467,21.11880359250522,0 81.03879086033467,21.11873113868338,0 81.03865761360426,21.11873113868338,0 81.03865761360426,21.11880359250522,0 81.03879086033467,21.11880359250522,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A23</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03876854860218,21.118564795808076,0 81.03876854860218,21.118461059952818,0 81.03871513449364,21.118461059952818,0 81.03871513449364,21.118564795808076,0 81.03876854860218,21.118564795808076,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A24</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03883843157932,21.118565920046013,0 81.03883843157932,21.118460762480073,0 81.03877099822239,21.118460762480073,0 81.03877099822239,21.118565920046013,0 81.03883843157932,21.118565920046013,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B24</name>
+      <description>Type: Premium | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03879302651242,21.11887593264094,0 81.03879302651242,21.118802502456557,0 81.0386565036192,21.118802502456557,0 81.0386565036192,21.11887593264094,0 81.03879302651242,21.11887593264094,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A25</name>
+      <description>Type: Premium | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03890855666327,21.118565049169923,0 81.03890855666327,21.118453407981747,0 81.03884005194708,21.118453407981747,0 81.03884005194708,21.118565049169923,0 81.03890855666327,21.118565049169923,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B25</name>
+      <description>Type: Premium | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03879259691335,21.11894636106661,0 81.03879259691335,21.118875193825012,0 81.0386567006826,21.118875193825012,0 81.0386567006826,21.11894636106661,0 81.03879259691335,21.11894636106661,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A26</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03890247933742,21.118454068548964,0 81.03890247933742,21.118388106075784,0 81.03879178053279,21.118388106075784,0 81.03879178053279,21.118454068548964,0 81.03890247933742,21.118454068548964,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B26</name>
+      <description>Type: Premium | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.0387928261215,21.119016400343884,0 81.0387928261215,21.118946864903407,0 81.03865599174345,21.118946864903407,0 81.03865599174345,21.119016400343884,0 81.0387928261215,21.119016400343884,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B27</name>
+      <description>Type: Premium | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03879318517693,21.119089597825937,0 81.03879318517693,21.1190179552509,0 81.03865635079889,21.1190179552509,0 81.03865635079889,21.119089597825937,0 81.03879318517693,21.119089597825937,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A27</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03890544245823,21.118388533707257,0 81.03890544245823,21.118317593510408,0 81.0387944772661,21.118317593510408,0 81.0387944772661,21.118388533707257,0 81.03890544245823,21.118388533707257,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A28</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03890596548754,21.118316909161983,0 81.03890596548754,21.118246249927953,0 81.03879271862857,21.118246249927953,0 81.03879271862857,21.118316909161983,0 81.03890596548754,21.118316909161983,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B28</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03879398004787,21.119160020234776,0 81.03879398004787,21.119089171652472,0 81.03865427460458,21.119089171652472,0 81.03865427460458,21.119160020234776,0 81.03879398004787,21.119160020234776,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B29</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03879226322941,21.119232618139314,0 81.03879226322941,21.119158868429718,0 81.03865610961942,21.119158868429718,0 81.03865610961942,21.119232618139314,0 81.03879226322941,21.119232618139314,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A29</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03890734158063,21.118246821773553,0 81.03890734158063,21.11817512343314,0 81.03879512423856,21.11817512343314,0 81.03879512423856,21.118246821773553,0 81.03890734158063,21.118246821773553,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A30</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03890755266035,21.11817654975921,0 81.03890755266035,21.118104204805984,0 81.03879318362794,21.118104204805984,0 81.03879318362794,21.11817654975921,0 81.03890755266035,21.11817654975921,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B30</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03879196380267,21.119301247657514,0 81.03879196380267,21.119230166985027,0 81.03865809076565,21.119230166985027,0 81.03865809076565,21.119301247657514,0 81.03879196380267,21.119301247657514,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A31</name>
+      <description>Type: Premium | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03890863451471,21.118108230109176,0 81.03890863451471,21.118033778021392,0 81.03879358471427,21.118033778021392,0 81.03879358471427,21.118108230109176,0 81.03890863451471,21.118108230109176,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B31</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03879278445635,21.11937303148773,0 81.03879278445635,21.119303404432706,0 81.03865544690191,21.119303404432706,0 81.03865544690191,21.11937303148773,0 81.03879278445635,21.11937303148773,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B32</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03879363228248,21.119443405320432,0 81.03879363228248,21.119372769177655,0 81.03865516225946,21.119372769177655,0 81.03865516225946,21.119443405320432,0 81.03879363228248,21.119443405320432,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A32</name>
+      <description>Type: Premium | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03909220798093,21.118104967336304,0 81.03909220798093,21.118030271716147,0 81.03897757868053,21.118030271716147,0 81.03897757868053,21.118104967336304,0 81.03909220798093,21.118104967336304,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B33</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.0387938438825,21.119515467496203,0 81.0387938438825,21.119445229677538,0 81.03865564796837,21.119445229677538,0 81.03865564796837,21.119515467496203,0 81.0387938438825,21.119515467496203,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A33</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03909030842662,21.118175787125644,0 81.03909030842662,21.118106321922987,0 81.03897913900407,21.118106321922987,0 81.03897913900407,21.118175787125644,0 81.03909030842662,21.118175787125644,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B34</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03879356233081,21.11958830833485,0 81.03879356233081,21.11951623822527,0 81.0386568167486,21.11951623822527,0 81.0386568167486,21.11958830833485,0 81.03879356233081,21.11958830833485,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A34</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03909162980152,21.118245429754115,0 81.03909162980152,21.11817515681654,0 81.03897498019616,21.11817515681654,0 81.03897498019616,21.118245429754115,0 81.03909162980152,21.118245429754115,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B35</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03879199837827,21.119658248666784,0 81.03879199837827,21.11958862161176,0 81.03865466082385,21.11958862161176,0 81.03865466082385,21.119658248666784,0 81.03879199837827,21.119658248666784,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A35</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03909228093565,21.118317962320578,0 81.03909228093565,21.11824527507216,0 81.03897590076437,21.11824527507216,0 81.03897590076437,21.118317962320578,0 81.03909228093565,21.118317962320578,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A36</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03908992857255,21.118389450319725,0 81.03908992857255,21.118316525499516,0 81.03897832677995,21.118316525499516,0 81.03897832677995,21.118389450319725,0 81.03908992857255,21.118389450319725,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B36</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03879327685326,21.119729021631006,0 81.03879327685326,21.119658916587046,0 81.03865583634715,21.119658916587046,0 81.03865583634715,21.119729021631006,0 81.03879327685326,21.119729021631006,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A37</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03909106006412,21.118456309708087,0 81.03909106006412,21.11839007948376,0 81.03897613475915,21.11839007948376,0 81.03897613475915,21.118456309708087,0 81.03909106006412,21.118456309708087,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B37</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.0389077643364,21.119729059982706,0 81.0389077643364,21.11965860330095,0 81.0387944667863,21.11965860330095,0 81.0387944667863,21.119729059982706,0 81.0389077643364,21.119729059982706,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B38</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03890711164232,21.119659577059142,0 81.03890711164232,21.119586637785915,0 81.03879399941248,21.119586637785915,0 81.03879399941248,21.119659577059142,0 81.03890711164232,21.119659577059142,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A38</name>
+      <description>Type: Premium | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.0390345745003,21.118565586646305,0 81.0390345745003,21.11845748148193,0 81.03897715319523,21.11845748148193,0 81.03897715319523,21.118565586646305,0 81.0390345745003,21.118565586646305,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B39</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.0389094808273,21.119587003941223,0 81.0389094808273,21.119516766122562,0 81.03879286230048,21.119516766122562,0 81.03879286230048,21.119587003941223,0 81.0389094808273,21.119587003941223,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A39</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03909087087933,21.118566937130357,0 81.03909087087933,21.118456277447052,0 81.03903685193457,21.118456277447052,0 81.03903685193457,21.118566937130357,0 81.03909087087933,21.118566937130357,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A40</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03914895166663,21.11856622639186,0 81.03914895166663,21.118458413331833,0 81.03909335775404,21.118458413331833,0 81.03909335775404,21.11856622639186,0 81.03914895166663,21.11856622639186,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B40</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03890742945777,21.119513913549206,0 81.03890742945777,21.119444870702882,0 81.03879418259879,21.119444870702882,0 81.03879418259879,21.119513913549206,0 81.03890742945777,21.119513913549206,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A41</name>
+      <description>Type: Premium | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03920589956213,21.118567521308172,0 81.03920589956213,21.11845524615504,0 81.0391495319676,21.11845524615504,0 81.0391495319676,21.118567521308172,0 81.03920589956213,21.118567521308172,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B41</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03890822096776,21.119444274349007,0 81.03890822096776,21.119373083075793,0 81.03879486230603,21.119373083075793,0 81.03879486230603,21.119444274349007,0 81.03890822096776,21.119444274349007,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B42</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03891085035688,21.11937357086874,0 81.03891085035688,21.11930410566608,0 81.03879498363479,21.11930410566608,0 81.03879498363479,21.11937357086874,0 81.03891085035688,21.11937357086874,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A42</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03920385968742,21.118456834347445,0 81.03920385968742,21.118389039583345,0 81.03909197693835,21.118389039583345,0 81.03909197693835,21.118456834347445,0 81.03920385968742,21.118456834347445,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A43</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03920788383884,21.118389156378825,0 81.03920788383884,21.11831769703288,0 81.03909363320089,21.11831769703288,0 81.03909363320089,21.118389156378825,0 81.03920788383884,21.118389156378825,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B43</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03890740878016,21.119301916519998,0 81.03890740878016,21.11923027394496,0 81.03879235897972,21.11923027394496,0 81.03879235897972,21.119301916519998,0 81.03890740878016,21.119301916519998,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A44</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03920651769197,21.118319154458106,0 81.03920651769197,21.118245262448664,0 81.0390920836774,21.118245262448664,0 81.0390920836774,21.118319154458106,0 81.03920651769197,21.118319154458106,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B44</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03890586893466,21.119230006448895,0 81.03890586893466,21.11915933230516,0 81.03879393039135,21.11915933230516,0 81.03879393039135,21.119230006448895,0 81.03890586893466,21.119230006448895,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B45</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03890628508249,21.119160768594675,0 81.03890628508249,21.119087264717443,0 81.03879354989341,21.119087264717443,0 81.03879354989341,21.119160768594675,0 81.03890628508249,21.119160768594675,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A45</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03920457369101,21.118246500314108,0 81.03920457369101,21.118174801973694,0 81.03909184159049,21.118174801973694,0 81.03909184159049,21.118246500314108,0 81.03920457369101,21.118246500314108,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A46</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03920802985519,21.11817594415808,0 81.03920802985519,21.118102652521213,0 81.03909141132837,21.118102652521213,0 81.03909141132837,21.11817594415808,0 81.03920802985519,21.11817594415808,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B46</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.038907235718,21.119087721509164,0 81.038907235718,21.11901744857159,0 81.03879450052892,21.11901744857159,0 81.03879450052892,21.119087721509164,0 81.038907235718,21.119087721509164,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A47</name>
+      <description>Type: Premium | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03920688958617,21.118111321466678,0 81.03920688958617,21.118030462131088,0 81.03909289463533,21.118030462131088,0 81.03909289463533,21.118111321466678,0 81.03920688958617,21.118111321466678,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B47</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03890818567376,21.119016701222204,0 81.03890818567376,21.11894646340354,0 81.03879393503581,21.11894646340354,0 81.03879393503581,21.119016701222204,0 81.03890818567376,21.119016701222204,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A48</name>
+      <description>Type: Premium | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03905714586304,21.11793894927972,0 81.03905714586304,21.117870916874075,0 81.038911649483,21.117870916874075,0 81.038911649483,21.11793894927972,0 81.03905714586304,21.11793894927972,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B48</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03890813040553,21.11894503036137,0 81.03890813040553,21.11887479254271,0 81.03879376137314,21.11887479254271,0 81.03879376137314,21.11894503036137,0 81.03890813040553,21.11894503036137,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A49</name>
+      <description>Type: Premium | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03905762719543,21.11787169271253,0 81.03905762719543,21.117807037204265,0 81.03893318993538,21.117807037204265,0 81.03893318993538,21.11787169271253,0 81.03905762719543,21.11787169271253,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B49</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03890641704113,21.118874431150573,0 81.03890641704113,21.11880480409555,0 81.03879216640318,21.11880480409555,0 81.03879216640318,21.118874431150573,0 81.03890641704113,21.118874431150573,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B50</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03890699120835,21.118803072844003,0 81.03890699120835,21.118733337260092,0 81.03879329673335,21.118733337260092,0 81.03879329673335,21.118803072844003,0 81.03890699120835,21.118803072844003,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A50</name>
+      <description>Type: Premium | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03905838733363,21.117808659530905,0 81.03905838733363,21.11774970756212,0 81.03894153716551,21.11774970756212,0 81.03894153716551,21.117808659530905,0 81.03905838733363,21.117808659530905,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B51</name>
+      <description>Type: Premium | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03890818581075,21.118732521157767,0 81.03890818581075,21.118661768966593,0 81.03879252008869,21.118661768966593,0 81.03879252008869,21.118732521157767,0 81.03890818581075,21.118732521157767,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A51</name>
+      <description>Type: Premium | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03905753434012,21.117749346690527,0 81.03905753434012,21.117689491853753,0 81.0389515713132,21.117689491853753,0 81.0389515713132,21.117749346690527,0 81.03905753434012,21.117749346690527,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A52</name>
+      <description>Type: Premium | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03934460291171,21.11773229252644,0 81.03934460291171,21.117663018767587,0 81.03924209883779,21.117663018767587,0 81.03924209883779,21.11773229252644,0 81.03934460291171,21.11773229252644,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B52</name>
+      <description>Type: Premium | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03909115935232,21.11873267358247,0 81.03909115935232,21.118661944789512,0 81.03897877792046,21.118661944789512,0 81.03897877792046,21.11873267358247,0 81.03909115935232,21.11873267358247,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A53</name>
+      <description>Type: Premium | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03935160400401,21.117794821278842,0 81.03935160400401,21.11773321381597,0 81.03924350472954,21.11773321381597,0 81.03924350472954,21.117794821278842,0 81.03935160400401,21.117794821278842,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B53</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03909093372371,21.11880390046363,0 81.03909093372371,21.118733662644967,0 81.03897905097463,21.118733662644967,0 81.03897905097463,21.11880390046363,0 81.03909093372371,21.11880390046363,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B54</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03909126106657,21.118875526178794,0 81.03909126106657,21.118804405119707,0 81.03897890943968,21.118804405119707,0 81.03897890943968,21.118875526178794,0 81.03909126106657,21.118875526178794,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A54</name>
+      <description>Type: Premium | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03935936133854,21.117867089881248,0 81.03935936133854,21.117796984837288,0 81.03924405544576,21.117796984837288,0 81.03924405544576,21.117867089881248,0 81.03935936133854,21.117867089881248,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A55</name>
+      <description>Type: Premium | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03937004000889,21.11793894480435,0 81.03937004000889,21.117865653167485,0 81.03924335795438,21.117865653167485,0 81.03924335795438,21.11793894480435,0 81.03937004000889,21.11793894480435,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B55</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03909118403962,21.11894633836661,0 81.03909118403962,21.118875449529572,0 81.03897779925737,21.118875449529572,0 81.03897779925737,21.11894633836661,0 81.03909118403962,21.11894633836661,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A56</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03939654607595,21.11831653645163,0 81.03939654607595,21.118261215910202,0 81.03929894837678,21.118261215910202,0 81.03929894837678,21.11831653645163,0 81.03939654607595,21.11831653645163,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B56</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03909111707624,21.11901723073348,0 81.03909111707624,21.118947354594116,0 81.03897862921839,21.118947354594116,0 81.03897862921839,21.11901723073348,0 81.03909111707624,21.11901723073348,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A57</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03939937459096,21.118377300023752,0 81.03939937459096,21.11831664250139,0 81.03930068925062,21.11831664250139,0 81.03930068925062,21.118377300023752,0 81.03939937459096,21.118377300023752,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B57</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03909067709071,21.11908722783612,0 81.03909067709071,21.119017653890978,0 81.03897897450709,21.119017653890978,0 81.03897897450709,21.11908722783612,0 81.03909067709071,21.11908722783612,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A58</name>
+      <description>Type: Premium | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03938514501952,21.118567841784643,0 81.03938514501952,21.118377351048835,0 81.03929942399955,21.118377351048835,0 81.03929942399955,21.118567841784643,0 81.03938514501952,21.118567841784643,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B58</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03909129562476,21.11915913811026,0 81.03909129562476,21.119089033066302,0 81.03897907828268,21.119089033066302,0 81.03897907828268,21.11915913811026,0 81.03909129562476,21.11915913811026,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B59</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03908988287014,21.11922976317238,0 81.03908988287014,21.119159887033017,0 81.03897856270632,21.119159887033017,0 81.03897856270632,21.11922976317238,0 81.03908988287014,21.11922976317238,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A59</name>
+      <description>Type: Mortgage | Status: reserved</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03947117077327,21.11856704910752,0 81.03947117077327,21.118377614865604,0 81.03939107644959,21.118377614865604,0 81.03939107644959,21.11856704910752,0 81.03947117077327,21.11856704910752,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A60</name>
+      <description>Type: Mortgage | Status: reserved</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03955725909097,21.118567360913197,0 81.03955725909097,21.118376314046433,0 81.03947216308472,21.118376314046433,0 81.03947216308472,21.118567360913197,0 81.03955725909097,21.118567360913197,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B60</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.0392055381676,21.119229921709326,0 81.0392055381676,21.119160997858142,0 81.03909304399109,21.119160997858142,0 81.03909304399109,21.119229921709326,0 81.0392055381676,21.119229921709326,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A61</name>
+      <description>Type: Mortgage | Status: reserved</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03964201275883,21.118566179137712,0 81.03964201275883,21.118373550192658,0 81.03955605924165,21.118373550192658,0 81.03955605924165,21.118566179137712,0 81.03964201275883,21.118566179137712,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B61</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03920581383656,21.119159584198545,0 81.03920581383656,21.11908843798816,0 81.03909321957983,21.11908843798816,0 81.03909321957983,21.119159584198545,0 81.03920581383656,21.119159584198545,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B62</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03920549931209,21.119088726584735,0 81.03920549931209,21.119017784038796,0 81.03909347995403,21.119017784038796,0 81.03909347995403,21.119088726584735,0 81.03920549931209,21.119088726584735,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A62</name>
+      <description>Type: Mortgage | Status: reserved</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03972407202663,21.11856677820212,0 81.03972407202663,21.11837022398799,0 81.03964124297799,21.11837022398799,0 81.03964124297799,21.11856677820212,0 81.03972407202663,21.11856677820212,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B63</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03920612551082,21.119016258281118,0 81.03920612551082,21.118947215434794,0 81.03909287865184,21.118947215434794,0 81.03909287865184,21.119016258281118,0 81.03920612551082,21.119016258281118,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>A63</name>
+      <description>Type: Mortgage | Status: reserved</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03981063584462,21.118569531620288,0 81.03981063584462,21.118370840947314,0 81.03972677143288,21.118370840947314,0 81.03972677143288,21.118569531620288,0 81.03981063584462,21.118569531620288,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B64</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03920692662827,21.118944805126542,0 81.03920692662827,21.11887701036244,0 81.03909385993475,21.11887701036244,0 81.03909385993475,21.118944805126542,0 81.03920692662827,21.118944805126542,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B65</name>
+      <description>Type: Premium | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.0392062421978,21.11887498386304,0 81.0392062421978,21.118804347720264,0 81.03909402485574,21.118804347720264,0 81.03909402485574,21.11887498386304,0 81.0392062421978,21.11887498386304,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B66</name>
+      <description>Type: Premium | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03920562837902,21.11880282131404,0 81.03920562837902,21.118733748348692,0 81.0390935297525,21.118733748348692,0 81.0390935297525,21.11880282131404,0 81.03920562837902,21.11880282131404,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B67</name>
+      <description>Type: Premium | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03920726518133,21.118731754374846,0 81.03920726518133,21.118661095140816,0 81.03909222785819,21.118661095140816,0 81.03909222785819,21.118731754374846,0 81.03920726518133,21.118731754374846,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B68</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03941238993092,21.11894546135659,0 81.03941238993092,21.11887647179624,0 81.03929967135475,21.11887647179624,0 81.03929967135475,21.11894546135659,0 81.03941238993092,21.11894546135659,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B69</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03941280431596,21.119014994927884,0 81.03941280431596,21.11894672513655,0 81.03929992722676,21.11894672513655,0 81.03929992722676,21.119014994927884,0 81.03941280431596,21.119014994927884,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B70</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03941189527539,21.11908797094455,0 81.03941189527539,21.119018396999408,0 81.03930070745022,21.119018396999408,0 81.03930070745022,21.11908797094455,0 81.03941189527539,21.11908797094455,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B71</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03941344190179,21.119159019129526,0 81.03941344190179,21.11908917791077,0 81.0392997186575,21.11908917791077,0 81.0392997186575,21.119159019129526,0 81.03941344190179,21.119159019129526,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B72</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03941348476133,21.11922953683749,0 81.03941348476133,21.119160026864392,0 81.03929943783022,21.119160026864392,0 81.03929943783022,21.11922953683749,0 81.03941348476133,21.11922953683749,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B73</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03952863109328,21.11923102511101,0 81.03952863109328,21.11916145116587,0 81.0394143547174,21.11916145116587,0 81.0394143547174,21.11923102511101,0 81.03952863109328,21.11923102511101,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B74</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03952806285645,21.119159483775096,0 81.03952806285645,21.119088824541066,0 81.03941481599747,21.119088824541066,0 81.03941481599747,21.119159483775096,0 81.03952806285645,21.119159483775096,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B75</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03952806237946,21.11908795934219,0 81.03952806237946,21.119017300108162,0 81.03941526313653,21.119017300108162,0 81.03941526313653,21.11908795934219,0 81.03952806237946,21.11908795934219,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B76</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03952956123481,21.11901655644065,0 81.03952956123481,21.118946883179152,0 81.0394149467462,21.118946883179152,0 81.0394149467462,21.11901655644065,0 81.03952956123481,21.11901655644065,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B77</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03952691757439,21.118945822334695,0 81.03952691757439,21.118876779488374,0 81.03941470023231,21.118876779488374,0 81.03941470023231,21.118945822334695,0 81.03952691757439,21.118945822334695,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B78</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03971195707261,21.119231118456995,0 81.03971195707261,21.119161013413038,0 81.0395992249721,21.119161013413038,0 81.0395992249721,21.119231118456995,0 81.03971195707261,21.119231118456995,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B79</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03971146788938,21.11915904495437,0 81.03971146788938,21.119090233020575,0 81.03959956387853,21.119090233020575,0 81.03959956387853,21.11915904495437,0 81.03971146788938,21.11915904495437,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B80</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03971168667378,21.119089219343984,0 81.03971168667378,21.119018981525322,0 81.03959861998027,21.119018981525322,0 81.03959861998027,21.119089219343984,0 81.03971168667378,21.119089219343984,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B81</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03971140003428,21.11901641109703,0 81.03971140003428,21.11895844288546,0 81.03959903063813,21.11895844288546,0 81.03959903063813,21.11901641109703,0 81.03971140003428,21.11901641109703,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B82</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.039711647736,21.11895735816624,0 81.039711647736,21.118899389954674,0 81.03959893987782,21.118899389954674,0 81.03959893987782,21.11895735816624,0 81.039711647736,21.11895735816624,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B83</name>
+      <description>Type: Premium | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03971188920387,21.118898054567875,0 81.03971188920387,21.118841041701003,0 81.0395988921516,21.118841041701003,0 81.0395988921516,21.118898054567875,0 81.03971188920387,21.118898054567875,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B84</name>
+      <description>Type: Premium | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03971123548942,21.118839067983448,0 81.03971123548942,21.118780401359697,0 81.03959852763126,21.118780401359697,0 81.03959852763126,21.118839067983448,0 81.03971123548942,21.118839067983448,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B85</name>
+      <description>Type: Premium | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03971136223079,21.118778891950544,0 81.03971136223079,21.118720472035353,0 81.0395989319349,21.118720472035353,0 81.0395989319349,21.118778891950544,0 81.03971136223079,21.118778891950544,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B86</name>
+      <description>Type: Premium | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03971102932805,21.118719998903675,0 81.03971102932805,21.118660983073827,0 81.0395986599319,21.118660983073827,0 81.0395986599319,21.118719998903675,0 81.03971102932805,21.118719998903675,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B87</name>
+      <description>Type: Premium | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03982860336484,21.118720602415195,0 81.03982860336484,21.11866194602667,0 81.03971344222525,21.11866194602667,0 81.03971344222525,21.118720602415195,0 81.03982860336484,21.118720602415195,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B88</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03982734820637,21.118779948802533,0 81.03982734820637,21.118722679003156,0 81.03971362496209,21.118722679003156,0 81.03971362496209,21.118779948802533,0 81.03982734820637,21.118779948802533,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B89</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03982686453668,21.118839363692842,0 81.03982686453668,21.118781054764963,0 81.03971303114379,21.118781054764963,0 81.03971303114379,21.118839363692842,0 81.03982686453668,21.118839363692842,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B90</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03982720882176,21.118898499811,0 81.03982720882176,21.118839833187245,0 81.03971314711544,21.118839833187245,0 81.03971314711544,21.118898499811,0 81.03982720882176,21.118898499811,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B91</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03982720000432,21.11895772364625,0 81.03982720000432,21.118899248910992,0 81.03971420295206,21.118899248910992,0 81.03971420295206,21.11895772364625,0 81.03982720000432,21.11895772364625,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B92</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03982705798165,21.119015622988805,0 81.03982705798165,21.118958774582122,0 81.0397144505744,21.118958774582122,0 81.0397144505744,21.119015622988805,0 81.03982705798165,21.119015622988805,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B93</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03982696475418,21.119075542387414,0 81.03982696475418,21.119018693980735,0 81.03971405625761,21.119018693980735,0 81.03971405625761,21.119075542387414,0 81.03982696475418,21.119075542387414,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B94</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03982703774479,21.119134518833718,0 81.03982703774479,21.119078645858714,0 81.03971399142456,21.119078645858714,0 81.03971399142456,21.119134518833718,0 81.03982703774479,21.119134518833718,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B95</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03982626982534,21.119194189062167,0 81.03982626982534,21.119136921957313,0 81.03971421223338,21.119136921957313,0 81.03971421223338,21.119194189062167,0 81.03982626982534,21.119194189062167,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B96</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03987705372884,21.118566097663106,0 81.03987705372884,21.118463919196405,0 81.03981056887375,21.118463919196405,0 81.03981056887375,21.118566097663106,0 81.03987705372884,21.118566097663106,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B97</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03994668372658,21.11856609515626,0 81.03994668372658,21.11846199978796,0 81.03987873561121,21.11846199978796,0 81.03987873561121,21.11856609515626,0 81.03994668372658,21.11856609515626,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B98</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.04001377557228,21.118565408729236,0 81.04001377557228,21.118460403190333,0 81.03994632716856,21.118460403190333,0 81.03994632716856,21.118565408729236,0 81.04001377557228,21.118565408729236,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B99</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.04008470076639,21.11856733022069,0 81.04008470076639,21.118456861666573,0 81.0400146936172,21.118456861666573,0 81.0400146936172,21.11856733022069,0 81.04008470076639,21.11856733022069,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B100</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.04015280256044,21.118567611228965,0 81.04015280256044,21.11845476527976,0 81.04008507630692,21.11845476527976,0 81.04008507630692,21.118567611228965,0 81.04015280256044,21.118567611228965,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B101</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.0402195527503,21.118567193689014,0 81.0402195527503,21.118454813179152,0 81.04015088397308,21.118454813179152,0 81.04015088397308,21.118567193689014,0 81.0402195527503,21.118567193689014,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B102</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.04029230746548,21.118567174975304,0 81.04029230746548,21.118449877818136,0 81.04022218835632,21.118449877818136,0 81.04022218835632,21.118567174975304,0 81.04029230746548,21.118567174975304,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B103</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.04035862062764,21.11856679263348,0 81.04035862062764,21.118448793098125,0 81.04029190535874,21.118448793098125,0 81.04029190535874,21.11856679263348,0 81.04035862062764,21.11856679263348,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B104</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.04042979636854,21.118565703274125,0 81.04042979636854,21.11844924304185,0 81.04036168088369,21.11844924304185,0 81.04036168088369,21.118565703274125,0 81.04042979636854,21.118565703274125,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B105</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.04049647924836,21.118567013562682,0 81.04049647924836,21.118444639601123,0 81.04043084704475,21.118444639601123,0 81.04043084704475,21.118567013562682,0 81.04049647924836,21.118567013562682,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B106</name>
+      <description>Type: Premium | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03821604559761,21.119516563181236,0 81.03821604559761,21.11939789181522,0 81.03816008982814,21.11939789181522,0 81.03816008982814,21.119516563181236,0 81.03821604559761,21.119516563181236,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B107</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03815887090225,21.11951605439881,0 81.03815887090225,21.11939832029014,0 81.03810364080454,21.11939832029014,0 81.03810364080454,21.11951605439881,0 81.03815887090225,21.11951605439881,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B108</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03810077964728,21.119516446470822,0 81.03810077964728,21.119419335051973,0 81.03804513425885,21.119419335051973,0 81.03804513425885,21.119516446470822,0 81.03810077964728,21.119516446470822,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B109</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03804302826764,21.119516132994942,0 81.03804302826764,21.11941413546697,0 81.03798797485143,21.11941413546697,0 81.03798797485143,21.119516132994942,0 81.03804302826764,21.119516132994942,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B110</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03798492063615,21.119516451939443,0 81.03798492063615,21.119407583320516,0 81.0379297784241,21.119407583320516,0 81.0379297784241,21.119516451939443,0 81.03798492063615,21.119516451939443,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B111</name>
+      <description>Type: Mortgage | Status: reserved</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03793087603442,21.1195177357542,0 81.03793087603442,21.11940354950836,0 81.03787476736339,21.11940354950836,0 81.03787476736339,21.1195177357542,0 81.03793087603442,21.1195177357542,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B112</name>
+      <description>Type: Mortgage | Status: reserved</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03787169994993,21.11951741160061,0 81.03787169994993,21.119399412065256,0 81.03781383466568,21.119399412065256,0 81.03781383466568,21.11951741160061,0 81.03787169994993,21.11951741160061,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B113</name>
+      <description>Type: Mortgage | Status: reserved</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03781563530094,21.119515260767955,0 81.03781563530094,21.119393108039844,0 81.03774815046818,21.119393108039844,0 81.03774815046818,21.119515260767955,0 81.03781563530094,21.119515260767955,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B114</name>
+      <description>Type: Mortgage | Status: reserved</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03774517789948,21.119517800175878,0 81.03774517789948,21.11938728439833,0 81.03767939780268,21.11938728439833,0 81.03767939780268,21.119517800175878,0 81.03774517789948,21.119517800175878,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B115</name>
+      <description>Type: Mortgage | Status: reserved</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03784145899213,21.119666383091296,0 81.03784145899213,21.119587527137018,0 81.03769943648007,21.119587527137018,0 81.03769943648007,21.119666383091296,0 81.03784145899213,21.119666383091296,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B116</name>
+      <description>Type: Mortgage | Status: reserved</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03784090416117,21.119744622907678,0 81.03784090416117,21.119667116615165,0 81.0377097331989,21.119667116615165,0 81.0377097331989,21.119744622907678,0 81.03784090416117,21.119744622907678,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B117</name>
+      <description>Type: Mortgage | Status: reserved</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03784242573529,21.11982518775165,0 81.03784242573529,21.119746979233618,0 81.03772289138787,21.119746979233618,0 81.03772289138787,21.11982518775165,0 81.03784242573529,21.11982518775165,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B118</name>
+      <description>Type: Mortgage | Status: reserved</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03784147436666,21.119883316388723,0 81.03784147436666,21.119826267410843,0 81.03773404651625,21.119826267410843,0 81.03773404651625,21.119883316388723,0 81.03784147436666,21.119883316388723,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B119</name>
+      <description>Type: Mortgage | Status: reserved</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03784168359721,21.119944649608914,0 81.03784168359721,21.119884666683603,0 81.03773933750541,21.119884666683603,0 81.03773933750541,21.119944649608914,0 81.03784168359721,21.119944649608914,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B120</name>
+      <description>Type: Mortgage | Status: reserved</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03806327797327,21.119825108846253,0 81.03806327797327,21.119747568418845,0 81.03791348326435,21.119747568418845,0 81.03791348326435,21.119825108846253,0 81.03806327797327,21.119825108846253,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B121</name>
+      <description>Type: Mortgage | Status: reserved</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03806497289182,21.119745234709953,0 81.03806497289182,21.11966794144512,0 81.03791358180783,21.11966794144512,0 81.03791358180783,21.119745234709953,0 81.03806497289182,21.119745234709953,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B122</name>
+      <description>Type: Mortgage | Status: reserved</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03806381270226,21.119665993462753,0 81.03806381270226,21.119588868677898,0 81.03791162324752,21.119588868677898,0 81.03791162324752,21.119665993462753,0 81.03806381270226,21.119665993462753,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B123</name>
+      <description>Type: Premium | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03821622987365,21.119667235477323,0 81.03821622987365,21.119588524423786,0 81.0380648188816,21.119588524423786,0 81.0380648188816,21.119667235477323,0 81.03821622987365,21.119667235477323,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B124</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03821644293537,21.119744803766185,0 81.03821644293537,21.119666755331213,0 81.03806425348063,21.119666755331213,0 81.03806425348063,21.119744803766185,0 81.03821644293537,21.119744803766185,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B125</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.0382161642954,21.119824285123762,0 81.0382161642954,21.119746761370944,0 81.038064194841,21.119746761370944,0 81.038064194841,21.119824285123762,0 81.0382161642954,21.119824285123762,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B126</name>
+      <description>Type: Premium | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03821641923065,21.119943217614416,0 81.03821641923065,21.11982743807212,0 81.03813457263713,21.11982743807212,0 81.03813457263713,21.119943217614416,0 81.03821641923065,21.119943217614416,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B127</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03813364733588,21.119942532922412,0 81.03813364733588,21.119826753380117,0 81.03806518446204,21.119826753380117,0 81.03806518446204,21.119942532922412,0 81.03813364733588,21.119942532922412,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B128</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03806319444236,21.119942366244157,0 81.03806319444236,21.119825458117113,0 81.03799579634986,21.119825458117113,0 81.03799579634986,21.119942366244157,0 81.03806319444236,21.119942366244157,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B129</name>
+      <description>Type: Premium | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.0379943482995,21.11994230807128,0 81.0379943482995,21.11982612608167,0 81.03791245200331,21.11982612608167,0 81.03791245200331,21.11994230807128,0 81.0379943482995,21.11994230807128,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B130</name>
+      <description>Type: Premium | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03803591436882,21.12007348688379,0 81.03803591436882,21.12001546433794,0 81.03794356670292,21.12001546433794,0 81.03794356670292,21.12007348688379,0 81.03803591436882,21.12007348688379,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B131</name>
+      <description>Type: Premium | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03803438744562,21.12013335065937,0 81.03803438744562,21.12007512054323,0 81.0379452534683,21.12007512054323,0 81.0379452534683,21.12013335065937,0 81.03803438744562,21.12013335065937,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B132</name>
+      <description>Type: Mortgage | Status: reserved</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.0380343684802,21.120192939462758,0 81.0380343684802,21.120133825855202,0 81.03794439765548,21.120133825855202,0 81.03794439765548,21.120192939462758,0 81.0380343684802,21.120192939462758,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B133</name>
+      <description>Type: Mortgage | Status: reserved</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03803562387192,21.120251093117254,0 81.03803562387192,21.120193474111783,0 81.03794423912204,21.120193474111783,0 81.03794423912204,21.120251093117254,0 81.03803562387192,21.120251093117254,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B134</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03813830600872,21.120251008507744,0 81.03813830600872,21.12019344561289,0 81.03803567971256,21.12019344561289,0 81.03803567971256,21.120251008507744,0 81.03813830600872,21.120251008507744,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B135</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03813792827509,21.1201915567304,0 81.03813792827509,21.120133588518833,0 81.03803605120208,21.120133588518833,0 81.03803605120208,21.1201915567304,0 81.03813792827509,21.1201915567304,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B136</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.0381377155702,21.120132336014766,0 81.0381377155702,21.1200743678032,0 81.03803651542127,21.1200743678032,0 81.03803651542127,21.120132336014766,0 81.0381377155702,21.120132336014766,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B137</name>
+      <description>Type: Premium | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03813818702645,21.120074345713633,0 81.03813818702645,21.1200154361639,0 81.03803547115622,21.1200154361639,0 81.03803547115622,21.120074345713633,0 81.03813818702645,21.120074345713633,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B138</name>
+      <description>Type: Mortgage | Status: reserved</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03832293305472,21.120666559351367,0 81.03832293305472,21.1206074864091,0 81.03820950930448,21.1206074864091,0 81.03820950930448,21.120666559351367,0 81.03832293305472,21.120666559351367,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B139</name>
+      <description>Type: Premium | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03832170659719,21.120605918945618,0 81.03832170659719,21.120548652638302,0 81.03820890735426,21.120548652638302,0 81.03820890735426,21.120605918945618,0 81.03832170659719,21.120605918945618,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B140</name>
+      <description>Type: Premium | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03832307131209,21.120547466981108,0 81.03832307131209,21.120490055198896,0 81.03821059659079,21.120490055198896,0 81.03821059659079,21.120547466981108,0 81.03832307131209,21.120547466981108,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B141</name>
+      <description>Type: Premium | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03832246524243,21.120489381276904,0 81.03832246524243,21.120430267669352,0 81.0382096659995,21.120430267669352,0 81.0382096659995,21.120489381276904,0 81.03832246524243,21.120489381276904,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B142</name>
+      <description>Type: Premium | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03832155250491,21.12043103634986,0 81.03832155250491,21.120369925283452,0 81.0382095215708,21.120369925283452,0 81.0382095215708,21.12043103634986,0 81.03832155250491,21.12043103634986,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B143</name>
+      <description>Type: Premium | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03832086734889,21.12037038905798,0 81.03832086734889,21.12031207164032,0 81.03820917487681,21.12031207164032,0 81.03820917487681,21.12037038905798,0 81.03832086734889,21.12037038905798,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B144</name>
+      <description>Type: Premium | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03832170257289,21.120311223514953,0 81.03832170257289,21.12025116006682,0 81.03820899471471,21.12025116006682,0 81.03820899471471,21.120311223514953,0 81.03832170257289,21.120311223514953,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B145</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03832253795692,21.120251084448658,0 81.03832253795692,21.120192609713403,0 81.0382098951274,21.120192609713403,0 81.0382098951274,21.120251084448658,0 81.03832253795692,21.120251084448658,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B146</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03832248413148,21.120192708757926,0 81.03832248413148,21.120132872293755,0 81.03820960704229,21.120132872293755,0 81.03820960704229,21.120192708757926,0 81.03832248413148,21.120192708757926,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B147</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03832373230716,21.120132344271244,0 81.03832373230716,21.120075093805074,0 81.03820898313641,21.120075093805074,0 81.03820898313641,21.120132344271244,0 81.03832373230716,21.120132344271244,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B148</name>
+      <description>Type: Premium | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03832193818829,21.12007361456055,0 81.03832193818829,21.120014865770656,0 81.03820964843028,21.120014865770656,0 81.03820964843028,21.12007361456055,0 81.03832193818829,21.12007361456055,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B149</name>
+      <description>Type: Premium | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03843866502555,21.12007376489913,0 81.03843866502555,21.12001474906928,0 81.03832257254702,21.12001474906928,0 81.03832257254702,21.12007376489913,0 81.03843866502555,21.12007376489913,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B150</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03843762503287,21.120132130737097,0 81.03843762503287,21.120074752403127,0 81.03832391953513,21.120074752403127,0 81.03832391953513,21.120132130737097,0 81.03843762503287,21.120132130737097,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B151</name>
+      <description>Type: Residential | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03843754681061,21.12019219504639,0 81.03843754681061,21.120133877628728,0 81.03832450049039,21.120133877628728,0 81.03832450049039,21.12019219504639,0 81.03843754681061,21.12019219504639,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B152</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03843727971773,21.120250593056902,0 81.03843727971773,21.120192403099466,0 81.03832269001063,21.120192403099466,0 81.03832269001063,21.120250593056902,0 81.03843727971773,21.120250593056902,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B153</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03843809320716,21.120310351401624,0 81.03843809320716,21.12025332604651,0 81.03832404842395,21.12025332604651,0 81.03832404842395,21.120310351401624,0 81.03843809320716,21.120310351401624,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B154</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03843689389298,21.12037052766016,0 81.03843689389298,21.120312189700964,0 81.03832420594433,21.120312189700964,0 81.03832420594433,21.12037052766016,0 81.03843689389298,21.12037052766016,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B155</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03843704435619,21.12043011256626,0 81.03843704435619,21.120370998958705,0 81.03832379749721,21.120370998958705,0 81.03832379749721,21.12043011256626,0 81.03843704435619,21.12043011256626,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B156</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03843693136325,21.12048866783896,0 81.03843693136325,21.12043069962739,0 81.03832422350507,21.12043069962739,0 81.03832422350507,21.12048866783896,0 81.03843693136325,21.12048866783896,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B157</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03843728057095,21.120547565011766,0 81.03843728057095,21.120489950199087,0 81.03832392929596,21.120489950199087,0 81.03832392929596,21.120547565011766,0 81.03843728057095,21.120547565011766,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B158</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.0384369728095,21.120606558963598,0 81.0384369728095,21.120549292656282,0 81.03832506879867,21.120549292656282,0 81.03832506879867,21.120606558963598,0 81.0384369728095,21.120606558963598,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B159</name>
+      <description>Type: Mortgage | Status: reserved</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03843703690389,21.12066643488774,0 81.03843703690389,21.12060740159759,0 81.03832493827737,21.12060740159759,0 81.03832493827737,21.12066643488774,0 81.03843703690389,21.12066643488774,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B160</name>
+      <description>Type: Mortgage | Status: reserved</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03862073904655,21.12066661484433,0 81.03862073904655,21.120607643336793,0 81.03850711343554,21.120607643336793,0 81.03850711343554,21.12066661484433,0 81.03862073904655,21.12066661484433,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B161</name>
+      <description>Type: Mortgage | Status: reserved</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03862134014119,21.120607200679075,0 81.03862134014119,21.120548184849227,0 81.03850795535894,21.120548184849227,0 81.03850795535894,21.120607200679075,0 81.03862134014119,21.120607200679075,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B162</name>
+      <description>Type: Mortgage | Status: reserved</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03862206389203,21.120548595159185,0 81.03862206389203,21.120489649885045,0 81.0385091855044,21.120489649885045,0 81.0385091855044,21.120548595159185,0 81.03862206389203,21.120548595159185,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B163</name>
+      <description>Type: Mortgage | Status: reserved</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03862288160664,21.12048781488658,0 81.03862288160664,21.120430789531465,0 81.03850883682342,21.120430789531465,0 81.03850883682342,21.12048781488658,0 81.03862288160664,21.12048781488658,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B164</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03862218823745,21.120430268059778,0 81.03862218823745,21.120371634750285,0 81.03850852957171,21.120371634750285,0 81.03850852957171,21.120430268059778,0 81.03862218823745,21.120430268059778,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B165</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03862193629966,21.12036927612558,0 81.03862193629966,21.120312652357473,0 81.03850944844181,21.120312652357473,0 81.03850944844181,21.12036927612558,0 81.03862193629966,21.12036927612558,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B166</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03862185396619,21.120310003206086,0 81.03862185396619,21.120251583290898,0 81.03850901631415,21.120251583290898,0 81.03850901631415,21.120310003206086,0 81.03862185396619,21.120310003206086,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B167</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03862162365935,21.120251185447163,0 81.03862162365935,21.120193886602287,0 81.03850927217803,21.120193886602287,0 81.03850927217803,21.120251185447163,0 81.03862162365935,21.120251185447163,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B168</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03862172423082,21.12019172223162,0 81.03862172423082,21.120135027595218,0 81.03850983266344,21.120135027595218,0 81.03850983266344,21.12019172223162,0 81.03862172423082,21.12019172223162,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B169</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03862136488475,21.120132154783228,0 81.03862136488475,21.120075067178334,0 81.03850864231083,21.120075067178334,0 81.03850864231083,21.120132154783228,0 81.03862136488475,21.120132154783228,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B170</name>
+      <description>Type: Premium | Status: sold</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03862081865968,21.120073659563293,0 81.03862081865968,21.12001604055782,0 81.0385091261876,21.12001604055782,0 81.0385091261876,21.120073659563293,0 81.03862081865968,21.120073659563293,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B171</name>
+      <description>Type: Premium | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03873638188024,21.120073433392086,0 81.03873638188024,21.1200151311573,0 81.03862365930632,21.1200151311573,0 81.03862365930632,21.120073433392086,0 81.03873638188024,21.120073433392086,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B172</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.0387371284413,21.120133334759316,0 81.0387371284413,21.120074250073483,0 81.03862373254938,21.120074250073483,0 81.03862373254938,21.120133334759316,0 81.0387371284413,21.120133334759316,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B173</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03873719916047,21.120192532589776,0 81.03873719916047,21.120133783799883,0 81.03862371483055,21.120133783799883,0 81.03862371483055,21.120192532589776,0 81.03873719916047,21.120192532589776,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B174</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03873674008358,21.120250762684165,0 81.03873674008358,21.120192361042328,0 81.03862353049767,21.120192361042328,0 81.03862353049767,21.120250762684165,0 81.03873674008358,21.120250762684165,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B175</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03873617458002,21.12031074880058,0 81.03873617458002,21.12025214290832,0 81.0386234520061,21.12025214290832,0 81.0386234520061,21.12031074880058,0 81.03873617458002,21.12031074880058,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B176</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03873656536523,21.12036946654254,0 81.03873656536523,21.120312075280175,0 81.03862443142094,21.120312075280175,0 81.03862443142094,21.12036946654254,0 81.03873656536523,21.12036946654254,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B177</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.0387359315086,21.120429502691557,0 81.0387359315086,21.120370914661503,0 81.03862339937368,21.120370914661503,0 81.03862339937368,21.120429502691557,0 81.0387359315086,21.120429502691557,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B178</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03873672813829,21.120488263050774,0 81.03873672813829,21.120430568130935,0 81.0386248885088,21.120430568130935,0 81.0386248885088,21.120488263050774,0 81.03873672813829,21.120488263050774,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B179</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03873730590185,21.120547956540374,0 81.03873730590185,21.12048928991662,0 81.0386239211196,21.12048928991662,0 81.0386239211196,21.120547956540374,0 81.03873730590185,21.120547956540374,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B180</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.0387371335101,21.12060677227057,0 81.0387371335101,21.12054956872521,0 81.03862378223509,21.12054956872521,0 81.03862378223509,21.12060677227057,0 81.0387371335101,21.12060677227057,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B181</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03873693355254,21.120665655991473,0 81.03873693355254,21.12060849693776,0 81.0386240551649,21.12060849693776,0 81.0386240551649,21.120665655991473,0 81.03873693355254,21.120665655991473,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B182</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.038920886241,21.120369789515138,0 81.038920886241,21.120312952708723,0 81.03880705374505,21.120312952708723,0 81.03880705374505,21.120369789515138,0 81.038920886241,21.120369789515138,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B183</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03892033644874,21.12031081948481,0 81.03892033644874,21.120251465249552,0 81.03880784227223,21.120251465249552,0 81.03880784227223,21.12031081948481,0 81.03892033644874,21.12031081948481,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B184</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03892063253379,21.12025070561642,0 81.03892063253379,21.12019331435405,0 81.03880790995987,21.12019331435405,0 81.03880790995987,21.12025070561642,0 81.03892063253379,21.12025070561642,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B185</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03892071190059,21.120191924253813,0 81.03892071190059,21.120134267441518,0 81.038807245358,21.120134267441518,0 81.038807245358,21.120191924253813,0 81.03892071190059,21.120191924253813,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B186</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03892096311424,21.120133423658828,0 81.03892096311424,21.120074562039694,0 81.03880766540789,21.120074562039694,0 81.03880766540789,21.120133423658828,0 81.03892096311424,21.120133423658828,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B187</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03892087284923,21.120073077503587,0 81.03892087284923,21.120015873958227,0 81.03880784298616,21.120015873958227,0 81.03880784298616,21.120073077503587,0 81.03892087284923,21.120073077503587,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>B188</name>
+      <description>Type: Residential | Status: available</description>
+      <styleUrl>#plotStyle</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>81.03892057977487,21.120013732204182,0 81.03892057977487,21.119944849601644,0 81.03880797236762,21.119944849601644,0 81.03880797236762,21.120013732204182,0 81.03892057977487,21.120013732204182,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+  </Document>
+</kml>
