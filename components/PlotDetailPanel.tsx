@@ -6,7 +6,7 @@ import { useApp } from '@/lib/context';
 import { Plot } from '@/types';
 import { formatPrice, getStatusColor } from '@/data/plots';
 
-const STORAGE_URL = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/maps_images`;
+
 
 const slideIn: Variants = {
   initial: { x: '100%', opacity: 0 },
@@ -28,202 +28,31 @@ interface HeroResult {
   emoji?: string;
 }
 
-/** Mangalam-specific images (under /images/) */
-function getMangalamHero(plot: Plot): HeroResult | null {
-  const lowerLabel = plot.label.toLowerCase().trim();
-  if (lowerLabel.includes('clubhouse') || lowerLabel.includes('club house') || lowerLabel.includes('milaya') || lowerLabel.includes('recreational')) {
-    return { images: [`${STORAGE_URL}/mangalamcity/amenities/clubhouse.webp`, `${STORAGE_URL}/mangalamcity/amenities/clubhouse_2.webp`], label: 'Recreational Area' };
-  }
-  if (lowerLabel.includes('tunnel')) {
-    return { images: [`${STORAGE_URL}/mangalamcity/amenities/Relaxing tunnel garden.webp`], label: 'Relaxing Tunnel Garden' };
-  }
-  if (lowerLabel.includes('relaxing garden') || lowerLabel.includes('relazxing')) {
-    return { images: [`${STORAGE_URL}/mangalamcity/amenities/relazxing garden.webp`], label: 'Relaxing Garden' };
-  }
-  if (lowerLabel.includes('sport')) {
-    return { images: [`${STORAGE_URL}/mangalamcity/amenities/sportsplaza.webp`, `${STORAGE_URL}/mangalamcity/amenities/sportsplaza_2.webp`, `${STORAGE_URL}/mangalamcity/amenities/sportsplaza_3.webp`, `${STORAGE_URL}/mangalamcity/amenities/sportsplaza_4.webp`], label: 'Sports Plaza' };
-  }
-  if (lowerLabel.includes('garden near temple') || lowerLabel.includes('temple garden')) {
-    return { images: [`${STORAGE_URL}/mangalamcity/amenities/garden near temple.webp`], label: 'Garden Near Temple' };
-  }
-  if (lowerLabel.includes('temple')) {
-    return { images: [`${STORAGE_URL}/mangalamcity/amenities/temple area.webp`, `${STORAGE_URL}/mangalamcity/amenities/temple_area_2.webp`], label: 'Temple Area' };
-  }
-  if (lowerLabel.includes('entrance')) {
-    return { images: [`${STORAGE_URL}/mangalamcity/amenities/entrance.webp`], label: 'Entrance' };
-  }
-  if (lowerLabel.includes('lawn') || lowerLabel.includes('multi purpose')) {
-    return { images: [`${STORAGE_URL}/mangalamcity/amenities/multipurpose_lawn.webp`], label: 'Multi Purpose Lawn' };
-  }
-  if (lowerLabel.includes('commercial') || lowerLabel.includes('shop')) {
-    return { images: [`${STORAGE_URL}/mangalamcity/amenities/commercial_shops.webp`], label: 'Commercial Shops' };
-  }
-  return null;
-}
-
-/** Bhaavbhumi-specific images (under /bhaavbhumi/amenities/) */
-function getBhaavbhumiHero(plot: Plot): HeroResult | null {
-  const lowerLabel = plot.label.toLowerCase().trim().replace(/\s+/g, '_');
-  const lowerType = plot.type.toLowerCase().trim();
-  const facing = (plot.facing ?? '').toUpperCase();
-
-  // ── Type 2 ─────────────────────────────────────────────────────────────────
-  if (lowerType === 'type 2' || lowerType === 'type2') {
-    if (facing === 'EAST') {
-      return {
-        images: [
-          `${STORAGE_URL}/bhaavbhumi/amenities/type2_east_1.webp`,
-          `${STORAGE_URL}/bhaavbhumi/amenities/type2_east_2.webp`,
-        ],
-        label: 'Type 2 House — East Facing',
-      };
-    }
-    // West: no elevation image yet
-    return null;
+/**
+ * Resolves which images to show for a given plot.
+ *
+ * Priority:
+ *   1. hero_images from the database (set by migration / future admin uploader)
+ *   2. Gradient fallback based on type (no image)
+ *
+ * Adding images for a new plot or amenity no longer requires touching this file —
+ * just update the hero_images column in Supabase directly or via the admin panel.
+ */
+function getHeroImage(plot: Plot, _siteSlug: string): HeroResult {
+  // ── 1. DB-driven images (primary source) ──────────────────────────────────
+  if (plot.hero_images && plot.hero_images.length > 0) {
+    return { images: plot.hero_images, label: plot.label };
   }
 
-  // ── Type 3 ─────────────────────────────────────────────────────────────────
-  // C1–C7 share the same west elevation renders as the D-series
-  if (lowerType === 'type 3' || lowerType === 'type3') {
-    if (facing === 'WEST') {
-      return {
-        images: [
-          `${STORAGE_URL}/bhaavbhumi/amenities/type3_west_1.webp`,
-          `${STORAGE_URL}/bhaavbhumi/amenities/type3_west_2.webp`,
-        ],
-        label: 'Type 3 House — West Facing',
-      };
-    }
-    // East-facing: keep existing image
-    return { images: [`${STORAGE_URL}/bhaavbhumi/amenities/type3_houses.webp`], label: 'Type 3 House — East Facing' };
-  }
-
-  // ── Type 4 ─────────────────────────────────────────────────────────────────
-  if (lowerType === 'type 4' || lowerType === 'type4') {
-    if (facing === 'WEST') {
-      return {
-        images: [
-          `${STORAGE_URL}/bhaavbhumi/amenities/type4_west_1.webp`,
-          `${STORAGE_URL}/bhaavbhumi/amenities/type4_west_2.webp`,
-        ],
-        label: 'Type 4 House — West Facing',
-      };
-    }
-    // East: new elevation renders
-    return {
-      images: [
-        `${STORAGE_URL}/bhaavbhumi/amenities/type4_east_1.webp`,
-        `${STORAGE_URL}/bhaavbhumi/amenities/type4_east_2.webp`,
-      ],
-      label: 'Type 4 House — East Facing',
-    };
-  }
-
-  // ── Type 5 ─────────────────────────────────────────────────────────────────
-  if (lowerType === 'type 5' || lowerType === 'type5') {
-    if (facing === 'WEST') {
-      return {
-        images: [
-          `${STORAGE_URL}/bhaavbhumi/amenities/type5_west_1.webp`,
-          `${STORAGE_URL}/bhaavbhumi/amenities/type5_west_2.webp`,
-        ],
-        label: 'Type 5 House — West Facing',
-      };
-    }
-    // East-facing: keep existing renders
-    return {
-      images: [
-        `${STORAGE_URL}/bhaavbhumi/amenities/type5_houses1.webp`,
-        `${STORAGE_URL}/bhaavbhumi/amenities/type5_houses2.webp`,
-      ],
-      label: 'Type 5 House — East Facing',
-    };
-  }
-
-  // ── Type 6 ─────────────────────────────────────────────────────────────────
-  if (lowerType === 'type 6' || lowerType === 'type6') {
-    if (facing === 'EAST') {
-      return {
-        images: [
-          `${STORAGE_URL}/bhaavbhumi/amenities/type6_east_1.webp`,
-          `${STORAGE_URL}/bhaavbhumi/amenities/type6_east_2.webp`,
-        ],
-        label: 'Type 6 House — East Facing',
-      };
-    }
-    // West (L9, L10, L11)
-    return {
-      images: [
-        `${STORAGE_URL}/bhaavbhumi/amenities/type6_west_1.webp`,
-        `${STORAGE_URL}/bhaavbhumi/amenities/type6_west_2.webp`,
-      ],
-      label: 'Type 6 House — West Facing',
-    };
-  }
-
-  // Multi-image amenities — numbered files get grouped
-  const multiMap: Record<string, { files: string[]; label: string }> = {
-    club: { files: ['club1', 'club2', 'club3', 'club4'], label: 'Club' },
-    multi_sport_court: { files: ['multi_sport_court1', 'multi_sport_court2'], label: 'Multi Sport Court' },
-    nukkad: { files: ['nukkad'], label: 'Nukkad' },
-    poorva_maya: { files: ['poorva_maya', 'poorva_maya2'], label: 'Poorva Maya' },
-    utsav_baag: { files: ['utsav_baag1', 'utsav_baag2'], label: 'Utsav Baag' }
-  };
-
-  for (const [key, val] of Object.entries(multiMap)) {
-    if (lowerLabel.includes(key.replace('_', ' ')) || lowerLabel.includes(key)) {
-      return {
-        images: val.files.map(f => `${STORAGE_URL}/bhaavbhumi/amenities/${f}.webp`),
-        label: val.label,
-      };
-    }
-  }
-
-  // Single-image amenities
-  const singleMap: Record<string, { file: string; label: string }> = {
-    'agni': { file: 'agni_court', label: 'Agni Court' },
-    'anand': { file: 'anand_baag', label: 'Anand Baag' },
-    'ankuram': { file: 'ankuram_court', label: 'Ankuram Court' },
-    'experience': { file: 'experience_centre', label: 'Experience Centre' },
-    'hans': { file: 'hans_vatika', label: 'Hans Vatika' },
-    'entrance': { file: 'main_entrance', label: 'Main Entrance' },
-    'jungle': { file: 'jungle_camp', label: 'Jungle Camp' },
-    'kids': { file: 'kids_play_area', label: "Kid's Play Area" },
-    'niruti': { file: 'niruti_court', label: 'Niruti Court' },
-    'spring': { file: 'spring_circle', label: 'Spring Circle' },
-    'varun': { file: 'varun_court', label: 'Varun Court' },
-    'vayu': { file: 'vayu_court', label: 'Vayu Court' },
-    'gym': { file: 'indoor_gym', label: 'Gym' }, // placed after outdoor gym so it acts as fallback
-  };
-
-  for (const [key, val] of Object.entries(singleMap)) {
-    if (lowerLabel.includes(key)) {
-      return {
-        images: [`${STORAGE_URL}/bhaavbhumi/amenities/${val.file}.webp`],
-        label: val.label,
-      };
-    }
-  }
-
-  return null;
-}
-
-function getHeroImage(plot: Plot, siteSlug: string): HeroResult {
-  // Site-aware lookup — prevents cross-site image bleed
-  const hero =
-    siteSlug === 'bhaavbhumi'
-      ? getBhaavbhumiHero(plot)
-      : getMangalamHero(plot);
-
-  if (hero) return hero;
-
-  // Fallback gradients based on type
-  if (plot.type === 'Premium') return { images: [], gradient: 'linear-gradient(135deg, #78350f 0%, #b45309 100%)', emoji: '✨', label: 'Premium Plot' };
+  // ── 2. Gradient fallbacks (no image available) ────────────────────────────
+  if (plot.type === 'Premium')  return { images: [], gradient: 'linear-gradient(135deg, #78350f 0%, #b45309 100%)', emoji: '✨', label: 'Premium Plot' };
   if (plot.type === 'Mortgage') return { images: [], gradient: 'linear-gradient(135deg, #7f1d1d 0%, #dc2626 100%)', emoji: '🏦', label: 'Mortgage Plot' };
-  if (plot.type === 'Amenity') return { images: [], gradient: 'linear-gradient(135deg, #4c1d95 0%, #8b5cf6 100%)', emoji: '🏞️', label: 'Amenity Plot' };
-  if (plot.type === 'N/A') return { images: [], gradient: 'linear-gradient(135deg, #475569 0%, #94a3b8 100%)', emoji: '❓', label: 'Undefined Plot' };
+  if (plot.type === 'Amenity')  return { images: [], gradient: 'linear-gradient(135deg, #4c1d95 0%, #8b5cf6 100%)', emoji: '🏞️', label: 'Amenity Plot' };
+  if (plot.type === 'N/A')      return { images: [], gradient: 'linear-gradient(135deg, #475569 0%, #94a3b8 100%)', emoji: '❓', label: 'Undefined Plot' };
   return { images: [], gradient: 'linear-gradient(135deg, #0f2027 0%, #203a43 40%, #2c5364 100%)', emoji: '🏠', label: 'Residential Plot' };
 }
+
+
 
 /* ── Full-screen lightbox with carousel ─────────────────────────────────── */
 function Lightbox({ images, label, startIndex, onClose }: {

@@ -30,6 +30,7 @@ export interface Plot {
   bounds?: Bounds;
   points?: string;
   path?: string;
+  hero_images?: string[];  // Supabase Storage URLs — set by admin or migration script
 }
 
 export interface OpenSpace {

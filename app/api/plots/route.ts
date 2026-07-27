@@ -34,6 +34,7 @@ function mapPlot(plot: Plot) {
     site_id: (plot as any).site_id,
     points: plot.points,
     path: plot.path,
+    hero_images: (plot as any).hero_images,
   };
 }
 
@@ -56,6 +57,7 @@ function mapRow(row: any): Plot {
     areaText: row.area_text,
     points: row.points,
     path: row.path,
+    hero_images: row.hero_images ?? [],
   };
 }
 
