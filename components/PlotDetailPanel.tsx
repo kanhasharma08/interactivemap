@@ -30,7 +30,7 @@ interface HeroResult {
 function getMangalamHero(plot: Plot): HeroResult | null {
   const lowerLabel = plot.label.toLowerCase().trim();
   if (lowerLabel.includes('clubhouse') || lowerLabel.includes('club house') || lowerLabel.includes('milaya') || lowerLabel.includes('recreational')) {
-    return { images: ['/images/clubhouse.webp'], label: 'Recreational Area' };
+    return { images: ['/images/clubhouse.webp', '/images/clubhouse_2.webp'], label: 'Recreational Area' };
   }
   if (lowerLabel.includes('tunnel')) {
     return { images: ['/images/Relaxing tunnel garden.webp'], label: 'Relaxing Tunnel Garden' };
@@ -39,13 +39,22 @@ function getMangalamHero(plot: Plot): HeroResult | null {
     return { images: ['/images/relazxing garden.webp'], label: 'Relaxing Garden' };
   }
   if (lowerLabel.includes('sport')) {
-    return { images: ['/images/sportsplaza.webp'], label: 'Sports Plaza' };
+    return { images: ['/images/sportsplaza.webp', '/images/sportsplaza_2.webp', '/images/sportsplaza_3.webp', '/images/sportsplaza_4.webp'], label: 'Sports Plaza' };
   }
   if (lowerLabel.includes('garden near temple') || lowerLabel.includes('temple garden')) {
     return { images: ['/images/garden near temple.webp'], label: 'Garden Near Temple' };
   }
   if (lowerLabel.includes('temple')) {
-    return { images: ['/images/temple area.webp'], label: 'Temple Area' };
+    return { images: ['/images/temple area.webp', '/images/temple_area_2.webp'], label: 'Temple Area' };
+  }
+  if (lowerLabel.includes('entrance')) {
+    return { images: ['/images/entrance.webp'], label: 'Entrance' };
+  }
+  if (lowerLabel.includes('lawn') || lowerLabel.includes('multi purpose')) {
+    return { images: ['/images/multipurpose_lawn.webp'], label: 'Multi Purpose Lawn' };
+  }
+  if (lowerLabel.includes('commercial') || lowerLabel.includes('shop')) {
+    return { images: ['/images/commercial_shops.webp'], label: 'Commercial Shops' };
   }
   return null;
 }
