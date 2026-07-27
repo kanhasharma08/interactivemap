@@ -54,13 +54,67 @@ function getMangalamHero(plot: Plot): HeroResult | null {
 function getBhaavbhumiHero(plot: Plot): HeroResult | null {
   const lowerLabel = plot.label.toLowerCase().trim().replace(/\s+/g, '_');
   const lowerType = plot.type.toLowerCase().trim();
+  const facing = (plot.facing ?? '').toUpperCase();
 
-  // Match residential houses based on Type
+  // ── Type 3 ─────────────────────────────────────────────────────────────────
   if (lowerType === 'type 3' || lowerType === 'type3') {
-    return { images: ['/bhaavbhumi/amenities/type3_houses.webp'], label: 'Type 3 Houses' };
+    // C1–C7: different elevation category — show no image
+    if (/^c\d/.test(plot.label.trim().toLowerCase())) {
+      return null;
+    }
+    // West-facing D-series: new west elevation renders
+    if (facing === 'WEST') {
+      return {
+        images: [
+          '/bhaavbhumi/amenities/type3_west_1.webp',
+          '/bhaavbhumi/amenities/type3_west_2.webp',
+        ],
+        label: 'Type 3 House — West Facing',
+      };
+    }
+    // East-facing: keep existing image
+    return { images: ['/bhaavbhumi/amenities/type3_houses.webp'], label: 'Type 3 House — East Facing' };
   }
+
+  // ── Type 4 ─────────────────────────────────────────────────────────────────
+  if (lowerType === 'type 4' || lowerType === 'type4') {
+    if (facing === 'WEST') {
+      return {
+        images: [
+          '/bhaavbhumi/amenities/type4_west_1.webp',
+          '/bhaavbhumi/amenities/type4_west_2.webp',
+        ],
+        label: 'Type 4 House — West Facing',
+      };
+    }
+    // East: no elevation image yet
+    return null;
+  }
+
+  // ── Type 5 ─────────────────────────────────────────────────────────────────
   if (lowerType === 'type 5' || lowerType === 'type5') {
     return { images: ['/bhaavbhumi/amenities/type5_houses1.webp', '/bhaavbhumi/amenities/type5_houses2.webp'], label: 'Type 5 Houses' };
+  }
+
+  // ── Type 6 ─────────────────────────────────────────────────────────────────
+  if (lowerType === 'type 6' || lowerType === 'type6') {
+    if (facing === 'EAST') {
+      return {
+        images: [
+          '/bhaavbhumi/amenities/type6_east_1.webp',
+          '/bhaavbhumi/amenities/type6_east_2.webp',
+        ],
+        label: 'Type 6 House — East Facing',
+      };
+    }
+    // West (L9, L10, L11)
+    return {
+      images: [
+        '/bhaavbhumi/amenities/type6_west_1.webp',
+        '/bhaavbhumi/amenities/type6_west_2.webp',
+      ],
+      label: 'Type 6 House — West Facing',
+    };
   }
 
   // Multi-image amenities — numbered files get grouped
@@ -93,7 +147,6 @@ function getBhaavbhumiHero(plot: Plot): HeroResult | null {
     'kids': { file: 'kids_play_area', label: "Kid's Play Area" },
     'niruti': { file: 'niruti_court', label: 'Niruti Court' },
     'spring': { file: 'spring_circle', label: 'Spring Circle' },
-    'type3': { file: 'type3_houses', label: 'Type 3 Houses' },
     'varun': { file: 'varun_court', label: 'Varun Court' },
     'vayu': { file: 'vayu_court', label: 'Vayu Court' },
     'gym': { file: 'indoor_gym', label: 'Gym' }, // placed after outdoor gym so it acts as fallback
