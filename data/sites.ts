@@ -43,7 +43,7 @@ export const SITE_CONFIGS: Record<string, SiteConfig> = {
   bhaavbhumi: {
     name: 'Bhaavbhumi',
     slug: 'bhaavbhumi',
-    mapImage: '/bhaavbhumi-layout.png',
+    mapImage: '/bhaavbhumi-layout.webp',
     svgW: 3573,
     svgH: 5031,
     logoPath: '/bhaavbhumi-logo.png',
