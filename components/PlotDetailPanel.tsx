@@ -98,8 +98,14 @@ function getBhaavbhumiHero(plot: Plot): HeroResult | null {
         label: 'Type 4 House — West Facing',
       };
     }
-    // East: no elevation image yet
-    return null;
+    // East: new elevation renders
+    return {
+      images: [
+        '/bhaavbhumi/amenities/type4_east_1.webp',
+        '/bhaavbhumi/amenities/type4_east_2.webp',
+      ],
+      label: 'Type 4 House — East Facing',
+    };
   }
 
   // ── Type 5 ─────────────────────────────────────────────────────────────────
