@@ -6,6 +6,8 @@ import { useApp } from '@/lib/context';
 import { Plot } from '@/types';
 import { formatPrice, getStatusColor } from '@/data/plots';
 
+const STORAGE_URL = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/maps_images`;
+
 const slideIn: Variants = {
   initial: { x: '100%', opacity: 0 },
   animate: { x: 0, opacity: 1, transition: { type: 'spring', stiffness: 320, damping: 30, mass: 0.8 } },
@@ -30,31 +32,31 @@ interface HeroResult {
 function getMangalamHero(plot: Plot): HeroResult | null {
   const lowerLabel = plot.label.toLowerCase().trim();
   if (lowerLabel.includes('clubhouse') || lowerLabel.includes('club house') || lowerLabel.includes('milaya') || lowerLabel.includes('recreational')) {
-    return { images: ['/images/clubhouse.webp', '/images/clubhouse_2.webp'], label: 'Recreational Area' };
+    return { images: [`${STORAGE_URL}/mangalamcity/amenities/clubhouse.webp`, `${STORAGE_URL}/mangalamcity/amenities/clubhouse_2.webp`], label: 'Recreational Area' };
   }
   if (lowerLabel.includes('tunnel')) {
-    return { images: ['/images/Relaxing tunnel garden.webp'], label: 'Relaxing Tunnel Garden' };
+    return { images: [`${STORAGE_URL}/mangalamcity/amenities/Relaxing tunnel garden.webp`], label: 'Relaxing Tunnel Garden' };
   }
   if (lowerLabel.includes('relaxing garden') || lowerLabel.includes('relazxing')) {
-    return { images: ['/images/relazxing garden.webp'], label: 'Relaxing Garden' };
+    return { images: [`${STORAGE_URL}/mangalamcity/amenities/relazxing garden.webp`], label: 'Relaxing Garden' };
   }
   if (lowerLabel.includes('sport')) {
-    return { images: ['/images/sportsplaza.webp', '/images/sportsplaza_2.webp', '/images/sportsplaza_3.webp', '/images/sportsplaza_4.webp'], label: 'Sports Plaza' };
+    return { images: [`${STORAGE_URL}/mangalamcity/amenities/sportsplaza.webp`, `${STORAGE_URL}/mangalamcity/amenities/sportsplaza_2.webp`, `${STORAGE_URL}/mangalamcity/amenities/sportsplaza_3.webp`, `${STORAGE_URL}/mangalamcity/amenities/sportsplaza_4.webp`], label: 'Sports Plaza' };
   }
   if (lowerLabel.includes('garden near temple') || lowerLabel.includes('temple garden')) {
-    return { images: ['/images/garden near temple.webp'], label: 'Garden Near Temple' };
+    return { images: [`${STORAGE_URL}/mangalamcity/amenities/garden near temple.webp`], label: 'Garden Near Temple' };
   }
   if (lowerLabel.includes('temple')) {
-    return { images: ['/images/temple area.webp', '/images/temple_area_2.webp'], label: 'Temple Area' };
+    return { images: [`${STORAGE_URL}/mangalamcity/amenities/temple area.webp`, `${STORAGE_URL}/mangalamcity/amenities/temple_area_2.webp`], label: 'Temple Area' };
   }
   if (lowerLabel.includes('entrance')) {
-    return { images: ['/images/entrance.webp'], label: 'Entrance' };
+    return { images: [`${STORAGE_URL}/mangalamcity/amenities/entrance.webp`], label: 'Entrance' };
   }
   if (lowerLabel.includes('lawn') || lowerLabel.includes('multi purpose')) {
-    return { images: ['/images/multipurpose_lawn.webp'], label: 'Multi Purpose Lawn' };
+    return { images: [`${STORAGE_URL}/mangalamcity/amenities/multipurpose_lawn.webp`], label: 'Multi Purpose Lawn' };
   }
   if (lowerLabel.includes('commercial') || lowerLabel.includes('shop')) {
-    return { images: ['/images/commercial_shops.webp'], label: 'Commercial Shops' };
+    return { images: [`${STORAGE_URL}/mangalamcity/amenities/commercial_shops.webp`], label: 'Commercial Shops' };
   }
   return null;
 }
@@ -70,8 +72,8 @@ function getBhaavbhumiHero(plot: Plot): HeroResult | null {
     if (facing === 'EAST') {
       return {
         images: [
-          '/bhaavbhumi/amenities/type2_east_1.webp',
-          '/bhaavbhumi/amenities/type2_east_2.webp',
+          `${STORAGE_URL}/bhaavbhumi/amenities/type2_east_1.webp`,
+          `${STORAGE_URL}/bhaavbhumi/amenities/type2_east_2.webp`,
         ],
         label: 'Type 2 House — East Facing',
       };
@@ -86,14 +88,14 @@ function getBhaavbhumiHero(plot: Plot): HeroResult | null {
     if (facing === 'WEST') {
       return {
         images: [
-          '/bhaavbhumi/amenities/type3_west_1.webp',
-          '/bhaavbhumi/amenities/type3_west_2.webp',
+          `${STORAGE_URL}/bhaavbhumi/amenities/type3_west_1.webp`,
+          `${STORAGE_URL}/bhaavbhumi/amenities/type3_west_2.webp`,
         ],
         label: 'Type 3 House — West Facing',
       };
     }
     // East-facing: keep existing image
-    return { images: ['/bhaavbhumi/amenities/type3_houses.webp'], label: 'Type 3 House — East Facing' };
+    return { images: [`${STORAGE_URL}/bhaavbhumi/amenities/type3_houses.webp`], label: 'Type 3 House — East Facing' };
   }
 
   // ── Type 4 ─────────────────────────────────────────────────────────────────
@@ -101,8 +103,8 @@ function getBhaavbhumiHero(plot: Plot): HeroResult | null {
     if (facing === 'WEST') {
       return {
         images: [
-          '/bhaavbhumi/amenities/type4_west_1.webp',
-          '/bhaavbhumi/amenities/type4_west_2.webp',
+          `${STORAGE_URL}/bhaavbhumi/amenities/type4_west_1.webp`,
+          `${STORAGE_URL}/bhaavbhumi/amenities/type4_west_2.webp`,
         ],
         label: 'Type 4 House — West Facing',
       };
@@ -110,8 +112,8 @@ function getBhaavbhumiHero(plot: Plot): HeroResult | null {
     // East: new elevation renders
     return {
       images: [
-        '/bhaavbhumi/amenities/type4_east_1.webp',
-        '/bhaavbhumi/amenities/type4_east_2.webp',
+        `${STORAGE_URL}/bhaavbhumi/amenities/type4_east_1.webp`,
+        `${STORAGE_URL}/bhaavbhumi/amenities/type4_east_2.webp`,
       ],
       label: 'Type 4 House — East Facing',
     };
@@ -122,8 +124,8 @@ function getBhaavbhumiHero(plot: Plot): HeroResult | null {
     if (facing === 'WEST') {
       return {
         images: [
-          '/bhaavbhumi/amenities/type5_west_1.webp',
-          '/bhaavbhumi/amenities/type5_west_2.webp',
+          `${STORAGE_URL}/bhaavbhumi/amenities/type5_west_1.webp`,
+          `${STORAGE_URL}/bhaavbhumi/amenities/type5_west_2.webp`,
         ],
         label: 'Type 5 House — West Facing',
       };
@@ -131,8 +133,8 @@ function getBhaavbhumiHero(plot: Plot): HeroResult | null {
     // East-facing: keep existing renders
     return {
       images: [
-        '/bhaavbhumi/amenities/type5_houses1.webp',
-        '/bhaavbhumi/amenities/type5_houses2.webp',
+        `${STORAGE_URL}/bhaavbhumi/amenities/type5_houses1.webp`,
+        `${STORAGE_URL}/bhaavbhumi/amenities/type5_houses2.webp`,
       ],
       label: 'Type 5 House — East Facing',
     };
@@ -143,8 +145,8 @@ function getBhaavbhumiHero(plot: Plot): HeroResult | null {
     if (facing === 'EAST') {
       return {
         images: [
-          '/bhaavbhumi/amenities/type6_east_1.webp',
-          '/bhaavbhumi/amenities/type6_east_2.webp',
+          `${STORAGE_URL}/bhaavbhumi/amenities/type6_east_1.webp`,
+          `${STORAGE_URL}/bhaavbhumi/amenities/type6_east_2.webp`,
         ],
         label: 'Type 6 House — East Facing',
       };
@@ -152,8 +154,8 @@ function getBhaavbhumiHero(plot: Plot): HeroResult | null {
     // West (L9, L10, L11)
     return {
       images: [
-        '/bhaavbhumi/amenities/type6_west_1.webp',
-        '/bhaavbhumi/amenities/type6_west_2.webp',
+        `${STORAGE_URL}/bhaavbhumi/amenities/type6_west_1.webp`,
+        `${STORAGE_URL}/bhaavbhumi/amenities/type6_west_2.webp`,
       ],
       label: 'Type 6 House — West Facing',
     };
@@ -171,7 +173,7 @@ function getBhaavbhumiHero(plot: Plot): HeroResult | null {
   for (const [key, val] of Object.entries(multiMap)) {
     if (lowerLabel.includes(key.replace('_', ' ')) || lowerLabel.includes(key)) {
       return {
-        images: val.files.map(f => `/bhaavbhumi/amenities/${f}.webp`),
+        images: val.files.map(f => `${STORAGE_URL}/bhaavbhumi/amenities/${f}.webp`),
         label: val.label,
       };
     }
@@ -197,7 +199,7 @@ function getBhaavbhumiHero(plot: Plot): HeroResult | null {
   for (const [key, val] of Object.entries(singleMap)) {
     if (lowerLabel.includes(key)) {
       return {
-        images: [`/bhaavbhumi/amenities/${val.file}.webp`],
+        images: [`${STORAGE_URL}/bhaavbhumi/amenities/${val.file}.webp`],
         label: val.label,
       };
     }

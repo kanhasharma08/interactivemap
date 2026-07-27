@@ -1,6 +1,9 @@
 // Site configuration — one entry per site slug
 // Add new sites here as you expand
 
+const STORAGE_URL = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/maps_images`;
+
+
 export interface MapVariant {
   id: string;
   label: string;
@@ -28,7 +31,7 @@ export const SITE_CONFIGS: Record<string, SiteConfig> = {
   mangalamcity: {
     name: 'Mangalam City',
     slug: 'mangalamcity',
-    mapImage: '/map-layout-hq-optimized.webp',  // default is now the HQ map
+    mapImage: `${STORAGE_URL}/mangalamcity/layouts/map-layout-hq-optimized.webp`,  // default is now the HQ map
     svgW: 4762,
     svgH: 6735,
     logoPath: '/mangalam-logo.png',
@@ -36,14 +39,14 @@ export const SITE_CONFIGS: Record<string, SiteConfig> = {
     metaDescription: 'Explore premium residential plots in Mangalam City, Rajnandgaon. Interactive sales map with real-time availability, plot details, and pricing.',
     reraNumber: 'PCGRERA081024001839',
     mapVariants: [
-      { id: 'hq',       label: 'Map 1 (HQ)',      mapImage: '/map-layout-hq-optimized.webp', offsetX: 20, offsetY: 530, scaleX: 0.9933, scaleY: 0.8419 },
-      { id: 'original', label: 'Map 2 (Original)', mapImage: '/map-layout-optimized.webp',    offsetX: 0,  offsetY: 0,   scaleX: 1,      scaleY: 1      },
+      { id: 'hq',       label: 'Map 1 (HQ)',      mapImage: `${STORAGE_URL}/mangalamcity/layouts/map-layout-hq-optimized.webp`, offsetX: 20, offsetY: 530, scaleX: 0.9933, scaleY: 0.8419 },
+      { id: 'original', label: 'Map 2 (Original)', mapImage: `${STORAGE_URL}/mangalamcity/layouts/map-layout-optimized.webp`,    offsetX: 0,  offsetY: 0,   scaleX: 1,      scaleY: 1      },
     ],
   },
   bhaavbhumi: {
     name: 'Bhaavbhumi',
     slug: 'bhaavbhumi',
-    mapImage: '/bhaavbhumi-layout.webp',
+    mapImage: `${STORAGE_URL}/bhaavbhumi/layouts/bhaavbhumi-layout.webp`,
     svgW: 3573,
     svgH: 5031,
     logoPath: '/bhaavbhumi-logo.png',
