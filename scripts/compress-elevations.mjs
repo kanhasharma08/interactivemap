@@ -29,6 +29,12 @@ const MAP = [
   // Type 4 West
   { src: 'Type 04 west 2.png',          out: 'type4_west_1.webp' },
   { src: 'Type 04 west 3.png',          out: 'type4_west_2.webp' },
+  // Type 2 East
+  { src: 'Type 2 East .jpeg',           out: 'type2_east_1.webp' },
+  { src: 'Type 2 East 1.jpeg',          out: 'type2_east_2.webp' },
+  // Type 5 West
+  { src: 'Type 5 west.png',             out: 'type5_west_1.webp' },
+  { src: 'type 5 west 2.png',           out: 'type5_west_2.webp' },
   // Type 6 East  (two separate source files)
   { src: 'Type 6 EAST (1).jpg.jpeg',    out: 'type6_east_1.webp' },
   { src: 'Type6 EAST (1).jpg.jpeg',     out: 'type6_east_2.webp' },

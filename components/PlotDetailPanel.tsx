@@ -56,13 +56,24 @@ function getBhaavbhumiHero(plot: Plot): HeroResult | null {
   const lowerType = plot.type.toLowerCase().trim();
   const facing = (plot.facing ?? '').toUpperCase();
 
-  // ── Type 3 ─────────────────────────────────────────────────────────────────
-  if (lowerType === 'type 3' || lowerType === 'type3') {
-    // C1–C7: different elevation category — show no image
-    if (/^c\d/.test(plot.label.trim().toLowerCase())) {
-      return null;
+  // ── Type 2 ─────────────────────────────────────────────────────────────────
+  if (lowerType === 'type 2' || lowerType === 'type2') {
+    if (facing === 'EAST') {
+      return {
+        images: [
+          '/bhaavbhumi/amenities/type2_east_1.webp',
+          '/bhaavbhumi/amenities/type2_east_2.webp',
+        ],
+        label: 'Type 2 House — East Facing',
+      };
     }
-    // West-facing D-series: new west elevation renders
+    // West: no elevation image yet
+    return null;
+  }
+
+  // ── Type 3 ─────────────────────────────────────────────────────────────────
+  // C1–C7 share the same west elevation renders as the D-series
+  if (lowerType === 'type 3' || lowerType === 'type3') {
     if (facing === 'WEST') {
       return {
         images: [
@@ -93,7 +104,23 @@ function getBhaavbhumiHero(plot: Plot): HeroResult | null {
 
   // ── Type 5 ─────────────────────────────────────────────────────────────────
   if (lowerType === 'type 5' || lowerType === 'type5') {
-    return { images: ['/bhaavbhumi/amenities/type5_houses1.webp', '/bhaavbhumi/amenities/type5_houses2.webp'], label: 'Type 5 Houses' };
+    if (facing === 'WEST') {
+      return {
+        images: [
+          '/bhaavbhumi/amenities/type5_west_1.webp',
+          '/bhaavbhumi/amenities/type5_west_2.webp',
+        ],
+        label: 'Type 5 House — West Facing',
+      };
+    }
+    // East-facing: keep existing renders
+    return {
+      images: [
+        '/bhaavbhumi/amenities/type5_houses1.webp',
+        '/bhaavbhumi/amenities/type5_houses2.webp',
+      ],
+      label: 'Type 5 House — East Facing',
+    };
   }
 
   // ── Type 6 ─────────────────────────────────────────────────────────────────
