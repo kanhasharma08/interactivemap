@@ -44,3 +44,7 @@ next-env.d.ts
 /views/
 *.tif
 *.tiff
+/elevations/
+/public/high_res/
+/public/high_res2/
+Extension.png
