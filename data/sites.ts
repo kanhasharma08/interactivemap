@@ -14,16 +14,24 @@ export interface MapVariant {
   scaleY?: number;   // vertical scale multiplier (default 1)
 }
 
+/** Used for multi-project sites that share one map (e.g. Suncity = Extension + Anantam) */
+export interface SiteLogoEntry {
+  path: string;        // /public path to logo image
+  label: string;       // sub-project name shown below logo
+  reraNumber: string;  // RERA number for this sub-project
+}
+
 export interface SiteConfig {
   name: string;
   slug: string;
-  mapImage: string;   // path relative to /public (default / fallback)
-  svgW: number;       // intrinsic width of the map image in px
-  svgH: number;       // intrinsic height of the map image in px
-  logoPath?: string;  // optional per-site logo
+  mapImage: string;      // path relative to /public (default / fallback)
+  svgW: number;          // intrinsic width of the map image in px
+  svgH: number;          // intrinsic height of the map image in px
+  logoPath?: string;     // optional single per-site logo
+  logos?: SiteLogoEntry[]; // optional multiple logos for multi-project sites
   metaTitle: string;
   metaDescription: string;
-  reraNumber?: string;
+  reraNumber?: string;   // single RERA (used when logos[] is absent)
   mapVariants?: MapVariant[]; // optional list of map image variants to switch between
 }
 
@@ -53,6 +61,27 @@ export const SITE_CONFIGS: Record<string, SiteConfig> = {
     metaTitle: 'Bhaavbhumi',
     metaDescription: 'Explore premium residential plots in Bhaavbhumi, Rajnandgaon. Interactive sales map with real-time availability, plot details, and pricing.',
     reraNumber: 'PCGRERA230224001734',
+  },
+  suncity: {
+    name: 'Suncity',
+    slug: 'suncity',
+    mapImage: `${STORAGE_URL}/suncity/layouts/suncity-layout.webp`,
+    svgW: 5247,
+    svgH: 4176,
+    metaTitle: 'Suncity — Mahavir Group',
+    metaDescription: 'Explore premium residential plots in Suncity, Rajnandgaon. Interactive sales map for Suncity Extension and Suncity Anantam with real-time availability, plot details, and pricing.',
+    logos: [
+      {
+        path: '/extension.png',
+        label: 'Suncity Extension',
+        reraNumber: 'PCGRERA200226002044',
+      },
+      {
+        path: '/anantam.png',
+        label: 'Suncity Anantam',
+        reraNumber: 'PCGRERA251124001853',
+      },
+    ],
   },
 };
 

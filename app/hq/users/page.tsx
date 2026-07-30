@@ -3,6 +3,7 @@ import { supabaseAdmin } from '@/lib/supabase-server';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import DeleteAdminButton from './DeleteAdminButton';
+import EditAdminButton from './EditAdminButton';
 
 export default async function HQUsers() {
   const { data: sites } = await supabaseAdmin.from('sites').select('id, name').order('name');
@@ -14,13 +15,13 @@ export default async function HQUsers() {
 
   const { data: { users } } = await supabaseAdmin.auth.admin.listUsers();
 
-  // Group site_users rows by user_id so multi-site admins appear as one row
   const userMap = new Map<string, {
     user_id: string;
     role: string;
     email: string;
     created_at: string;
     site_names: string[];
+    site_ids: string[];
   }>();
 
   for (const su of siteUsers || []) {
@@ -30,11 +31,17 @@ export default async function HQUsers() {
     const siteName = su.role === 'super_admin'
       ? 'All Sites (Super Admin)'
       : (siteObj as any)?.name || '—';
+    const siteId = (siteObj as any)?.id;
 
     if (userMap.has(su.user_id)) {
       const existing = userMap.get(su.user_id)!;
-      if (su.role !== 'super_admin' && !existing.site_names.includes(siteName)) {
-        existing.site_names.push(siteName);
+      if (su.role !== 'super_admin') {
+        if (!existing.site_names.includes(siteName)) {
+          existing.site_names.push(siteName);
+        }
+        if (siteId && !existing.site_ids.includes(siteId)) {
+          existing.site_ids.push(siteId);
+        }
       }
     } else {
       userMap.set(su.user_id, {
@@ -43,6 +50,7 @@ export default async function HQUsers() {
         email,
         created_at: su.created_at,
         site_names: [siteName],
+        site_ids: siteId ? [siteId] : [],
       });
     }
   }
@@ -110,6 +118,35 @@ export default async function HQUsers() {
 
     await supabaseAdmin.from('site_users').delete().eq('user_id', userId);
     revalidatePath('/hq/users');
+  }
+
+  async function updateUser(formData: FormData) {
+    'use server';
+    const userId = formData.get('user_id') as string;
+    const role = formData.get('role') as string;
+    const selectedSiteIds = formData.getAll('site_ids') as string[];
+
+    if (!userId) return;
+
+    if (role === 'site_admin' && selectedSiteIds.length === 0) {
+      redirect('/hq/users?error=no_sites_selected');
+    }
+
+    // Delete existing site_users rows for this user
+    await supabaseAdmin.from('site_users').delete().eq('user_id', userId);
+
+    // Insert new roles/sites
+    if (role === 'super_admin') {
+      await supabaseAdmin.from('site_users').insert({
+        user_id: userId, role: 'super_admin', site_id: null
+      });
+    } else {
+      const rows = selectedSiteIds.map(site_id => ({ user_id: userId, role: 'site_admin', site_id }));
+      await supabaseAdmin.from('site_users').insert(rows);
+    }
+
+    revalidatePath('/hq/users');
+    redirect('/hq/users?success=updated');
   }
 
   return (
@@ -222,6 +259,14 @@ export default async function HQUsers() {
                 </td>
                 <td style={{ padding: '14px 16px', fontSize: 13, color: '#64748b' }}>{new Date(u.created_at).toLocaleDateString()}</td>
                 <td style={{ padding: '14px 16px', textAlign: 'right' }}>
+                  <EditAdminButton 
+                    userId={u.user_id} 
+                    email={u.email}
+                    currentRole={u.role}
+                    currentSiteIds={u.site_ids}
+                    sites={sites || []}
+                    updateAction={updateUser}
+                  />
                   <DeleteAdminButton userId={u.user_id} email={u.email} deleteAction={deleteUser} />
                 </td>
               </tr>
