@@ -2,6 +2,9 @@ import { NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/lib/supabase-server';
 import { Plot, PlotStatus } from '@/types';
 
+// Never cache this route — plots change frequently and stale data breaks the map
+export const dynamic = 'force-dynamic';
+
 // Helper to get site_id from slug
 async function getSiteId(slug: string | null) {
   if (!slug) return null;
@@ -82,7 +85,9 @@ export async function GET(request: Request) {
       return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
-    return NextResponse.json((data ?? []).map(mapRow));
+    return NextResponse.json((data ?? []).map(mapRow), {
+      headers: { 'Cache-Control': 'no-store, no-cache, must-revalidate' },
+    });
   } catch (e: any) {
     return NextResponse.json({ error: e.message }, { status: 500 });
   }

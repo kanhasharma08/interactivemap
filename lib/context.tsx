@@ -52,7 +52,7 @@ const AppContext = createContext<AppContextType | null>(null);
 
 async function apiFetchPlots(siteSlug: string): Promise<Plot[] | null> {
   try {
-    const res = await fetch(`/api/plots?site=${siteSlug}`);
+    const res = await fetch(`/api/plots?site=${siteSlug}`, { cache: 'no-store' });
     if (!res.ok) return null;
     const data = await res.json();
     if (!Array.isArray(data)) return null;
@@ -92,7 +92,7 @@ async function apiDeleteAllPlots(siteSlug: string): Promise<void> {
 
 async function apiFetchEnquiries(siteSlug: string): Promise<Enquiry[] | null> {
   try {
-    const res = await fetch(`/api/enquiries?site=${siteSlug}`);
+    const res = await fetch(`/api/enquiries?site=${siteSlug}`, { cache: 'no-store' });
     if (!res.ok) return null;
     const data = await res.json();
     if (!Array.isArray(data)) return null;
@@ -140,6 +140,21 @@ export function AppProvider({ children, siteSlug }: { children: React.ReactNode,
     apiFetchEnquiries(siteSlug).then(data => {
       if (data !== null) setEnquiries(data);
     });
+  }, [siteSlug]);
+
+  // Re-fetch plots when user returns to this tab after being away.
+  // This fixes the issue where plots/amenities are unresponsive after opening
+  // the map the next day — the browser had served stale data from cache.
+  useEffect(() => {
+    const onVisibility = () => {
+      if (document.visibilityState === 'visible') {
+        apiFetchPlots(siteSlug).then(data => {
+          if (data !== null) setPlots(data);
+        });
+      }
+    };
+    document.addEventListener('visibilitychange', onVisibility);
+    return () => document.removeEventListener('visibilitychange', onVisibility);
   }, [siteSlug]);
 
   const setSelectedPlot = useCallback((plot: Plot | null) => {

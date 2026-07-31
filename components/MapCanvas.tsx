@@ -220,6 +220,13 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
     if (svgGroupRef.current) svgGroupRef.current.style.pointerEvents = 'all';
   }, []);
 
+  // Safety: always restore pointer-events on mount.
+  // Guards against the SVG being stuck with 'none' if the component was
+  // unmounted mid-gesture (e.g. navigating away and back).
+  useEffect(() => {
+    enableSvgHitTest();
+  }, [enableSvgHitTest]);
+
   // Only 3 pieces of state that actually need React renders:
   // 1. showLabel: toggles only when crossing LABEL_SCALE_THRESHOLD
   // 2. zoomBadge: displayed scale % (updated via rAF, low priority)
