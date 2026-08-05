@@ -625,25 +625,41 @@ html, body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 4px;
-  width: 64px;
-  height: 64px;
-  border-radius: 18px;
-  border: none;
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-  color: #fff;
-  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.5), 0 2px 8px rgba(0,0,0,0.2);
+  gap: 3px;
+  width: 58px;
+  height: 58px;
+  border-radius: 16px;
+  border: 1.5px solid rgba(139, 92, 246, 0.55);
+  background: linear-gradient(145deg, #1a1040 0%, #2d1b6e 60%, #1e1044 100%);
+  color: #e2d9ff;
+  box-shadow:
+    0 0 0 1px rgba(99,102,241,0.18),
+    0 6px 24px rgba(99, 102, 241, 0.45),
+    0 2px 8px rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.08);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.22s cubic-bezier(0.34,1.56,0.64,1);
   font-family: 'Inter', sans-serif;
   font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.4px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
 }
-.vr-fab svg { stroke: #fff; }
+.vr-fab svg { stroke: #c4b5fd; }
+.vr-fab:hover {
+  transform: scale(1.07);
+  box-shadow:
+    0 0 0 2px rgba(139,92,246,0.55),
+    0 8px 32px rgba(99, 102, 241, 0.65),
+    0 2px 8px rgba(0,0,0,0.3),
+    inset 0 1px 0 rgba(255,255,255,0.12);
+}
 .vr-fab:active {
-  transform: scale(0.93);
+  transform: scale(0.94);
   box-shadow: 0 2px 12px rgba(99, 102, 241, 0.4);
+}
+.vr-fab.vr-disabled {
+  pointer-events: none;
 }
 
 
@@ -1459,30 +1475,61 @@ html, body {
   fill-opacity: 1 !important;
 }
 
-/* ── VR View Button ── */
+/* ── VR View Button (toolbar) ── */
 .vr-view-btn {
+  position: relative;
   display: flex !important;
   align-items: center !important;
-  gap: 5px !important;
-  padding: 6px 12px !important;
-  border-radius: 8px !important;
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%) !important;
-  color: #fff !important;
-  border: none !important;
-  box-shadow: 0 2px 10px rgba(99, 102, 241, 0.4) !important;
-  transition: all 0.2s ease !important;
+  gap: 6px !important;
+  padding: 5px 13px !important;
+  border-radius: 10px !important;
+  background: linear-gradient(145deg, #1a1040 0%, #2d1b6e 60%, #1a0f42 100%) !important;
+  color: #c4b5fd !important;
+  border: 1.5px solid rgba(139, 92, 246, 0.5) !important;
+  box-shadow:
+    0 0 0 1px rgba(99,102,241,0.15),
+    0 3px 14px rgba(99, 102, 241, 0.4),
+    inset 0 1px 0 rgba(255,255,255,0.07) !important;
+  transition: all 0.22s cubic-bezier(0.34,1.56,0.64,1) !important;
   white-space: nowrap;
+  overflow: hidden;
+}
+/* shimmer sweep on hover */
+.vr-view-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 25%, rgba(255,255,255,0.08) 50%, transparent 75%);
+  transform: translateX(-100%);
+  transition: transform 0.55s ease;
+  border-radius: inherit;
+  pointer-events: none;
+}
+.vr-view-btn:hover::after {
+  transform: translateX(100%);
 }
 .vr-view-btn:hover {
-  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%) !important;
-  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.55) !important;
+  background: linear-gradient(145deg, #221353 0%, #3b22a0 60%, #22134f 100%) !important;
+  border-color: rgba(167, 139, 250, 0.75) !important;
+  box-shadow:
+    0 0 0 2px rgba(139,92,246,0.4),
+    0 6px 20px rgba(99, 102, 241, 0.6),
+    inset 0 1px 0 rgba(255,255,255,0.1) !important;
   transform: translateY(-1px) !important;
+  color: #ede9fe !important;
 }
 .vr-view-btn:active {
-  transform: translateY(0) !important;
+  transform: translateY(0) scale(0.97) !important;
+  box-shadow: 0 2px 8px rgba(99,102,241,0.35) !important;
 }
 .vr-view-btn svg {
-  stroke: #fff !important;
+  stroke: #a78bfa !important;
+}
+.vr-view-btn:hover svg {
+  stroke: #ddd6fe !important;
+}
+.vr-view-btn.vr-disabled {
+  pointer-events: none;
 }
 
 /* ── VR Modal Overlay ── */

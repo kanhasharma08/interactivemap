@@ -734,32 +734,42 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
         <div className="toolbar-divider" />
         {/* VR View button — hidden on mobile (replaced by floating button) */}
         <button
-          className="toolbar-btn vr-view-btn toolbar-vr-btn"
-          onClick={() => setShowVrView(true)}
-          title="VR 360° View"
+          className={`toolbar-btn vr-view-btn toolbar-vr-btn${siteSlug === 'suncity' ? ' vr-disabled' : ''}`}
+          onClick={() => {
+            if (siteSlug === 'mangalamcity') { setShowVrView(true); }
+            else if (siteSlug === 'bhaavbhumi') { window.open('https://mahavirgroupindia.com/vr/BHAAVBHUMI_VR/index.html', '_blank', 'noopener,noreferrer'); }
+            // suncity: no VR available yet — button intentionally does nothing
+          }}
+          title={siteSlug === 'suncity' ? 'VR View — Coming Soon' : 'VR 360° View'}
+          style={siteSlug === 'suncity' ? { opacity: 0.45, cursor: 'not-allowed' } : undefined}
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
             <path d="M2 12c0-2.5 1.5-4 3.5-4S9 9.5 9 12s-1.5 4-3.5 4S2 14.5 2 12z"/>
             <path d="M15 12c0-2.5 1.5-4 3.5-4S22 9.5 22 12s-1.5 4-3.5 4-3.5-1.5-3.5-4z"/>
             <path d="M9 12h6"/>
           </svg>
-          <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: 0.5 }}>VR View</span>
+          <span style={{ fontSize: 11, fontWeight: 800, letterSpacing: 1.2 }}>VR</span>
         </button>
       </div>
 
       {/* ── Floating VR button — mobile only ── */}
       <button
-        className="vr-fab"
-        onClick={() => setShowVrView(true)}
-        title="VR 360° View"
-        aria-label="Open VR View"
+        className={`vr-fab${siteSlug === 'suncity' ? ' vr-disabled' : ''}`}
+        onClick={() => {
+          if (siteSlug === 'mangalamcity') { setShowVrView(true); }
+          else if (siteSlug === 'bhaavbhumi') { window.open('https://mahavirgroupindia.com/vr/BHAAVBHUMI_VR/index.html', '_blank', 'noopener,noreferrer'); }
+          // suncity: no VR available yet — button intentionally does nothing
+        }}
+        title={siteSlug === 'suncity' ? 'VR View — Coming Soon' : 'VR 360° View'}
+        aria-label={siteSlug === 'suncity' ? 'VR View Coming Soon' : 'Open VR View'}
+        style={siteSlug === 'suncity' ? { opacity: 0.45, cursor: 'not-allowed' } : undefined}
       >
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
           <path d="M2 12c0-2.5 1.5-4 3.5-4S9 9.5 9 12s-1.5 4-3.5 4S2 14.5 2 12z"/>
           <path d="M15 12c0-2.5 1.5-4 3.5-4S22 9.5 22 12s-1.5 4-3.5 4-3.5-1.5-3.5-4z"/>
           <path d="M9 12h6"/>
         </svg>
-        <span>VR View</span>
+        <span>VR</span>
       </button>
 
       {/* ── VR View Modal ── */}
