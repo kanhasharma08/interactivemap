@@ -669,8 +669,8 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
           </svg>
         </button>
         <div className="zoom-badge">{zoomBadge}%</div>
-        <div className="toolbar-divider" />
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+        <div className="toolbar-divider toolbar-desktop-only" />
+        <div className="toolbar-desktop-only" style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" strokeWidth="2.5">
             <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/>
           </svg>
@@ -683,8 +683,8 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
         </div>
         {mapVariants && mapVariants.length > 1 && (
           <>
-            <div className="toolbar-divider" />
-            <div style={{ display: 'flex', alignItems: 'center', gap: 6 }} title="Switch Map Layer">
+            <div className="toolbar-divider toolbar-desktop-only" />
+            <div className="toolbar-desktop-only" style={{ display: 'flex', alignItems: 'center', gap: 6 }} title="Switch Map Layer">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" strokeWidth="2.5">
                 <rect x="3" y="3" width="7" height="7" rx="1"/>
                 <rect x="14" y="3" width="7" height="7" rx="1"/>
@@ -732,8 +732,9 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
           </svg>
         </button>
         <div className="toolbar-divider" />
+        {/* VR View button — hidden on mobile (replaced by floating button) */}
         <button
-          className="toolbar-btn vr-view-btn"
+          className="toolbar-btn vr-view-btn toolbar-vr-btn"
           onClick={() => setShowVrView(true)}
           title="VR 360° View"
         >
@@ -745,6 +746,21 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
           <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: 0.5 }}>VR View</span>
         </button>
       </div>
+
+      {/* ── Floating VR button — mobile only ── */}
+      <button
+        className="vr-fab"
+        onClick={() => setShowVrView(true)}
+        title="VR 360° View"
+        aria-label="Open VR View"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+          <path d="M2 12c0-2.5 1.5-4 3.5-4S9 9.5 9 12s-1.5 4-3.5 4S2 14.5 2 12z"/>
+          <path d="M15 12c0-2.5 1.5-4 3.5-4S22 9.5 22 12s-1.5 4-3.5 4-3.5-1.5-3.5-4z"/>
+          <path d="M9 12h6"/>
+        </svg>
+        <span>VR View</span>
+      </button>
 
       {/* ── VR View Modal ── */}
       {showVrView && (
@@ -768,7 +784,7 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
             <div className="vr-modal-body">
               <iframe
                 loading="lazy"
-                allow="xr"
+                allow="xr; fullscreen; gyroscope; accelerometer"
                 allowFullScreen
                 src="https://pano.cool/p/01KZ93XQSSJC2HDE221ZZNWWCY?embed&fullscreen=true"
                 style={{ position: 'absolute', width: '100%', height: '100%', top: 0, left: 0, border: 'none', padding: 0, margin: 0 }}
