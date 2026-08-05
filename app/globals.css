@@ -1382,3 +1382,147 @@ html, body {
   fill: #fff !important;
   fill-opacity: 1 !important;
 }
+
+/* ── VR View Button ── */
+.vr-view-btn {
+  display: flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  padding: 6px 12px !important;
+  border-radius: 8px !important;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%) !important;
+  color: #fff !important;
+  border: none !important;
+  box-shadow: 0 2px 10px rgba(99, 102, 241, 0.4) !important;
+  transition: all 0.2s ease !important;
+  white-space: nowrap;
+}
+.vr-view-btn:hover {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%) !important;
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.55) !important;
+  transform: translateY(-1px) !important;
+}
+.vr-view-btn:active {
+  transform: translateY(0) !important;
+}
+.vr-view-btn svg {
+  stroke: #fff !important;
+}
+
+/* ── VR Modal Overlay ── */
+.vr-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: vrFadeIn 0.25s ease;
+}
+
+@keyframes vrFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.vr-modal {
+  width: 100%;
+  max-width: 1100px;
+  background: #0f0f1a;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(99, 102, 241, 0.25);
+  display: flex;
+  flex-direction: column;
+  animation: vrSlideUp 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes vrSlideUp {
+  from { opacity: 0; transform: translateY(24px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.vr-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: linear-gradient(135deg, rgba(99,102,241,0.15) 0%, rgba(139,92,246,0.10) 100%);
+  border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.vr-modal-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Outfit', 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #e2e8f0;
+  letter-spacing: 0.2px;
+}
+.vr-modal-title svg {
+  stroke: #818cf8;
+}
+
+.vr-modal-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.vr-modal-close:hover {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+}
+
+.vr-modal-body {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 */
+  background: #000;
+}
+
+.vr-modal-footer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  font-size: 11px;
+  color: #475569;
+  font-family: 'Inter', sans-serif;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(0, 0, 0, 0.4);
+}
+.vr-modal-footer svg {
+  stroke: #475569;
+  flex-shrink: 0;
+}
+
+/* Responsive: smaller modal on mobile */
+@media (max-width: 640px) {
+  .vr-modal-overlay {
+    padding: 8px;
+    align-items: flex-end;
+  }
+  .vr-modal {
+    border-radius: 16px 16px 0 0;
+    max-width: 100%;
+  }
+  .vr-modal-footer {
+    font-size: 10px;
+  }
+}
+

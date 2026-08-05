@@ -227,6 +227,15 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
     enableSvgHitTest();
   }, [enableSvgHitTest]);
 
+  // Close VR modal on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setShowVrView(false);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   // Only 3 pieces of state that actually need React renders:
   // 1. showLabel: toggles only when crossing LABEL_SCALE_THRESHOLD
   // 2. zoomBadge: displayed scale % (updated via rAF, low priority)
@@ -235,6 +244,7 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
   const [zoomBadge, setZoomBadge] = useState(100);
   const [rotation, setRotation] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [showVrView, setShowVrView] = useState(false);
 
   // Tooltip is mutated directly via DOM ref — zero React re-renders on mouse-move
   const tooltipRef = useRef<HTMLDivElement>(null);
@@ -721,7 +731,58 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
             <path d="M3 16v3a2 2 0 0 0 2 2h3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/>
           </svg>
         </button>
+        <div className="toolbar-divider" />
+        <button
+          className="toolbar-btn vr-view-btn"
+          onClick={() => setShowVrView(true)}
+          title="VR 360° View"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <path d="M2 12c0-2.5 1.5-4 3.5-4S9 9.5 9 12s-1.5 4-3.5 4S2 14.5 2 12z"/>
+            <path d="M15 12c0-2.5 1.5-4 3.5-4S22 9.5 22 12s-1.5 4-3.5 4-3.5-1.5-3.5-4z"/>
+            <path d="M9 12h6"/>
+          </svg>
+          <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: 0.5 }}>VR View</span>
+        </button>
       </div>
+
+      {/* ── VR View Modal ── */}
+      {showVrView && (
+        <div className="vr-modal-overlay" onClick={(e) => { if (e.target === e.currentTarget) setShowVrView(false); }}>
+          <div className="vr-modal">
+            <div className="vr-modal-header">
+              <div className="vr-modal-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ flexShrink: 0 }}>
+                  <path d="M2 12c0-2.5 1.5-4 3.5-4S9 9.5 9 12s-1.5 4-3.5 4S2 14.5 2 12z"/>
+                  <path d="M15 12c0-2.5 1.5-4 3.5-4S22 9.5 22 12s-1.5 4-3.5 4-3.5-1.5-3.5-4z"/>
+                  <path d="M9 12h6"/>
+                </svg>
+                <span>360° VR View — Mangalam City</span>
+              </div>
+              <button className="vr-modal-close" onClick={() => setShowVrView(false)} title="Close">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+              </button>
+            </div>
+            <div className="vr-modal-body">
+              <iframe
+                loading="lazy"
+                allow="xr"
+                allowFullScreen
+                src="https://pano.cool/p/01KZ93XQSSJC2HDE221ZZNWWCY?embed&fullscreen=true"
+                style={{ position: 'absolute', width: '100%', height: '100%', top: 0, left: 0, border: 'none', padding: 0, margin: 0 }}
+              />
+            </div>
+            <div className="vr-modal-footer">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>
+              </svg>
+              Use mouse or touch to look around · Hotspots are interactive · Press Esc to close
+            </div>
+          </div>
+        </div>
+      )}
 
 
 
