@@ -794,7 +794,7 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
         <div
           ref={vrOverlayRef}
           className="vr-modal-overlay"
-          onClick={(e) => {
+          onPointerUp={(e) => {
             // Only close on explicit mouse click on the dark backdrop (not touch swipes)
             if (e.target === e.currentTarget && e.pointerType !== 'touch') setShowVrView(false);
           }}
