@@ -79,6 +79,7 @@ export default function PannellumViewer({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const viewerRef    = useRef<any>(null);
   const rafRef       = useRef<number>(0);
+  const targetHfovRef= useRef<number | null>(null);
   // store ref to each label bubble (the element whose opacity we drive)
   const bubbleRefs   = useRef<(HTMLElement | null)[]>([]);
 
@@ -226,6 +227,16 @@ export default function PannellumViewer({
     const tick = () => {
       if (!viewerRef.current) return;
       try {
+        // --- Smooth Zoom Lerp ---
+        if (targetHfovRef.current !== null) {
+          const ch = viewerRef.current.getHfov();
+          if (Math.abs(targetHfovRef.current - ch) > 0.1) {
+            viewerRef.current.setHfov(ch + (targetHfovRef.current - ch) * 0.14, false);
+          } else {
+            targetHfovRef.current = null; // Reached target, hand control back
+          }
+        }
+
         const cy = viewerRef.current.getYaw();
         const cp = viewerRef.current.getPitch();
 
@@ -274,8 +285,9 @@ export default function PannellumViewer({
         showZoomCtrl: false,
         showFullscreenCtrl: false,
         showControls: false,
-        mouseZoom: true,
-        friction: 0.12,
+        mouseZoom: false, // Turn off native choppy zoom
+        friction: 0.20, // Increased friction (heavier momentum) so it doesn't spin too fast
+        touchPanSpeedCoeffFactor: 0.7, // Slow down touch screen swipe sensitivity
         yaw: initialYaw,
         pitch: initialPitch,
         hfov: initialHfov,
@@ -286,6 +298,29 @@ export default function PannellumViewer({
 
       // Start after Pannellum has rendered its first frame
       setTimeout(() => { if (!dead) startLoop(); }, 500);
+
+      // --- Custom Smooth Wheel Zoom ---
+      // We intercept the wheel event in the capture phase to stop Pannellum's choppy native zoom
+      const handleWheel = (e: WheelEvent) => {
+        if (!viewerRef.current) return;
+        e.preventDefault();
+        e.stopPropagation(); // Prevent Pannellum from seeing the wheel event
+        
+        const currentTarget = targetHfovRef.current ?? viewerRef.current.getHfov();
+        let delta = e.deltaY;
+        if (e.deltaMode === 1) delta *= 16; // Adjust for line-based scrolling
+        
+        let newTarget = currentTarget + delta * 0.06;
+        newTarget = Math.max(50, Math.min(120, newTarget)); // Clamp to min/max HFOV
+        targetHfovRef.current = newTarget;
+      };
+      containerRef.current.addEventListener('wheel', handleWheel, { passive: false, capture: true });
+
+      // Cancel smooth zoom on touch so it doesn't fight native pinch-to-zoom
+      containerRef.current.addEventListener('touchstart', () => {
+        targetHfovRef.current = null;
+      }, { passive: true });
+
     };
 
     init();
@@ -297,13 +332,14 @@ export default function PannellumViewer({
         try { viewerRef.current.destroy(); } catch { /* ignore */ }
         viewerRef.current = null;
       }
+      // Note: event listener is destroyed with the DOM node, but good practice to clear if possible
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <div style={{ position: 'relative', width: '100%', height: '100%', background: '#080810', overflow: 'hidden' }}>
-      <div ref={containerRef} style={{ width: '100%', height: '100%' }} />
+    <div style={{ position: 'relative', width: '100%', height: '100%', background: '#080810', overflow: 'hidden', touchAction: 'none' }}>
+      <div ref={containerRef} style={{ width: '100%', height: '100%', touchAction: 'none' }} />
 
       <style>{`
         /* Kill Pannellum branding */
