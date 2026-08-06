@@ -2,13 +2,14 @@
 
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import type { VrHotspot } from "@/components/PannellumViewer";
 
 const PannellumViewer = dynamic(
   () => import("@/components/PannellumViewer"),
   { ssr: false }
 );
 
-const MANGALAM_HOTSPOTS = [
+const MANGALAM_HOTSPOTS: VrHotspot[] = [
   { yaw: 33.4, pitch: -15.3, label: "Sanjeevni Hospital", distance: "2.1 km", icon: "🏥", direction: "down-right", visibleRadius: 22, fadeRadius: 38 },
   { yaw: 81.3, pitch: -7.5,  label: "Railway Station",    distance: "5.9 km", icon: "🚂", direction: "up-right", visibleRadius: 22, fadeRadius: 38 },
   { yaw: -30.4, pitch: -6.7, label: "Gathula",            distance: "8.5 km", icon: "🏙️", direction: "up-left", visibleRadius: 22, fadeRadius: 38 },
