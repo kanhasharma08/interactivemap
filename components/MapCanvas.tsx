@@ -770,7 +770,7 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
         <button
           className={`toolbar-btn vr-view-btn toolbar-vr-btn${siteSlug === 'suncity' ? ' vr-disabled' : ''}`}
           onClick={() => {
-            if (siteSlug === 'mangalamcity') { openVrFullscreen(); }
+            if (siteSlug === 'mangalamcity') { window.open('/vr', '_blank', 'noopener,noreferrer'); }
             else if (siteSlug === 'bhaavbhumi') { window.open('https://mahavirgroupindia.com/vr/BHAAVBHUMI_VR/index.html', '_blank', 'noopener,noreferrer'); }
             // suncity: no VR available yet — button intentionally does nothing
           }}
@@ -790,7 +790,7 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
       <button
         className={`vr-fab${siteSlug === 'suncity' ? ' vr-disabled' : ''}`}
         onClick={() => {
-          if (siteSlug === 'mangalamcity') { openVrFullscreen(); }
+          if (siteSlug === 'mangalamcity') { window.open('/vr', '_blank', 'noopener,noreferrer'); }
           else if (siteSlug === 'bhaavbhumi') { window.open('https://mahavirgroupindia.com/vr/BHAAVBHUMI_VR/index.html', '_blank', 'noopener,noreferrer'); }
           // suncity: no VR available yet — button intentionally does nothing
         }}
