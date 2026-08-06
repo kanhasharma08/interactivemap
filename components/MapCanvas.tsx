@@ -1,11 +1,28 @@
 'use client';
 
 import React, { useRef, useState, useEffect, useCallback, useMemo, memo } from 'react';
+import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useApp } from '@/lib/context';
 import { PLOTS, OPEN_SPACES, getStatusColor, getStatusBg, getPlotDotColor } from '@/data/plots';
 import { Plot, OpenSpace } from '@/types';
 import { getSiteConfig } from '@/data/sites';
+import type { VrHotspot } from '@/components/PannellumViewer';
+
+// Dynamic import — prevents SSR issues with Pannellum (browser-only library)
+const PannellumViewer = dynamic(() => import('@/components/PannellumViewer'), { ssr: false });
+
+// ─── Hotspot definitions for Mangalam City ────────────────────────────────────
+const MANGALAM_HOTSPOTS: VrHotspot[] = [
+  { yaw: 0,    pitch: -5,  label: 'Main Entry Gate',        icon: '🏛️', visibleRadius: 22, fadeRadius: 38 },
+  { yaw: 45,   pitch: -8,  label: 'Commercial Zone',        icon: '🏪', visibleRadius: 22, fadeRadius: 38 },
+  { yaw: 90,   pitch: -5,  label: 'Residential Plots',      icon: '🏡', visibleRadius: 22, fadeRadius: 38 },
+  { yaw: 135,  pitch: -3,  label: 'Park & Green Area',      icon: '🌳', visibleRadius: 22, fadeRadius: 38 },
+  { yaw: 180,  pitch: -6,  label: 'Sports Complex',         icon: '⚽', visibleRadius: 22, fadeRadius: 38 },
+  { yaw: 225,  pitch: -4,  label: 'Club House',             icon: '🏊', visibleRadius: 22, fadeRadius: 38 },
+  { yaw: 270,  pitch: -7,  label: 'Highway Access Road',    icon: '🛣️', visibleRadius: 22, fadeRadius: 38 },
+  { yaw: 315,  pitch: -5,  label: 'Township Boundary',     icon: '📍', visibleRadius: 22, fadeRadius: 38 },
+];
 
 // SVG dimensions are now per-site via getSiteConfig()
 
@@ -816,12 +833,13 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
               </button>
             </div>
             <div className="vr-modal-body">
-              <iframe
-                loading="lazy"
-                allow="xr; fullscreen; gyroscope; accelerometer"
-                allowFullScreen
-                src="https://pano.cool/p/01KZ93XQSSJC2HDE221ZZNWWCY?embed&fullscreen=true"
-                style={{ position: 'absolute', width: '100%', height: '100%', top: 0, left: 0, border: 'none', padding: 0, margin: 0 }}
+              <PannellumViewer
+                imagePath="/panorama/panorama.webp"
+                previewPath="/panorama/preview.webp"
+                hotspots={MANGALAM_HOTSPOTS}
+                initialYaw={0}
+                initialPitch={-5}
+                initialHfov={100}
               />
             </div>
             <div className="vr-modal-footer">
