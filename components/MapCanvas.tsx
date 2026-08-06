@@ -245,6 +245,23 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
   const [rotation, setRotation] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showVrView, setShowVrView] = useState(false);
+  const vrOverlayRef = useRef<HTMLDivElement>(null);
+
+  // Request fullscreen on the VR modal overlay
+  const openVrFullscreen = useCallback(() => {
+    setShowVrView(true);
+    // rAF to let React mount the overlay DOM node first
+    requestAnimationFrame(() => {
+      const el = vrOverlayRef.current as HTMLElement & {
+        webkitRequestFullscreen?: () => void;
+        mozRequestFullScreen?: () => void;
+      };
+      if (!el) return;
+      if (el.requestFullscreen) el.requestFullscreen().catch(() => {});
+      else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+      else if (el.mozRequestFullScreen) el.mozRequestFullScreen();
+    });
+  }, []);
 
   // Tooltip is mutated directly via DOM ref — zero React re-renders on mouse-move
   const tooltipRef = useRef<HTMLDivElement>(null);
@@ -736,7 +753,7 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
         <button
           className={`toolbar-btn vr-view-btn toolbar-vr-btn${siteSlug === 'suncity' ? ' vr-disabled' : ''}`}
           onClick={() => {
-            if (siteSlug === 'mangalamcity') { setShowVrView(true); }
+            if (siteSlug === 'mangalamcity') { openVrFullscreen(); }
             else if (siteSlug === 'bhaavbhumi') { window.open('https://mahavirgroupindia.com/vr/BHAAVBHUMI_VR/index.html', '_blank', 'noopener,noreferrer'); }
             // suncity: no VR available yet — button intentionally does nothing
           }}
@@ -756,7 +773,7 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
       <button
         className={`vr-fab${siteSlug === 'suncity' ? ' vr-disabled' : ''}`}
         onClick={() => {
-          if (siteSlug === 'mangalamcity') { setShowVrView(true); }
+          if (siteSlug === 'mangalamcity') { openVrFullscreen(); }
           else if (siteSlug === 'bhaavbhumi') { window.open('https://mahavirgroupindia.com/vr/BHAAVBHUMI_VR/index.html', '_blank', 'noopener,noreferrer'); }
           // suncity: no VR available yet — button intentionally does nothing
         }}
@@ -774,7 +791,14 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
 
       {/* ── VR View Modal ── */}
       {showVrView && (
-        <div className="vr-modal-overlay" onClick={(e) => { if (e.target === e.currentTarget) setShowVrView(false); }}>
+        <div
+          ref={vrOverlayRef}
+          className="vr-modal-overlay"
+          onClick={(e) => {
+            // Only close on explicit mouse click on the dark backdrop (not touch swipes)
+            if (e.target === e.currentTarget && e.pointerType !== 'touch') setShowVrView(false);
+          }}
+        >
           <div className="vr-modal">
             <div className="vr-modal-header">
               <div className="vr-modal-title">
@@ -804,7 +828,7 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>
               </svg>
-              Use mouse or touch to look around · Hotspots are interactive · Press Esc to close
+              Use mouse or touch to look around · Drag to explore · Click ✕ to close
             </div>
           </div>
         </div>

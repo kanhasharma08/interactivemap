@@ -1545,6 +1545,8 @@ html, body {
   justify-content: center;
   padding: 16px;
   animation: vrFadeIn 0.25s ease;
+  overscroll-behavior: contain;
+  touch-action: none; /* prevent stray swipe-down from dismissing on iOS */
 }
 
 @keyframes vrFadeIn {
@@ -1555,6 +1557,8 @@ html, body {
 .vr-modal {
   width: 100%;
   max-width: 1100px;
+  /* Constrain height so PanoCool's internal fullscreen btn is always in-view */
+  max-height: 88vh;
   background: #0f0f1a;
   border-radius: 16px;
   overflow: hidden;
@@ -1614,8 +1618,24 @@ html, body {
 .vr-modal-body {
   position: relative;
   width: 100%;
-  padding-top: 56.25%; /* 16:9 */
+  /* On desktop: flex:1 fills remaining height inside the 88vh modal */
+  flex: 1;
+  min-height: 420px; /* guarantee enough room even on shorter viewports */
   background: #000;
+  /* Allow touch events inside iframe but stop overscroll propagation */
+  touch-action: auto;
+  overscroll-behavior: contain;
+}
+/* iframe fills entire body absolutely */
+.vr-modal-body iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: block;
 }
 
 .vr-modal-footer {
@@ -1645,27 +1665,24 @@ html, body {
     background: #000;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
+    /* Restore touch-action so iframe panning works; overlay touch-action: none
+       is overridden here since on mobile the overlay IS the fullscreen surface */
+    touch-action: auto;
   }
   .vr-modal {
     border-radius: 0;
     max-width: 100%;
+    max-height: 100%;
     width: 100%;
     height: 100%;
     flex: 1;
     box-shadow: none;
   }
-  /* On mobile: make iframe fill all remaining height after header */
+  /* On mobile: flex fills height after header — min-height reset */
   .vr-modal-body {
     flex: 1;
-    padding-top: 0;  /* cancel 16:9 ratio trick — flex fills height instead */
-    position: relative;
     min-height: 0;
-  }
-  .vr-modal-body iframe {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
+    position: relative;
   }
   .vr-modal-header {
     padding: 12px 14px;
