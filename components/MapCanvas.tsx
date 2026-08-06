@@ -766,16 +766,15 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
           </svg>
         </button>
         <div className="toolbar-divider" />
-        {/* VR View button — hidden on mobile (replaced by floating button) */}
+        {/* VR View button */}
         <button
-          className={`toolbar-btn vr-view-btn toolbar-vr-btn${siteSlug === 'suncity' ? ' vr-disabled' : ''}`}
+          className={`toolbar-btn vr-view-btn toolbar-vr-btn`}
           onClick={() => {
-            if (siteSlug === 'mangalamcity') { window.open('/vr', '_blank', 'noopener,noreferrer'); }
+            if (siteSlug === 'mangalamcity') { window.open('/vr?site=mangalamcity', '_blank', 'noopener,noreferrer'); }
+            else if (siteSlug === 'suncity') { window.open('/vr?site=suncity', '_blank', 'noopener,noreferrer'); }
             else if (siteSlug === 'bhaavbhumi') { window.open('https://mahavirgroupindia.com/vr/BHAAVBHUMI_VR/index.html', '_blank', 'noopener,noreferrer'); }
-            // suncity: no VR available yet — button intentionally does nothing
           }}
-          title={siteSlug === 'suncity' ? 'VR View — Coming Soon' : 'VR 360° View'}
-          style={siteSlug === 'suncity' ? { opacity: 0.45, cursor: 'not-allowed' } : undefined}
+          title="VR 360° View"
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
             <path d="M2 12c0-2.5 1.5-4 3.5-4S9 9.5 9 12s-1.5 4-3.5 4S2 14.5 2 12z"/>
@@ -788,9 +787,9 @@ export default function MapCanvas({ onOpenSpaceSelect }: MapCanvasProps) {
 
       {/* ── Floating VR button — mobile only ── */}
       <button
-        className={`vr-fab${siteSlug === 'suncity' ? ' vr-disabled' : ''}`}
+        className={`vr-fab`}
         onClick={() => {
-          if (siteSlug === 'mangalamcity') { window.open('/vr', '_blank', 'noopener,noreferrer'); }
+          if (siteSlug === 'mangalamcity') { window.open('/vr?site=mangalamcity', '_blank', 'noopener,noreferrer'); } else if (siteSlug === 'suncity') { window.open('/vr?site=suncity', '_blank', 'noopener,noreferrer'); }
           else if (siteSlug === 'bhaavbhumi') { window.open('https://mahavirgroupindia.com/vr/BHAAVBHUMI_VR/index.html', '_blank', 'noopener,noreferrer'); }
           // suncity: no VR available yet — button intentionally does nothing
         }}
