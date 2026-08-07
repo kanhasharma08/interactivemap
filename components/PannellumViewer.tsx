@@ -240,11 +240,6 @@ export default function PannellumViewer({
         const cy = viewerRef.current.getYaw();
         const cp = viewerRef.current.getPitch();
 
-        const debugHud = document.getElementById('vr-debug-hud');
-        if (debugHud) {
-          debugHud.textContent = `Yaw: ${cy.toFixed(2)} | Pitch: ${cp.toFixed(2)}`;
-        }
-
         hotspots.forEach((hs, i) => {
           const el = bubbleRefs.current[i];
           if (!el) return;
@@ -326,29 +321,6 @@ export default function PannellumViewer({
         targetHfovRef.current = null;
       }, { passive: true });
 
-      // Robust debug HUD update on interaction end
-      containerRef.current.addEventListener('pointerup', () => {
-        if (!viewerRef.current) return;
-        try {
-          const cy = viewerRef.current.getYaw();
-          const cp = viewerRef.current.getPitch();
-          const debugHud = document.getElementById('vr-debug-hud');
-          if (debugHud) {
-            debugHud.innerHTML = `<strong>Yaw:</strong> ${cy.toFixed(2)} &nbsp;|&nbsp; <strong>Pitch:</strong> ${cp.toFixed(2)}`;
-            debugHud.style.background = '#00c853';
-            debugHud.style.color = '#fff';
-            setTimeout(() => {
-              if (debugHud) {
-                debugHud.style.background = 'rgba(0,0,0,0.8)';
-                debugHud.style.color = '#00c853';
-              }
-            }, 300);
-          }
-        } catch (e) {
-          console.error("Could not read pitch/yaw", e);
-        }
-      });
-
     };
 
     init();
@@ -368,33 +340,6 @@ export default function PannellumViewer({
   return (
     <div style={{ position: 'relative', width: '100%', height: '100%', background: '#080810', overflow: 'hidden', touchAction: 'none' }}>
       <div ref={containerRef} style={{ width: '100%', height: '100%', touchAction: 'none' }} />
-
-      {/* Crosshair dot — pinpoint exact location */}
-      <div style={{
-        position: 'absolute', top: '50%', left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: 16, height: 16,
-        borderRadius: '50%',
-        background: '#000',
-        border: '2.5px solid #fff',
-        boxShadow: '0 0 0 1px rgba(0,0,0,0.6)',
-        pointerEvents: 'none',
-        zIndex: 9999,
-      }} />
-
-      {/* Debug HUD for finding Yaw and Pitch easily */}
-      <div 
-        id="vr-debug-hud"
-        style={{ 
-          position: 'absolute', bottom: 30, left: '50%', transform: 'translateX(-50%)',
-          background: 'rgba(0,0,0,0.8)', color: '#00c853', padding: '12px 24px',
-          borderRadius: 8, fontFamily: 'monospace', fontSize: 16, zIndex: 9999,
-          pointerEvents: 'auto', userSelect: 'all', border: '1px solid #00c853',
-          boxShadow: '0 4px 12px rgba(0,0,0,0.5)', whiteSpace: 'nowrap'
-        }}
-      >
-        Yaw: 0.00 | Pitch: 0.00
-      </div>
 
       <style>{`
         /* Kill Pannellum branding (keep debug msg visible) */
