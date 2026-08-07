@@ -1,6 +1,5 @@
 'use client';
 
-import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import type { VrHotspot } from "@/components/PannellumViewer";
@@ -42,28 +41,6 @@ export default function VrPageClient({ site }: { site?: string }) {
   const imagePath = isSuncity ? "/panorama/suncity.webp" : "/panorama/panorama.webp";
   const logoPath = isSuncity ? "/mahavir-logo.png" : "/mangalam-logo.png";
   
-  const [isFullscreen, setIsFullscreen] = useState(false);
-
-  useEffect(() => {
-    const handleFullscreenChange = () => {
-      setIsFullscreen(!!document.fullscreenElement);
-    };
-    document.addEventListener("fullscreenchange", handleFullscreenChange);
-    return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
-  }, []);
-
-  const toggleFullscreen = () => {
-    if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen().catch((err) => {
-        console.error(`Error attempting to enable fullscreen: ${err.message}`);
-      });
-    } else {
-      if (document.exitFullscreen) {
-        document.exitFullscreen();
-      }
-    }
-  };
-
   return (
     <div style={{ width: "100vw", height: "100vh", position: "relative", overscrollBehavior: "none", touchAction: "none" }}>
       {/* Dynamic Logo in a frosted pill */}
@@ -96,72 +73,44 @@ export default function VrPageClient({ site }: { site?: string }) {
         </div>
       </div>
 
-      <div style={{ position: "absolute", top: 24, right: 24, zIndex: 50, display: "flex", flexDirection: "column", gap: 12, alignItems: "flex-end" }}>
-        <button
-          onClick={() => {
-            if (typeof window !== "undefined") {
-              window.close(); // Try closing the tab first
-              window.location.href = `/?site=${site || 'mangalamcity'}`; // Fallback to navigation
-            }
-          }}
-          style={{
-            background: "rgba(0, 0, 0, 0.6)",
-            backdropFilter: "blur(8px)",
-            color: "white",
-            border: "1px solid rgba(255, 255, 255, 0.2)",
-            borderRadius: 20,
-            padding: "8px 16px",
-            fontFamily: "'Inter', sans-serif",
-            fontSize: 14,
-            fontWeight: 600,
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            gap: 8,
-            transition: "all 0.2s ease",
-          }}
-          onMouseOver={(e) => {
-            e.currentTarget.style.background = "rgba(0, 0, 0, 0.8)";
-            e.currentTarget.style.transform = "scale(1.05)";
-          }}
-          onMouseOut={(e) => {
-            e.currentTarget.style.background = "rgba(0, 0, 0, 0.6)";
-            e.currentTarget.style.transform = "scale(1)";
-          }}
-        >
-          <span>&larr;</span> Back to Map
-        </button>
-
-        <button
-          onClick={toggleFullscreen}
-          style={{
-            background: "rgba(0, 0, 0, 0.6)",
-            backdropFilter: "blur(8px)",
-            color: "white",
-            border: "1px solid rgba(255, 255, 255, 0.2)",
-            borderRadius: 20,
-            padding: "8px 16px",
-            fontFamily: "'Inter', sans-serif",
-            fontSize: 14,
-            fontWeight: 600,
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            gap: 8,
-            transition: "all 0.2s ease",
-          }}
-          onMouseOver={(e) => {
-            e.currentTarget.style.background = "rgba(0, 0, 0, 0.8)";
-            e.currentTarget.style.transform = "scale(1.05)";
-          }}
-          onMouseOut={(e) => {
-            e.currentTarget.style.background = "rgba(0, 0, 0, 0.6)";
-            e.currentTarget.style.transform = "scale(1)";
-          }}
-        >
-          <span>{isFullscreen ? "↙" : "⛶"}</span> {isFullscreen ? "Exit Full Screen" : "Full Screen"}
-        </button>
-      </div>
+      <button
+        onClick={() => {
+          if (typeof window !== "undefined") {
+            window.close(); // Try closing the tab first
+            window.location.href = `/?site=${site || 'mangalamcity'}`; // Fallback to navigation
+          }
+        }}
+        style={{
+          position: "absolute",
+          top: 24,
+          right: 24,
+          zIndex: 50,
+          background: "rgba(0, 0, 0, 0.6)",
+          backdropFilter: "blur(8px)",
+          color: "white",
+          border: "1px solid rgba(255, 255, 255, 0.2)",
+          borderRadius: 20,
+          padding: "8px 16px",
+          fontFamily: "'Inter', sans-serif",
+          fontSize: 14,
+          fontWeight: 600,
+          cursor: "pointer",
+          display: "flex",
+          alignItems: "center",
+          gap: 8,
+          transition: "all 0.2s ease",
+        }}
+        onMouseOver={(e) => {
+          e.currentTarget.style.background = "rgba(0, 0, 0, 0.8)";
+          e.currentTarget.style.transform = "scale(1.05)";
+        }}
+        onMouseOut={(e) => {
+          e.currentTarget.style.background = "rgba(0, 0, 0, 0.6)";
+          e.currentTarget.style.transform = "scale(1)";
+        }}
+      >
+        <span>&larr;</span> Back to Map
+      </button>
 
       <PannellumViewer
         imagePath={imagePath}
