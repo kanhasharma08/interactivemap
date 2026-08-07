@@ -10,21 +10,29 @@ const PannellumViewer = dynamic(
 );
 
 const MANGALAM_HOTSPOTS: VrHotspot[] = [
-  { yaw: 33.4, pitch: -15.3, label: "Sanjeevni Hospital", distance: "2.1 km", icon: "🏥", direction: "down-right", visibleRadius: 22, fadeRadius: 38 },
-  { yaw: 81.3, pitch: -7.5,  label: "Railway Station",    distance: "5.9 km", icon: "🚂", direction: "up-right", visibleRadius: 22, fadeRadius: 38 },
-  { yaw: -30.4, pitch: -6.7, label: "Gathula",            distance: "8.5 km", icon: "🏙️", direction: "up-left", visibleRadius: 22, fadeRadius: 38 },
-  { yaw: 36.2, pitch: -5.3,  label: "City Centre",        distance: "3.2 km", icon: "🛍️", direction: "down-left", visibleRadius: 22, fadeRadius: 38 },
+  { yaw: 33.4, pitch: -15.3, label: "Sanjeevni Hospital",  distance: "1.5 km", icon: "🏥", direction: "down-right", visibleRadius: 22, fadeRadius: 38 },
+  { yaw: 81.3, pitch: -7.5,  label: "Railway Station",     distance: "3 km",   icon: "🚂", direction: "up-right",   visibleRadius: 22, fadeRadius: 38 },
+  { yaw: -30.4, pitch: -6.7, label: "Gathula",             distance: "3.5 km", icon: "🏙️", direction: "up-right",   visibleRadius: 22, fadeRadius: 38 },
+  { yaw: 36.2, pitch: -5.3,  label: "City Centre",                             icon: "🛍️", direction: "down-left",  visibleRadius: 22, fadeRadius: 38 },
+  { yaw: 47,     pitch: -3.7,  label: "Mahavir Suncity",                          icon: "🏘️", direction: "up-right",  visibleRadius: 22, fadeRadius: 38 },
+  { yaw: -42.24, pitch: -5,    label: "NBIS",                distance: "5 km",   icon: "🏫", direction: "up-left",   visibleRadius: 22, fadeRadius: 38 },
 ];
 
 const SUNCITY_HOTSPOTS: VrHotspot[] = [
-  { yaw: 35.6, pitch: -77.3, label: "Dmart", distance: "0 km", icon: "🛒", direction: "up-right", visibleRadius: 22, fadeRadius: 38 },
-  { yaw: -144, pitch: -50,   label: "Suncity Anantam", distance: "0 km", icon: "🏙️", direction: "down-right", visibleRadius: 22, fadeRadius: 38 },
-  { yaw: 175,  pitch: -62,   label: "Suncity Samosaran", distance: "0 km", icon: "🏙️", direction: "up-left", visibleRadius: 22, fadeRadius: 38 },
-  { yaw: -16,  pitch: -47,   label: "D extension", distance: "0 km", icon: "🏙️", direction: "down-left", visibleRadius: 22, fadeRadius: 38 },
-  { yaw: -70,  pitch: -55,   label: "B extension", distance: "0 km", icon: "🏙️", direction: "up-right", visibleRadius: 22, fadeRadius: 38 },
-  { yaw: 174,  pitch: -21,   label: "City centre", distance: "0 km", icon: "🛍️", direction: "down-right", visibleRadius: 22, fadeRadius: 38 },
-  { yaw: -32,  pitch: -30,   label: "Mahavir Trade centre", distance: "0 km", icon: "🏢", direction: "up-left", visibleRadius: 22, fadeRadius: 38 },
-  { yaw: 18,   pitch: -57,   label: "Sri Chaitanya techno school", distance: "0 km", icon: "🏫", direction: "down-left", visibleRadius: 22, fadeRadius: 38 },
+  { yaw: 35.6, pitch: -77.3, label: "Dmart", distance: "200 m", icon: "🛒", direction: "up-right", visibleRadius: 22, fadeRadius: 38 },
+  { yaw: -144, pitch: -50,   label: "Suncity Anantam", icon: "🏙️", direction: "down-right", visibleRadius: 22, fadeRadius: 38 },
+  { yaw: 175,  pitch: -62,   label: "Suncity Samosaran", icon: "🏙️", direction: "up-left", visibleRadius: 22, fadeRadius: 38 },
+  { yaw: -16,  pitch: -47,   label: "D extension", icon: "🏙️", direction: "down-left", visibleRadius: 22, fadeRadius: 38 },
+  { yaw: -70,  pitch: -55,   label: "B extension", icon: "🏙️", direction: "up-right", visibleRadius: 22, fadeRadius: 38 },
+  { yaw: 174,  pitch: -21,   label: "City centre", distance: "1 km", icon: "🛍️", direction: "down-right", visibleRadius: 22, fadeRadius: 38 },
+  { yaw: -32,  pitch: -30,   label: "Mahavir Trade centre", distance: "1.6 km", icon: "🏢", direction: "up-left", visibleRadius: 22, fadeRadius: 38 },
+  { yaw: 18,   pitch: -57,   label: "Sri Chaitanya techno school", distance: "300 m", icon: "🏫", direction: "down-left", visibleRadius: 22, fadeRadius: 38 },
+  { yaw: -117,   pitch: -19,   label: "Anant Palace",        distance: "1.5 km", icon: "🎉", direction: "up-right", visibleRadius: 22, fadeRadius: 38 },
+  { yaw: -155.77,pitch: -26.3, label: "Haldiram's",          distance: "600 m", icon: "🍽️", direction: "up-right", visibleRadius: 22, fadeRadius: 38 },
+  { yaw: 143.78, pitch: -23,   label: "Temple",              distance: "1.1 km", icon: "🛕", direction: "up-right", visibleRadius: 22, fadeRadius: 38 },
+  { yaw: 114,    pitch: -9.5,  label: "Railway station",     distance: "3 km", icon: "🚂", direction: "up-right", visibleRadius: 22, fadeRadius: 38 },
+  { yaw: 124,    pitch: -41,   label: "Mohobe Hospital",     distance: "700 m", icon: "🏥", direction: "up-right", visibleRadius: 22, fadeRadius: 38 },
+  { yaw: 79,     pitch: -11.3, label: "Mahavir Kalpavriksh", distance: "2.6 km", icon: "🏢", direction: "up-right", visibleRadius: 22, fadeRadius: 38 },
 ];
 
 export default function VrPageClient({ site }: { site?: string }) {
