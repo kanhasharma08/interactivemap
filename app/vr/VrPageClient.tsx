@@ -65,7 +65,7 @@ export default function VrPageClient({ site }: { site?: string }) {
   };
 
   return (
-    <div style={{ width: "100vw", height: "100vh", position: "relative" }}>
+    <div style={{ width: "100vw", height: "100vh", position: "relative", overscrollBehavior: "none", touchAction: "none" }}>
       {/* Dynamic Logo in a frosted pill */}
       <div
         style={{
