@@ -44,6 +44,14 @@ export async function proxy(request: NextRequest) {
     return NextResponse.redirect(redirectUrl);
   }
 
+  // --- Subdomain routing ---
+  // If a user hits the root path (/) on the "maps" subdomain,
+  // rewrite to the /maps landing page instead of serving the main app.
+  const hostname = request.headers.get('host') || '';
+  if (hostname.startsWith('maps.') && request.nextUrl.pathname === '/') {
+    return NextResponse.rewrite(new URL('/maps', request.url));
+  }
+
   // IMPORTANT: return supabaseResponse unchanged so cookies are forwarded.
   // Returning a plain NextResponse.next() here would lose session cookies.
   return supabaseResponse;
