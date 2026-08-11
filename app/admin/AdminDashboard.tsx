@@ -18,12 +18,104 @@ interface AdminDashboardProps {
 
 // ── Plot Management ──────────────────────────────────────────────────────────
 function PlotManagement() {
-  const { plots, updatePlot, addPlot, deletePlot, deleteAllPlots, siteSlug, isLoading } = useApp();
+  const { plots, updatePlot, addPlot, deletePlot, siteSlug, isLoading } = useApp();
   const [editingId, setEditingId] = useState<string | null>(null);
   const [mappingId, setMappingId] = useState<string | null>(null);
   const [editData, setEditData] = useState<Partial<Plot>>({});
   const [searchQ, setSearchQ] = useState('');
   const [filterStatus, setFilterStatus] = useState<PlotStatus | 'all'>('all');
+  const [isExporting, setIsExporting] = useState(false);
+
+  // ── Excel report export ──────────────────────────────────────────────────
+  const generateExcelReport = async () => {
+    setIsExporting(true);
+    try {
+      // Dynamic import — xlsx is a large library
+      const XLSX = await import('xlsx');
+
+      const wb = XLSX.utils.book_new();
+
+      // Header row
+      const wsData: (string | { v: string; s: object })[][] = [
+        [
+          { v: 'Unit', s: { font: { bold: true, sz: 12 }, alignment: { horizontal: 'center' }, fill: { fgColor: { rgb: 'E2E8F0' } } } },
+          { v: 'Status', s: { font: { bold: true, sz: 12 }, alignment: { horizontal: 'center' }, fill: { fgColor: { rgb: 'E2E8F0' } } } },
+        ],
+      ];
+
+      // Color map: light green available, light yellow sold, light red reserved/mortgage
+      const STATUS_COLORS: Record<string, { rgb: string; font: string }> = {
+        available: { rgb: 'DCFCE7', font: '166534' },  // light green
+        sold:      { rgb: 'FEF9C3', font: '854D0E' },  // light yellow
+        reserved:  { rgb: 'FEE2E2', font: '991B1B' },  // light red
+        'N/A':     { rgb: 'F1F5F9', font: '64748B' },
+      };
+
+      // Filter out amenities and sort alphabetically by label for easy reading
+      const reportPlots = plots.filter(p => p.type?.toLowerCase() !== 'amenity' && p.status?.toLowerCase() !== 'amenity');
+      const sorted = [...reportPlots].sort((a, b) => a.label.localeCompare(b.label, undefined, { numeric: true }));
+
+      sorted.forEach(plot => {
+        // Mortgage type always gets the red color regardless of status field
+        const isMortgage = plot.type === 'Mortgage';
+        const statusKey = isMortgage ? 'reserved' : (plot.status in STATUS_COLORS ? plot.status : 'N/A');
+        const colors = STATUS_COLORS[statusKey];
+        const displayStatus = isMortgage ? 'Mortgage' : (plot.status === 'available' ? 'Available' : plot.status === 'sold' ? 'Sold' : plot.status === 'reserved' ? 'Reserved' : plot.status);
+
+        const cellStyle = {
+          fill: { patternType: 'solid', fgColor: { rgb: colors.rgb } },
+          font: { color: { rgb: colors.font }, sz: 11 },
+          alignment: { horizontal: 'center', vertical: 'center' },
+          border: {
+            top:    { style: 'thin', color: { rgb: 'FFFFFF' } },
+            bottom: { style: 'thin', color: { rgb: 'FFFFFF' } },
+            left:   { style: 'thin', color: { rgb: 'FFFFFF' } },
+            right:  { style: 'thin', color: { rgb: 'FFFFFF' } },
+          },
+        };
+        wsData.push([
+          { v: plot.label, s: { ...cellStyle, font: { ...cellStyle.font, bold: true } } },
+          { v: displayStatus, s: cellStyle },
+        ]);
+      });
+
+      const ws = XLSX.utils.aoa_to_sheet(wsData);
+
+      // Column widths
+      ws['!cols'] = [{ wch: 18 }, { wch: 16 }];
+
+      // Row heights (px → Excel units roughly 0.75)
+      ws['!rows'] = wsData.map((_, i) => ({ hpt: i === 0 ? 22 : 18 }));
+
+      XLSX.utils.book_append_sheet(wb, ws, 'Plot Report');
+
+      // Summary sheet
+      const available = reportPlots.filter(p => p.status === 'available' && p.type !== 'Mortgage').length;
+      const sold      = reportPlots.filter(p => p.status === 'sold').length;
+      const mortgage  = reportPlots.filter(p => p.type === 'Mortgage').length;
+      const reserved  = reportPlots.filter(p => p.status === 'reserved' && p.type !== 'Mortgage').length;
+
+      const summaryData = [
+        [{ v: 'Summary', s: { font: { bold: true, sz: 13 } } }, ''],
+        ['Total Plots', reportPlots.length],
+        ['Available',   available],
+        ['Sold',        sold],
+        ['Reserved',    reserved],
+        ['Mortgage',    mortgage],
+      ];
+      const wsSummary = XLSX.utils.aoa_to_sheet(summaryData);
+      wsSummary['!cols'] = [{ wch: 18 }, { wch: 12 }];
+      XLSX.utils.book_append_sheet(wb, wsSummary, 'Summary');
+
+      const today = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, '-');
+      XLSX.writeFile(wb, `${siteSlug}-plot-report-${today}.xlsx`);
+    } catch (err) {
+      console.error('Excel export failed:', err);
+      alert('Export failed. Please try again.');
+    } finally {
+      setIsExporting(false);
+    }
+  };
 
   const filtered = plots.filter(p => {
     const q = searchQ.toLowerCase();
@@ -111,12 +203,27 @@ function PlotManagement() {
         </div>
         <div style={{ display: 'flex', gap: 8, marginLeft: 'auto' }}>
           <button className="btn btn-outline"
-            style={{ padding: '6px 12px', fontSize: 13, gap: 6, display: 'flex', alignItems: 'center', color: '#dc2626', borderColor: 'rgba(220,38,38,0.3)' }}
-            onClick={() => { if (plots.length > 0 && window.confirm('WARNING: Delete ALL plots? This cannot be undone.')) deleteAllPlots(siteSlug); }}>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-            </svg>
-            Delete All
+            style={{ padding: '6px 12px', fontSize: 13, gap: 6, display: 'flex', alignItems: 'center', color: isExporting ? '#64748b' : '#16a34a', borderColor: isExporting ? 'rgba(100,116,139,0.3)' : 'rgba(22,163,74,0.35)', opacity: isExporting ? 0.7 : 1 }}
+            onClick={generateExcelReport}
+            disabled={isExporting || plots.length === 0}
+          >
+            {isExporting ? (
+              <>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ animation: 'spin 1s linear infinite' }}>
+                  <path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0"/>
+                </svg>
+                Exporting...
+              </>
+            ) : (
+              <>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="7 10 12 15 17 10"/>
+                  <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                Download Report
+              </>
+            )}
           </button>
           <button className="btn btn-primary"
             style={{ padding: '6px 12px', fontSize: 13, gap: 6, display: 'flex', alignItems: 'center' }}

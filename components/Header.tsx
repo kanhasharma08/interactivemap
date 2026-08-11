@@ -6,6 +6,19 @@ import { useApp } from '@/lib/context';
 import SearchBar from '@/components/SearchBar';
 import { getSiteConfig } from '@/data/sites';
 
+// Resolves the correct URL for the All Maps landing page
+function getAllMapsUrl(): string {
+  if (typeof window === 'undefined') return 'https://maps.mahavirgroupindia.com';
+  const hostname = window.location.hostname;
+  const isLocalhost = hostname.includes('localhost') || hostname.includes('127.0.0.1');
+  const isVercel = hostname.endsWith('.vercel.app') || hostname.endsWith('.now.sh');
+  if (isLocalhost || isVercel) return '/maps';
+  // Strip existing subdomain and prefix with 'maps'
+  const parts = hostname.split('.');
+  const baseDomain = parts.length >= 2 ? parts.slice(-2).join('.') : hostname;
+  return `https://maps.${baseDomain}`;
+}
+
 export default function Header() {
   const { siteSlug } = useApp();
   const siteConfig = getSiteConfig(siteSlug);
@@ -87,7 +100,7 @@ export default function Header() {
           </div>
         )}
 
-        {/* RIGHT — RERA badge (single-site only) + Admin */}
+        {/* RIGHT — RERA badge (single-site only) + All Maps + Admin */}
         <div className="header-right">
           {!isMultiLogo && siteConfig.reraNumber && (
             <div className="rera-badge-desktop">
@@ -95,6 +108,13 @@ export default function Header() {
               <span className="rera-badge-val">{siteConfig.reraNumber}</span>
             </div>
           )}
+          <a href={getAllMapsUrl()} className="admin-btn" style={{ gap: 5 }}>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+            All Maps
+          </a>
           <a href="/admin" className="admin-btn">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
@@ -163,11 +183,19 @@ export default function Header() {
             </div>
           )}
 
-          <a href="/admin" className="admin-btn-mobile">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
-            </svg>
-          </a>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <a href={getAllMapsUrl()} className="admin-btn-mobile" title="All Maps">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                <polyline points="9 22 9 12 15 12 15 22"/>
+              </svg>
+            </a>
+            <a href="/admin" className="admin-btn-mobile">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+              </svg>
+            </a>
+          </div>
         </div>
 
         {/* Row 2: Search */}
