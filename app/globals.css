@@ -1355,7 +1355,7 @@ html, body {
   .controls-bar { left: 8px; top: 8px; }
   .search-box { width: 200px; }
   .legend-widget {
-    bottom: 12px;
+    bottom: 76px;
     left: 50%;
     transform: translateX(-50%);
     padding: 8px 14px;
