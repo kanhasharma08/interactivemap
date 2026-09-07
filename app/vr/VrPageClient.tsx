@@ -119,7 +119,7 @@ export default function VrPageClient({ site }: { site?: string }) {
         previewPath="/panorama/preview.webp"
         hotspots={hotspots}
         initialYaw={isSuncity ? -83 : 0}
-        initialPitch={isSuncity ? -89 : -12}
+        initialPitch={isSuncity ? -89 : -20}
         initialHfov={100}
       />
     </div>

@@ -314,9 +314,6 @@ export default function PannellumViewer({
         const cy = viewerRef.current.getYaw();
         const cp = viewerRef.current.getPitch();
 
-        if (coordsRef.current) {
-          coordsRef.current.textContent = `Yaw: ${cy.toFixed(2)}° | Pitch: ${cp.toFixed(2)}°`;
-        }
 
         hotspots.forEach((hs, i) => {
           const el = bubbleRefs.current[i];
