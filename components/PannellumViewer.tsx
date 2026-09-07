@@ -16,6 +16,8 @@ export interface VrHotspot {
   visibleRadius?: number;
   /** Degrees from centre: completely invisible beyond this radius. Default 38 */
   fadeRadius?: number;
+  /** If true, renders as a large flat text logo on the floor instead of a popup */
+  isFloorLogo?: boolean;
 }
 
 interface PannellumViewerProps {
@@ -67,6 +69,19 @@ function loadPannellum(): Promise<void> {
 }
 
 // ── Component ──────────────────────────────────────────────────────────────────
+const ICONS: Record<string, string> = {
+  hospital: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>`,
+  train: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="16" rx="2"/><path d="M4 11h16"/><path d="M12 3v8"/><path d="M8 19l-2 3"/><path d="M16 19l2 3"/><path d="M2 14h20"/></svg>`,
+  bus: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M2 11h20"/><path d="M6 17v4"/><path d="M18 17v4"/><circle cx="8" cy="13" r="1"/><circle cx="16" cy="13" r="1"/></svg>`,
+  buildings: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg>`,
+  shopping: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>`,
+  school: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>`,
+  event: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>`,
+  food: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>`,
+  temple: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M8 22h8"/><path d="M12 6l-4 4h8z"/><path d="M12 14l-6 4h12z"/></svg>`,
+  city: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`
+};
+
 export default function PannellumViewer({
   imagePath,
   previewPath,
@@ -103,6 +118,41 @@ export default function PannellumViewer({
       lineRotate = '135deg';
       dx = -42.4;
       dy = 42.4;
+    }
+
+    if (hs.isFloorLogo) {
+      hotspotDiv.style.cssText += `
+        background: none !important;
+        border: none !important;
+        width: 0; height: 0;
+        overflow: visible;
+      `;
+      const container = document.createElement('div');
+      container.style.cssText = `
+        position: absolute;
+        left: -200px; top: -70px;
+        width: 400px; height: 140px;
+        display: flex; align-items: center; justify-content: center;
+        pointer-events: none;
+        transform: perspective(600px) rotateX(60deg);
+        transform-origin: center bottom;
+      `;
+      
+      const img = document.createElement('img');
+      img.src = '/mangalam-logo.png';
+      img.style.cssText = `
+        width: 380px;
+        height: auto;
+        opacity: 1;
+        filter: drop-shadow(0 0 20px rgba(0,0,0,0.9)) brightness(1.2);
+        image-rendering: crisp-edges;
+      `;
+      
+      container.appendChild(img);
+      hotspotDiv.appendChild(container);
+      
+      // Do NOT push to bubbleRefs so it ignores fade/scale logic
+      return;
     }
 
     // Hotspot div is positioned exactly at the yaw/pitch coordinate (the ground anchor)
@@ -153,19 +203,19 @@ export default function PannellumViewer({
     circle.style.cssText = `
       width: 44px; height: 44px;
       background: #fff;
-      border: 3px solid #111;
+      border: 3px solid #222;
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       z-index: 3;
       flex-shrink: 0;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     `;
     
-    if (hs.icon) {
-      const icon = document.createElement('span');
-      icon.style.cssText = 'font-size: 22px; line-height: 1; filter: grayscale(100%) contrast(200%);';
-      icon.textContent = hs.icon;
-      circle.appendChild(icon);
+    if (hs.icon && ICONS[hs.icon]) {
+      const iconSpan = document.createElement('span');
+      iconSpan.style.cssText = 'display: flex; align-items: center; justify-content: center; width: 24px; height: 24px;';
+      iconSpan.innerHTML = ICONS[hs.icon];
+      circle.appendChild(iconSpan);
     } else {
       const logo = document.createElement('img');
       logo.src = '/mangalam-logo.png';
@@ -173,46 +223,70 @@ export default function PannellumViewer({
       circle.appendChild(logo);
     }
 
-    // 4. Rectangle with green border
-    const rect = document.createElement('div');
-    rect.style.cssText = `
-      background: #111;
-      border: 3px solid #00c853; /* Bright green border */
-      ${isLeft ? 'border-right: none;' : 'border-left: none;'}
-      ${isLeft ? 'border-top-left-radius: 4px; border-bottom-left-radius: 4px;' : 'border-top-right-radius: 4px; border-bottom-right-radius: 4px;'}
-      padding: 6px 12px;
-      ${isLeft ? 'padding-right: 20px; margin-right: -14px;' : 'padding-left: 20px; margin-left: -14px;'}
+    // 4. Outer Rectangle for the Green Border
+    const rectOuter = document.createElement('div');
+    const outerClip = isLeft 
+      ? 'polygon(0 0, 100% 0, 100% 100%, 8px 100%, 0 calc(100% - 8px))'
+      : 'polygon(0 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%)';
+    const innerClip = isLeft
+      ? 'polygon(0 0, 100% 0, 100% 100%, 7px 100%, 0 calc(100% - 7px))'
+      : 'polygon(0 0, 100% 0, 100% calc(100% - 7px), calc(100% - 7px) 100%, 0 100%)';
+      
+    const pTop = '2px', pBottom = '2px';
+    const pLeft = isLeft ? '2px' : '0';
+    const pRight = isLeft ? '0' : '2px';
+    
+    rectOuter.style.cssText = `
+      background: #00c853;
+      padding: ${pTop} ${pRight} ${pBottom} ${pLeft};
+      clip-path: ${outerClip};
+      display: flex;
+      height: 36px;
+      ${isLeft ? 'margin-right: -20px;' : 'margin-left: -20px;'}
+      ${isLeft ? 'padding-right: 20px;' : 'padding-left: 20px;'}
       z-index: 2;
-      color: #fff;
-      display: flex; align-items: baseline; gap: 6px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    `;
+
+    // 5. Inner Rectangle
+    const rectInner = document.createElement('div');
+    rectInner.style.cssText = `
+      background: #111;
+      clip-path: ${innerClip};
+      display: flex; align-items: center; gap: 6px;
+      padding: 0 16px;
+      ${isLeft ? 'padding-right: 12px;' : 'padding-left: 12px;'}
+      height: 100%;
     `;
     
     const title = document.createElement('span');
     title.style.cssText = `
       font-family: 'Inter', 'Outfit', sans-serif;
-      font-size: 13px; font-weight: 800;
+      font-size: 11px; font-weight: 800;
       white-space: nowrap;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      color: #fff;
     `;
     title.textContent = hs.label;
-    rect.appendChild(title);
+    rectInner.appendChild(title);
 
     if (hs.distance) {
       const dist = document.createElement('span');
       dist.style.cssText = `
         font-family: 'Inter', sans-serif;
-        font-size: 11px; font-weight: 500;
-        color: #d1d5db; /* Light grey */
+        font-size: 9px; font-weight: 500;
+        color: #aaa;
         white-space: nowrap;
+        margin-left: 4px;
       `;
       dist.textContent = hs.distance;
-      rect.appendChild(dist);
+      rectInner.appendChild(dist);
     }
 
+    rectOuter.appendChild(rectInner);
+    
     labelWrapper.appendChild(circle);
-    labelWrapper.appendChild(rect);
+    labelWrapper.appendChild(rectOuter);
 
     container.appendChild(line);
     container.appendChild(labelWrapper);
@@ -239,6 +313,10 @@ export default function PannellumViewer({
 
         const cy = viewerRef.current.getYaw();
         const cp = viewerRef.current.getPitch();
+
+        if (coordsRef.current) {
+          coordsRef.current.textContent = `Yaw: ${cy.toFixed(2)}° | Pitch: ${cp.toFixed(2)}°`;
+        }
 
         hotspots.forEach((hs, i) => {
           const el = bubbleRefs.current[i];
@@ -340,6 +418,9 @@ export default function PannellumViewer({
   return (
     <div style={{ position: 'relative', width: '100%', height: '100%', background: '#080810', overflow: 'hidden', touchAction: 'none' }}>
       <div ref={containerRef} style={{ width: '100%', height: '100%', touchAction: 'none' }} />
+
+
+
 
       <style>{`
         /* Kill Pannellum branding (keep debug msg visible) */
