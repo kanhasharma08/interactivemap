@@ -46,33 +46,15 @@ export default function VrPageClient({ site }: { site?: string }) {
   return (
     <div style={{ width: "100vw", height: "100vh", position: "relative", overscrollBehavior: "none", touchAction: "none" }}>
       {/* Dynamic Logo in a frosted pill */}
-      <div
-        style={{
-          position: "absolute",
-          top: 24,
-          left: 24,
-          zIndex: 50,
-          background: "rgba(255, 255, 255, 0.15)",
-          backdropFilter: "blur(12px)",
-          WebkitBackdropFilter: "blur(12px)",
-          border: "1px solid rgba(255, 255, 255, 0.3)",
-          borderRadius: 30,
-          padding: "8px 24px",
-          display: "flex",
-          alignItems: "center",
-          boxShadow: "0 4px 16px rgba(0,0,0,0.2)",
-        }}
-      >
-        <div style={{ position: "relative" }}>
-          <Image
-            src={logoPath}
-            alt="City Logo"
-            width={180}
-            height={60}
-            style={{ objectFit: "contain", height: 50, width: "auto" }}
-            priority
-          />
-        </div>
+      <div className="vr-top-logo-pill">
+        <Image
+          src={logoPath}
+          alt="City Logo"
+          width={180}
+          height={60}
+          className="vr-top-logo-img"
+          priority
+        />
       </div>
 
       <button
@@ -82,36 +64,11 @@ export default function VrPageClient({ site }: { site?: string }) {
             window.location.href = `/?site=${site || 'mangalamcity'}`; // Fallback to navigation
           }
         }}
-        style={{
-          position: "absolute",
-          top: 24,
-          right: 24,
-          zIndex: 50,
-          background: "rgba(0, 0, 0, 0.6)",
-          backdropFilter: "blur(8px)",
-          color: "white",
-          border: "1px solid rgba(255, 255, 255, 0.2)",
-          borderRadius: 20,
-          padding: "8px 16px",
-          fontFamily: "'Inter', sans-serif",
-          fontSize: 14,
-          fontWeight: 600,
-          cursor: "pointer",
-          display: "flex",
-          alignItems: "center",
-          gap: 8,
-          transition: "all 0.2s ease",
-        }}
-        onMouseOver={(e) => {
-          e.currentTarget.style.background = "rgba(0, 0, 0, 0.8)";
-          e.currentTarget.style.transform = "scale(1.05)";
-        }}
-        onMouseOut={(e) => {
-          e.currentTarget.style.background = "rgba(0, 0, 0, 0.6)";
-          e.currentTarget.style.transform = "scale(1)";
-        }}
+        className="vr-back-btn"
+        title="Back to Map"
       >
-        <span>&larr;</span> Back to Map
+        <span style={{ fontSize: '1.1em', lineHeight: 1 }}>&larr;</span>
+        <span className="vr-back-btn-text">Back to Map</span>
       </button>
 
       <PannellumViewer
@@ -122,6 +79,105 @@ export default function VrPageClient({ site }: { site?: string }) {
         initialPitch={isSuncity ? -89 : -20}
         initialHfov={100}
       />
+
+      <style>{`
+        .vr-top-logo-pill {
+          position: absolute;
+          top: 24px;
+          left: 24px;
+          z-index: 50;
+          background: rgba(255, 255, 255, 0.15);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          border: 1px solid rgba(255, 255, 255, 0.3);
+          border-radius: 30px;
+          padding: 8px 24px;
+          display: flex;
+          align-items: center;
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+          pointer-events: auto;
+          user-select: none;
+        }
+
+        .vr-top-logo-img {
+          object-fit: contain;
+          height: 50px;
+          width: auto;
+          display: block;
+        }
+
+        .vr-back-btn {
+          position: absolute;
+          top: 24px;
+          right: 24px;
+          z-index: 50;
+          background: rgba(0, 0, 0, 0.6);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+          color: white;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          border-radius: 20px;
+          padding: 8px 16px;
+          font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+          font-size: 14px;
+          font-weight: 600;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          transition: all 0.2s ease;
+          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+          user-select: none;
+        }
+
+        .vr-back-btn:hover {
+          background: rgba(0, 0, 0, 0.85);
+          transform: scale(1.04);
+        }
+
+        @media (max-width: 768px) {
+          .vr-top-logo-pill {
+            top: max(14px, env(safe-area-inset-top, 14px));
+            left: max(14px, env(safe-area-inset-left, 14px));
+            padding: 5px 12px;
+            border-radius: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+          }
+
+          .vr-top-logo-img {
+            height: 32px;
+          }
+
+          .vr-back-btn {
+            top: max(14px, env(safe-area-inset-top, 14px));
+            right: max(14px, env(safe-area-inset-right, 14px));
+            padding: 7px 12px;
+            font-size: 12px;
+            border-radius: 16px;
+            gap: 5px;
+          }
+        }
+
+        @media (max-width: 390px) {
+          .vr-top-logo-pill {
+            top: max(12px, env(safe-area-inset-top, 12px));
+            left: max(10px, env(safe-area-inset-left, 10px));
+            padding: 4px 10px;
+          }
+
+          .vr-top-logo-img {
+            height: 26px;
+          }
+
+          .vr-back-btn {
+            top: max(12px, env(safe-area-inset-top, 12px));
+            right: max(10px, env(safe-area-inset-right, 10px));
+            padding: 6px 10px;
+            font-size: 11px;
+            gap: 4px;
+          }
+        }
+      `}</style>
     </div>
   );
 }

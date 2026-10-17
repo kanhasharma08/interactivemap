@@ -128,25 +128,12 @@ export default function PannellumViewer({
         overflow: visible;
       `;
       const container = document.createElement('div');
-      container.style.cssText = `
-        position: absolute;
-        left: -200px; top: -70px;
-        width: 400px; height: 140px;
-        display: flex; align-items: center; justify-content: center;
-        pointer-events: none;
-        transform: perspective(600px) rotateX(60deg);
-        transform-origin: center bottom;
-      `;
+      container.className = 'vr-floor-logo-container';
       
       const img = document.createElement('img');
       img.src = '/mangalam-logo.png';
-      img.style.cssText = `
-        width: 380px;
-        height: auto;
-        opacity: 1;
-        filter: drop-shadow(0 0 20px rgba(0,0,0,0.9)) brightness(1.2);
-        image-rendering: crisp-edges;
-      `;
+      img.alt = 'Mangalam City';
+      img.className = 'vr-floor-logo-img';
       
       container.appendChild(img);
       hotspotDiv.appendChild(container);
@@ -325,7 +312,9 @@ export default function PannellumViewer({
           if      (dist <= vr) opacity = 1;
           else if (dist <  fr) opacity = 1 - (dist - vr) / (fr - vr);
           el.style.opacity   = opacity.toFixed(3);
-          const s = 0.9 + opacity * 0.1;
+          const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
+          const baseScale = isMobile ? 0.82 : 1.0;
+          const s = (0.9 + opacity * 0.1) * baseScale;
           el.style.transform = `scale(${s.toFixed(3)})`;
         });
       } catch { /* viewer not ready yet */ }
@@ -461,6 +450,93 @@ export default function PannellumViewer({
         @keyframes pnl-pulse {
           0%, 100% { box-shadow: 0 0 5px 1px rgba(74,222,128,0.5); }
           50%       { box-shadow: 0 0 12px 4px rgba(74,222,128,0.85); }
+        }
+
+        /* ── Fixed Rotating Floor Logo: Desktop Default (Preserves PC Design) ── */
+        .vr-floor-logo-container {
+          position: absolute;
+          left: -200px;
+          top: -70px;
+          width: 400px;
+          height: 140px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          pointer-events: none;
+          transform: perspective(600px) rotateX(60deg);
+          transform-origin: center bottom;
+          will-change: transform;
+        }
+
+        .vr-floor-logo-img {
+          width: 380px;
+          height: auto;
+          opacity: 1;
+          filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.9)) brightness(1.2);
+          image-rendering: -webkit-optimize-contrast;
+          image-rendering: crisp-edges;
+          pointer-events: none;
+          user-select: none;
+        }
+
+        /* ── Tablets / Small Laptops ── */
+        @media (max-width: 900px) {
+          .vr-floor-logo-container {
+            left: -130px;
+            top: -46px;
+            width: 260px;
+            height: 92px;
+            transform: perspective(500px) rotateX(59deg);
+          }
+          .vr-floor-logo-img {
+            width: 240px;
+            filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.88)) brightness(1.2);
+          }
+        }
+
+        /* ── Mobile Devices (Portrait) ── */
+        @media (max-width: 640px) {
+          .vr-floor-logo-container {
+            left: -85px;
+            top: -30px;
+            width: 170px;
+            height: 60px;
+            transform: perspective(420px) rotateX(58deg);
+          }
+          .vr-floor-logo-img {
+            width: 155px;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 3px rgba(0, 0, 0, 0.6)) brightness(1.18);
+          }
+        }
+
+        /* ── Compact Phones (iPhone SE, small Androids) ── */
+        @media (max-width: 400px) {
+          .vr-floor-logo-container {
+            left: -70px;
+            top: -25px;
+            width: 140px;
+            height: 50px;
+            transform: perspective(360px) rotateX(58deg);
+          }
+          .vr-floor-logo-img {
+            width: 130px;
+            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 2px rgba(0, 0, 0, 0.6)) brightness(1.18);
+          }
+        }
+
+        /* ── Mobile Landscape Orientation ── */
+        @media (max-height: 500px) and (orientation: landscape) {
+          .vr-floor-logo-container {
+            left: -95px;
+            top: -34px;
+            width: 190px;
+            height: 68px;
+            transform: perspective(460px) rotateX(58deg);
+          }
+          .vr-floor-logo-img {
+            width: 175px;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.85)) brightness(1.18);
+          }
         }
       `}</style>
     </div>
